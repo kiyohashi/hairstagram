@@ -1,0 +1,11 @@
+%div 
+  -# = @post.user.name
+%div 
+  = post.created_at.strftime("%Y/%m/%d %H:%M")
+%div
+  - if post.body.present?
+    %p
+      = simple_format(post.body)
+    = image_tag post.image, class: '' if post.image.present?
+    %ul
+      = link_to '削除', post_path(post.id), method: :delete, data: { confirm: 'ほんとに消す？' }

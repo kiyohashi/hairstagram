@@ -1,9 +1,1 @@
-%div 
-  = post.user.name
-%div 
-  = post.created_at.strftime("%Y/%m/%d %H:%M")
-%div
-  - if post.text.present?
-        %p
-          = post.content
-      = image_tag post.image.url, class: '' if post.image.present?
+= render @posts
