@@ -1,9 +1,9 @@
 -# salon,gender,style
-= form_with(model: @post, local: true) do |form|
+= form_with(model: @post, local: true) do |f|
   %h3
     投稿する
-  = form.text_field :image, placeholder: "Image Url"
+  = f.file_field :image
   -# 画像　フォルダから
   -# = form.check_box :sex ,{checked: true}, "true", "false" 
-  = form.text_area :body, placeholder: "text" , rows: "10"
-  = form.submit "SEND"
+  = f.text_area :body, placeholder: "text" , rows: "10"
+  = f.submit "SEND"

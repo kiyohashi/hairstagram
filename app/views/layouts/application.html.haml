@@ -9,7 +9,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     %header 
-      = link_to new_post_path do
-        .newpost-btn
-          投稿
+      - if user_signed_in?
+        %div
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+          = link_to "投稿ボタン", new_post_path, class: 'newpost-btn'
+      - else
+        %div
+          = link_to "ログイン", new_user_session_path, class: ''
+          = link_to "新規登録", new_user_registration_path, class: ''
     = yield

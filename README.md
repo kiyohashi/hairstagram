@@ -3,11 +3,12 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+|acountid|string|null: false|
 |icon|text|
 |email|string|null: false|
 |password|string|null: false|
-|gender|enum|null: false|
-|salon_id|string|null: false, foreign_key: true|
+|gender|integer|null: false|
+|salon_id|integer|null: false, foreign_key: true|
 
 ### Association
 - has_many :posts
