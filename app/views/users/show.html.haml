@@ -1,0 +1,20 @@
+%div
+  - if @user.icon.url.present?
+    = image_tag @user.icon.url, class: '', size: '40x38'
+  - else
+    = image_tag 'egg-icon-gray.png', size: '40x38'
+  = @user.name
+  = @user.acountid
+  - if @user.gender == 1
+    Men
+  - else
+    Lady
+  = @user.introduction
+
+  - if user_signed_in? && current_user.id == @user.id
+    %ul
+      = link_to '編集', edit_user_registration_path(@user)
+
+
+%div
+  = render @posts

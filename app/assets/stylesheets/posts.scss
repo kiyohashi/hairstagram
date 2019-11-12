@@ -1,4 +1,18 @@
 .post {
-  border: 1px solid #999999;
   float: left;
+  &__user {
+    border: 1px solid #999999;
+    display: flex;
+    &__icon {
+    }
+  }
+  &__content {
+    border: 1px solid #999999;
+    display: flex;
+  }
+}
+.comment {
+  &__new {
+    display: none;
+  }
 }

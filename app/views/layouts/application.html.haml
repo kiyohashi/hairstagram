@@ -11,7 +11,7 @@
     %header 
       - if user_signed_in?
         %div
-          = link_to "ログアウト", destroy_user_session_path, method: :delete
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトすんの？' }
           = link_to "投稿ボタン", new_post_path, class: 'newpost-btn'
       - else
         %div

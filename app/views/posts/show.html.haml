@@ -1,6 +1,64 @@
-%div
-  = @post.created_at
-%div
-  = @post.body
-= image_tag @post.image.url, class: '' if @post.image.url.present?
-
+.post
+  .post__user
+    .post__user__icon
+      - if @post.user.icon.url.present?
+        = image_tag @post.user.icon.url, class: '', size: '40x40'
+      - else
+        = image_tag 'egg-icon-gray.png', size: '40x40'
+    %div
+      %div
+        = @post.user.name
+      %div
+        @
+        = @post.user.acountid
+  .post__content
+    %div
+      %div 
+        = @post.created_at.strftime("%Y/%m/%d %H:%M")
+      %div
+        - if @post.image.url.present?
+          = image_tag @post.image.url, class: ''
+    %div
+      - if @post.body.present?
+        %p
+          = simple_format(@post.body)
+      - if user_signed_in? && current_user.id == @post.user_id
+        %ul
+          = link_to '削除', post_path(@post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }
+.comment
+  %input{type: "button", class: "comment__btn", value: "コメントボタン", id: "create_comment", onclick: "commentformbtnclick()" }
+  = form_with(model: [@post, @comment], local: true, class: "comment__new", id: "comment_form") do |f|
+    %h3
+      コメント
+    = f.file_field :image
+    = f.text_area :body, placeholder: "text" , rows: "10"
+    = f.submit "SEND"
+  
+  .comment__form
+  %div
+    コメント一覧
+    - if @comments
+      - @comments.each do |comment|
+        .post__user__icon
+          - if comment.user.icon.url.present?
+            = image_tag comment.user.icon.url, class: '', size: '40x40'
+          - else
+            = image_tag 'egg-icon-gray.png', size: '40x40'
+        %div
+          %div
+            = comment.user.name
+          %div
+            @
+            = comment.user.acountid
+          %div
+            = comment.created_at.strftime("%Y/%m/%d %H:%M")
+        - if comment.body.present?
+          %p
+            = simple_format(comment.body)
+        - if comment.image.url.present?
+          = image_tag comment.image.url, class: ''
+        - if user_signed_in? && current_user.id == comment.user_id
+          %ul
+            = link_to '削除', post_comment_path(@post,comment), method: :delete, data: { confirm: 'ほんとに消していいの？' }
+        
+        

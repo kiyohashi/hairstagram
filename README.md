@@ -8,6 +8,7 @@
 |email|string|null: false|
 |password|string|null: false|
 |gender|integer|null: false|
+|introduction|string|null: false|
 |salon_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -22,8 +23,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|string|null: false, foreign_key: true|
-|post_id|string|null: false, foreign_key: true|
+|user_id|string|foreign_key: true|
+|post_id|string|foreign_key: true|
 
 ### Association
 - belongs_to :user

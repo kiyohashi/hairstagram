@@ -1,13 +1,28 @@
 .post
-  = link_to  post_path(post.id), method: :get do
-    %div 
-      -# = @post.user.name
-    %div 
-      = post.created_at.strftime("%Y/%m/%d %H:%M")
-    %div
-      - if post.body.present?
-        %p
-          = simple_format(post.body)
-        = image_tag post.image.url, class: '' if post.image.url.present?
-        %ul
-          = link_to '削除', post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }
+  = link_to  user_path(post.user.id) do
+    .post__user
+      .post__user__icon
+        - if post.user.icon.url.present?
+          = image_tag post.user.icon.url, class: '', size: '40x38'
+        - else
+          = image_tag 'egg-icon-gray.png', size: '40x38'
+      %div
+        %div
+          = post.user.name
+        %div
+          @
+          = post.user.acountid
+  .post__content
+    = link_to  post_path(post.id), method: :get do
+      %div
+        %div 
+          = post.created_at.strftime("%Y/%m/%d %H:%M")
+        %div
+          - if post.body.present?
+            %p
+              = simple_format(post.body)
+          - if post.image.url.present?    
+            = image_tag post.image.url, class: ''
+            %ul
+              - if user_signed_in? && current_user.id == post.user_id
+                = link_to '削除', post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }
