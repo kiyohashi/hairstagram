@@ -23,6 +23,6 @@
               = simple_format(post.body)
           - if post.image.url.present?    
             = image_tag post.image.url, class: ''
-            %ul
-              - if user_signed_in? && current_user.id == post.user_id
-                = link_to '削除', post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }
+          %ul
+            - if user_signed_in? && current_user.id == post.user_id
+              = link_to '削除', post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }

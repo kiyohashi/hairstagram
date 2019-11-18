@@ -2,8 +2,7 @@
 = form_with(model: @post, local: true) do |f|
   %h3
     投稿する
+  = f.text_field :title
   = f.file_field :image
-  -# 画像　フォルダから
-  -# = form.check_box :sex ,{checked: true}, "true", "false" 
   = f.text_area :body, placeholder: "text" , rows: "10"
   = f.submit "SEND"

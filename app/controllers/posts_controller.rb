@@ -21,15 +21,17 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post     = Post.find(params[:id])
-    @comment  = Comment.new
-    @comments = @post.comments.includes(:user)
+    @post      = Post.find(params[:id])
+    @comment   = Comment.new
+    @comments  = @post.comments.includes(:user)
+    @favorite  = Favorite.new
+    @favorites = @post.favorites.includes(:user)
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:image, :body).merge(user_id: current_user.id)
+    params.require(:post).permit(:image, :body, :title).merge(user_id: current_user.id)
     # salon,gender,style 追加
   end
 

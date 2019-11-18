@@ -1,20 +1,65 @@
-%div
-  - if @user.icon.url.present?
-    = image_tag @user.icon.url, class: '', size: '40x38'
-  - else
-    = image_tag 'egg-icon-gray.png', size: '40x38'
-  = @user.name
-  = @user.acountid
-  - if @user.gender == 1
-    Men
-  - else
-    Lady
-  = @user.introduction
+.user
+  .user__leftbox.col-4
+    .user__leftbox__icon
+      - if @user.icon.url.present?
+        = image_tag @user.icon.url
+      - else
+        = image_tag 'egg-icon-gray.png'
+    .user__leftbox__btn.col-12
+      - if user_signed_in? && current_user.id == @user.id
+        %button{type: "button", class: "btn btn-primary", id: "edit"}
+          = link_to '編集', edit_user_registration_path(@user)
+      - else
+        %button{type: "button", class: "btn btn-primary", id: "follow"}
+          フォローする
+    .user__leftbox__count
+      %a.user__leftbox__count__follow
+        フォロー○○
+      %a.user__leftbox__count__follower
+        フォロワー○○
+  .user__rightbox.col-8
+    .user__rightbox__top
+      .user__rightbox__top__name
+        = @user.name
+      .user__rightbox__top__contents
+        .user__rightbox__top__contents__id
+          @
+          = @user.acountid
+        .user__rightbox__top__contents__gender
+          - if @user.gender == 1
+            Men
+          - else
+            Lady
+    .user__rightbox__bottom
+      .user__rightbox__bottom__introduction
+        = @user.introduction
 
-  - if user_signed_in? && current_user.id == @user.id
-    %ul
-      = link_to '編集', edit_user_registration_path(@user)
+.tab
+  %ul.nav.nav-pills.nav-justified
+    %li.userpagelist.styles.col-2
+      %a{"data-toggle": "tab", href:"#sampleContentA", class: "userpagetab"}
+        %text
+          スタイル
+    %li.col-2
+      %a{"data-toggle": "tab", href: "#sampleContentC"}
+    %li.col-2
+      %a{"data-toggle": "tab", href: "#sampleContentD"}
+    %li.col-2
+      %a{"data-toggle": "tab", href: "#sampleContentD"}
+    %li.col-2
+      %a{"data-toggle": "tab", href: "#sampleContentE"}
+    %li.userpagelist.favorites.col-2
+      %a{"data-toggle": "tab", href: "#sampleContentF", class: "userpagetab"}
+        %text
+          お気に入り
 
-
-%div
-  = render @posts
+.tab-content
+  #sampleContentA.tab-pane
+    = render @posts
+  #sampleContentF.tab-pane
+    - @user.favorited_posts.each do |post|
+      = render partial: "posts/post", locals: { post: post}
+  -# #sampleContentC.tab-pane
+  -#   %p メニューＣの内容
+  -# #sampleContentD.tab-pane
+  -#   %p メニューＤの内容
