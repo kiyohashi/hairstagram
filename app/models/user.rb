@@ -1,9 +1,11 @@
 class User < ApplicationRecord
-  mount_uploader :icon, ImageUploader
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  mount_uploader :icon, ImageUploader
+  acts_as_followable
+  acts_as_follower
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
          
   has_many :posts
   has_many :favorites

@@ -6,9 +6,7 @@
   background-color: rgba(255, 255, 255, 0.9);
   border-bottom: solid 1px rgba(204, 204, 204, 0.6);
   box-shadow: 0px 0px 10px 0px rgba(68, 68, 68, 0.9);
-  // background-color: rgb(253, 247, 241);
   &__container {
-    // background-color: #999999;
     height: 100%;
     width: 70%;
     margin: 0 auto;
@@ -23,8 +21,12 @@
         font-style: bold;
         font-size: 1.5em;
         color: #69544b;
-        // box-shadow: 0px 0px 10px 0px rgba(68, 68, 68, 0.9);
         filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+      }
+      &__name:hover {
+        color: #69544b;
+        text-decoration: none;
+        opacity: 0.8;
       }
     }
     &__right {

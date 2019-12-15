@@ -21,80 +21,96 @@
                 Lady
       .show__header__user__right
         .show__header__user__right__follow
-          %button{type: "button", class: "btn btn-primary", id: "follow"}
-            フォローする
+          - if user_signed_in? && current_user.id == @post.user.id
+            %button{type: "button", class: "btn btn-primary", id: "user-edit"}
+              = link_to '編集', edit_user_registration_path(@post.user)
+          - else
+            - if current_user.following? @post.user
+              %button{type: "button", class: "btn btn-primary", id: "un-follow"}
+                = link_to "フォロー外す", {controller: :users,action: :unfollow,user_id: @post.user.id}, method: :put
+            - else
+              %button{type: "button", class: "btn btn-primary", id: "follow"}
+                = link_to "フォローする", {controller: :users,action: :follow,user_id: @post.user.id}, method: :put
   .show__contents
     .show__contents__post
       .show__contents__post__left.col-7
         .show__contents__post__left__image
           - if @post.image.url.present?
             = image_tag @post.image.url, class: ''
-        .show__contents__post__left__favorite
-          .show__contents__post__left__favorite__box.col-2
+        .show__contents__post__left__bottom
+          .show__contents__post__left__bottom__favorite.col-2
             - if current_user.already_favorited?(@post)
               = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete", remote: true, onclick: "favoritedeleteclick()"  do
-                .show__contents__post__left__favorite__box__icon
-                  = fa_icon 'heart', class: 'icon'
-                .show__contents__post__left__favorite__box__count
+                .show__contents__post__left__bottom__favoritex__icon
+                  = icon "fas",'heart', class: 'icon'
+                .show__contents__post__left__bottom__favorite__count
                   = @post.favorites.count
             - else
               = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create", remote: true, onclick: "favoritecreateclick()" do
-                .show__contents__post__left__favorite__box__icon
-                  = fa_icon 'heart-o', class: 'icon'
-                .show__contents__post__left__favorite__box__count
+                .show__contents__post__left__bottom__favorite__icon
+                  = icon "far",'heart', class: 'icon'
+                .show__contents__post__left__bottom__favorite__count
                   = @post.favorites.count
+          .show__contents__post__left__bottom__comment
+            %input{type: "button", class: "show__contents__post__left__comment__btn", value: "コメントボタン", id: "create_comment", onclick: "commentformbtnclick()" }
       .show__contents__post__right.col-5
         .show__contents__post__right__title
-          今日は個人アプリ発表会
+          = @post.title
         .show__contents__post__right__introduction
           マッシュ | 175cm | OSEANTOKYO
           - if user_signed_in? && current_user.id == @post.user_id
             = link_to post_path(@post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' } do
-              = fa_icon 'trash 2x', class: 'icon'
+              = icon "far", "trash-alt", class: "trash"
         .show__contents__post__right__body
           - if @post.body.present?
             %p
               = simple_format(@post.body)
         .show__contents__post__right__date
           = @post.created_at.strftime("%Y/%m/%d %H:%M")
-    .show__comments
-  
-  .comment
-    %input{type: "button", class: "comment__btn", value: "コメントボタン", id: "create_comment", onclick: "commentformbtnclick()" }
-    = form_with(model: [@post, @comment], local: true, class: "comment__new", id: "comment_form") do |f|
-      %h3
-        コメント
-      = f.file_field :image
-      = f.text_area :body, placeholder: "text" , rows: "10"
-      = f.submit "SEND"
-    
-    .comment__form
-    %div
-      コメント一覧
-      - if @comments
-        - @comments.each do |comment|
-          .post__user__icon
-            - if comment.user.icon.url.present?
-              = image_tag comment.user.icon.url, class: '', size: '40x40'
-            - else
-              = image_tag 'egg-icon-gray.png', size: '40x40'
-          %div
-            %div
-              = comment.user.name
-            %div
-              @
-              = comment.user.acountid
-            %div
-              = comment.created_at.strftime("%Y/%m/%d %H:%M")
-          - if comment.body.present?
-            %p
-              = simple_format(comment.body)
-          - if comment.image.url.present?
-            = image_tag comment.image.url, class: ''
-          - if user_signed_in? && current_user.id == comment.user_id
-            %ul
-              = link_to '削除', post_comment_path(@post,comment), method: :delete, data: { confirm: 'ほんとに消していいの？' }
-
-
-          
-          
+  .show__comments
+    .show__comments__container.col-7
+      .show__comments__container__head
+        コメント一覧
+      .show__comments__container__comments
+        - if @comments
+          - @comments.each do |comment|
+            .show__comments__container__comments__comment
+              .post__user
+                = link_to user_path(comment.user.id), class: 'post__user__icon' do
+                  - if comment.user.icon.url.present?
+                    = image_tag comment.user.icon.url, class: '', size: '40x38'
+                  - else
+                    = image_tag 'egg-icon-gray.png', size: '40x38'
+                .post__user__info
+                  .post__user__info__name
+                    = comment.user.name
+                  .post__user__info__id
+                    @
+                    = comment.user.acountid
+              - if comment.body.present?
+                %p
+                  = simple_format(comment.body)
+              - if comment.image.url.present?
+                = image_tag comment.image.url, class: ''
+              - if user_signed_in? && current_user.id == comment.user_id
+                %ul
+                = link_to '削除', post_comment_path(@post,comment), method: :delete, data: { confirm: 'ほんとに消していいの？' }
+              %div
+                = comment.created_at.strftime("%Y/%m/%d %H:%M")
+    .comment.col-5{id: "comment-form"}
+      .comment__form
+        .comment__form__icon
+          - if current_user.icon.url.present?
+            = image_tag current_user.icon.url, class: '', size: '40x40'
+          - else
+            = image_tag 'egg-icon-gray.png', size: '40x40'
+        = form_with(model: [@post, @comment], local: true, class: "comment__form__new") do |f|
+          .comment__form__new__body
+            = f.text_area :body, placeholder: "コメントを入力してください" , rows: "10"
+          .comment__form__new__bottom
+            .comment__form__new__bottom__image
+              = f.label :image do
+                = icon "far", "image", class: "image"
+                = f.file_field :image, style: 'display:none;'
+            .comment__form__new__bottom__submit
+              = f.submit "SEND"

@@ -36,16 +36,26 @@
 |Column|Type|Options|
 |------|----|-------|
 |body|text|
-|image|text|
 |user_id|integer|null: false, foreign_key: true|
 |salon_id|string|null: false, foreign_key: true|
 
 ### Association
 - has_many :favorites
 - has_many :comments
+- has_many :images
 - has_many :styles through: posts_styles
 - belongs_to :user
 - belongs_to :salon
+
+## imagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|image|text|
+|post_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :post
 
 
 ## commentsテーブル

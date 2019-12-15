@@ -1,28 +1,30 @@
 .post
-  = link_to  user_path(post.user.id) do
-    .post__user
-      .post__user__icon
-        - if post.user.icon.url.present?
-          = image_tag post.user.icon.url, class: '', size: '40x38'
+  = link_to post_path(post.id), class: 'post__image' do
+    %div
+      - if post.image.url.present?    
+        = image_tag post.image.url, class: ''
+  .post__user
+    = link_to user_path(post.user.id), class: 'post__user__icon' do
+      - if post.user.icon.url.present?
+        = image_tag post.user.icon.url, class: '', size: '40x38'
+      - else
+        = image_tag 'egg-icon-gray.png', size: '40x38'
+    .post__user__info
+      .post__user__info__name
+        = post.user.name
+      .post__user__info__id
+        @
+        = post.user.acountid
+    .post__user__follow-edit
+      - if user_signed_in? && current_user.id == post.user.id
+        = link_to post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' } do
+          = icon "far", "trash-alt", class: "trash"
+        %button{type: "button", class: "btn btn-primary", id: "user-edit"}
+          = link_to '編集', edit_user_registration_path(post.user)
+      - else
+        - if current_user.following? post.user
+          %button{type: "button", class: "", id: "un-follow"}
+            = link_to "フォロー解除", {controller: :users,action: :unfollow,user_id: post.user.id}, method: :put
         - else
-          = image_tag 'egg-icon-gray.png', size: '40x38'
-      %div
-        %div
-          = post.user.name
-        %div
-          @
-          = post.user.acountid
-  .post__content
-    = link_to  post_path(post.id), method: :get do
-      %div
-        %div 
-          = post.created_at.strftime("%Y/%m/%d %H:%M")
-        %div
-          - if post.body.present?
-            %p
-              = simple_format(post.body)
-          - if post.image.url.present?    
-            = image_tag post.image.url, class: ''
-          %ul
-            - if user_signed_in? && current_user.id == post.user_id
-              = link_to '削除', post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }
+          %button{type: "button", class: "", id: "follow"}
+            = link_to "フォロー", {controller: :users,action: :follow,user_id: post.user.id}, method: :put

@@ -1,6 +1,6 @@
 function commentformbtnclick(){
   // document.getElementById('comment_form').style.display ="none";
-	const commentFORM = document.getElementById("comment_form");
+	const commentFORM = document.getElementById("comment-form");
 
 	if(commentFORM.style.display=="block"){
 		commentFORM.style.display ="none";
