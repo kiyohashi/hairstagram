@@ -3,6 +3,8 @@
   %h3
     投稿する
   = f.text_field :title
-  = f.file_field :image
+  = f.fields_for :images do |img|
+    = img.file_field :image, name: "post[images_attributes][0][image]", type: "file"
+    -# = img.file_field :image, name: "post[images_attributes][1][image]", type: "file"
   = f.text_area :body, placeholder: "text" , rows: "10"
   = f.submit "SEND"

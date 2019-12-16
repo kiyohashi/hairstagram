@@ -35,8 +35,8 @@
     .show__contents__post
       .show__contents__post__left.col-7
         .show__contents__post__left__image
-          - if @post.image.url.present?
-            = image_tag @post.image.url, class: ''
+          - if @post.images.present?
+            = image_tag @post.images[0].image.url, class: ''
         .show__contents__post__left__bottom
           .show__contents__post__left__bottom__favorite.col-2
             - if current_user.already_favorited?(@post)

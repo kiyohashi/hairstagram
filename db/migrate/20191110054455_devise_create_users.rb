@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string  :acountid,           null: false, unique: true, index: true
       t.text    :icon
       t.integer :gender,             null: false
+      t.text    :introduction
       # t.string  :password,           null: false
       # salon_id
 

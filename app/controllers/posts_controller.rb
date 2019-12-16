@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.images.build
   end
 
   def create
@@ -31,7 +32,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body, :title).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :body, images_attributes:[:image]).merge(user_id: current_user.id)
     # salon,gender,style 追加
   end
 

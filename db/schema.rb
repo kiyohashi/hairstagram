@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_18_105220) do
+ActiveRecord::Schema.define(version: 2019_12_15_084505) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "body"
@@ -44,13 +44,20 @@ ActiveRecord::Schema.define(version: 2019_11_18_105220) do
     t.index ["follower_id", "follower_type"], name: "fk_follows"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "body"
-    t.text "image"
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "image", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.string "title"
+    t.index ["post_id"], name: "index_images_on_post_id"
+  end
+
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -59,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_105220) do
     t.string "acountid", null: false
     t.text "icon"
     t.integer "gender", null: false
+    t.text "introduction"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -66,7 +74,6 @@ ActiveRecord::Schema.define(version: 2019_11_18_105220) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "introduction"
     t.index ["acountid"], name: "index_users_on_acountid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -76,5 +83,6 @@ ActiveRecord::Schema.define(version: 2019_11_18_105220) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
+  add_foreign_key "images", "posts"
   add_foreign_key "posts", "users"
 end

@@ -1,8 +1,8 @@
 .post
   = link_to post_path(post.id), class: 'post__image' do
     %div
-      - if post.image.url.present?    
-        = image_tag post.image.url, class: ''
+      - if post.images.present?    
+        = image_tag post.images[0].image.url, class: ''
   .post__user
     = link_to user_path(post.user.id), class: 'post__user__icon' do
       - if post.user.icon.url.present?
@@ -19,8 +19,6 @@
       - if user_signed_in? && current_user.id == post.user.id
         = link_to post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' } do
           = icon "far", "trash-alt", class: "trash"
-        %button{type: "button", class: "btn btn-primary", id: "user-edit"}
-          = link_to '編集', edit_user_registration_path(post.user)
       - else
         - if current_user.following? post.user
           %button{type: "button", class: "", id: "un-follow"}
