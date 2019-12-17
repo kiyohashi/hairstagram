@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: hairstagram_production
-  username: hairstagram
-  password: <%= ENV['HAIRSTAGRAM_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
