@@ -43,9 +43,9 @@ namespace :deploy do
   end
 end
 
-set :default_env, {
-  rbenv_root: "/usr/local/rbenv",
-  path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
-  AWS_ACCESS_KEY_ID: YAML.load(`rails credentials:show`)['aws']['access_key_id'],
-  AWS_SECRET_ACCESS_KEY: YAML.load(`rails credentials:show`)['aws']['secret_access_key'],
-}
+# set :default_env, {
+#   rbenv_root: "/usr/local/rbenv",
+#   path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
+#   AWS_ACCESS_KEY_ID: YAML.load(`rails credentials:show`)['aws']['access_key_id'],
+#   AWS_SECRET_ACCESS_KEY: YAML.load(`rails credentials:show`)['aws']['secret_access_key'],
+# }
