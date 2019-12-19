@@ -1,4 +1,4 @@
-// $(function() {
+$(function() {
 //   $("#favorite-create").click(function() {
 //     $(this).removeClass('favorite-create');
 //     $(this).addClass('favorite-delete')
@@ -9,7 +9,25 @@
 //     $(this).addClass('favorite-create')
 //     console.log(this)
 //   });
-// });
+  $('.slider').slick({
+    dots:true,
+  });
+  $('.slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: true,
+    fade: true,
+    asNavFor: '.slider-nav'
+  });
+  $('.slider-nav').slick({
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    asNavFor: '.slider-for',
+    // centerMode: true,
+    focusOnSelect: true
+  });
+});
 
 
 // $(function() {

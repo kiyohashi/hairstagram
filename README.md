@@ -88,8 +88,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|integer|
-|gender|enum|
+|name|string|
+|gender|integer|
 
 ### Association
 - has many :posts through: posts_styles

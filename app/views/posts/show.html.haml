@@ -36,7 +36,14 @@
       .show__contents__post__left.col-7
         .show__contents__post__left__image
           - if @post.images.present?
-            = image_tag @post.images[0].image.url, class: ''
+            %ul.slider-for
+              - @post.images.each do |image|
+                %li
+                  = image_tag image.image.url, class: ''
+            %ul.slider-nav
+              - @post.images.each do |image|
+                %li
+                  = image_tag image.image.url, class: ''
         .show__contents__post__left__bottom
           .show__contents__post__left__bottom__favorite.col-2
             - if current_user.already_favorited?(@post)

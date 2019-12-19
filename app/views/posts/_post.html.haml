@@ -1,8 +1,11 @@
 .post
-  = link_to post_path(post.id), class: 'post__image' do
-    %div
-      - if post.images.present?    
-        = image_tag post.images[0].image.url, class: ''
+  .post__image
+    - if post.images.present?
+      %ul.slider
+        - post.images.each do |image|
+          %li
+            = link_to post_path(post.id), class: '' do
+              = image_tag image.image.url, class: ''
   .post__user
     = link_to user_path(post.user.id), class: 'post__user__icon' do
       - if post.user.icon.url.present?
