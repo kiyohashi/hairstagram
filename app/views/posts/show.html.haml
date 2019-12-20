@@ -19,6 +19,8 @@
                 Men
               - else
                 Lady
+            = link_to @post.user.salon.link, class: 'show__header__user__left__contents__else__salon' do
+              = salon_name(@post.user.salon).gsub("　", "")
       .show__header__user__right
         .show__header__user__right__follow
           - if user_signed_in? && current_user.id == @post.user.id
@@ -48,7 +50,7 @@
           .show__contents__post__left__bottom__favorite.col-2
             - if current_user.already_favorited?(@post)
               = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete", remote: true, onclick: "favoritedeleteclick()"  do
-                .show__contents__post__left__bottom__favoritex__icon
+                .show__contents__post__left__bottom__favorite__icon
                   = icon "fas",'heart', class: 'icon'
                 .show__contents__post__left__bottom__favorite__count
                   = @post.favorites.count
@@ -64,9 +66,12 @@
         .show__contents__post__right__title
           = @post.title
         .show__contents__post__right__introduction
-          マッシュ | 175cm | OSEANTOKYO
+          マッシュ | 175cm
+          |
+          = link_to @post.salon.link, class: 'show__contents__post__right__introduction__salon' do
+            = salon_name(@post.salon).gsub("　", "")
           - if user_signed_in? && current_user.id == @post.user_id
-            = link_to post_path(@post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' } do
+            = link_to post_path(@post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }, class: 'show__contents__post__right__introduction__trash' do
               = icon "far", "trash-alt", class: "trash"
         .show__contents__post__right__body
           - if @post.body.present?
