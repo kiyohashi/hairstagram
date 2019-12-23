@@ -1,0 +1,48 @@
+#user-edit {
+  width: 50%;
+  background-color: #808080;
+  opacity: 0.5;
+  padding: 0 0;
+  height: 2em;
+  border: none;
+  a {
+    color: white;
+    text-decoration: none;
+    line-height: 2em;
+    display: block;
+    width:100%;
+    height:100%;
+  }
+}
+#follow {
+  background-color: rgba(124, 176, 255, 0.3);
+  // opacity: 0.9;
+  border: 2px solid #002966;
+  a {
+    color: #002966;
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 2em;
+    display: block;
+    width:100%;
+    height:100%;
+  }
+}
+#unfollow {
+  background-color: #002966;
+  opacity: 0.9;
+  border: none;
+  // border-radius: 40px;
+  a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 2em;
+    display: block;
+    width:100%;
+    height:100%;
+  }
+}
+.btn-primary:hover {
+  opacity: 0.6 !important;
+}

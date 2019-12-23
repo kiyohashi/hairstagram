@@ -1,3 +1,4 @@
+.salon-search
 - @salons.each do |salon|
   = link_to salon.link do
     = image_tag salon.image_url
@@ -6,3 +7,4 @@
     = salon.introduction
     = salon.access
     = salon.address
+= paginate @salons

@@ -1,0 +1,16 @@
+= render partial: 'shared/gender-select'
+.timeline
+  .timeline__head
+    フォローユーザーの最新スタイル
+  .timeline__posts
+    .genderAll.active
+      .posts
+        = render partial: 'posts/post', collection: @posts
+    .genderWomen
+      .posts
+        = render partial: 'posts/post', collection: @Womenposts
+    .genderMen
+      .posts
+        = render partial: 'posts/post', collection: @menPosts
+    -# = render partial: 'posts/post', collection: @posts
+  = paginate @posts

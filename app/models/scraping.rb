@@ -1,7 +1,6 @@
 require 'mechanize'
 
 class Scraping
-  
   def self.omotesandoSalons_urls
     agent = Mechanize.new
     
@@ -50,6 +49,7 @@ class Scraping
     salon.image_url = image_url
     salon.introduction = introduction
     salon.link = link
+    salon.area_id = 1
     
     salon.save
   end

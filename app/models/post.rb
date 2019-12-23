@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :length
   validates :body, :images, :title, presence: true
 
   belongs_to :user
@@ -9,4 +11,9 @@ class Post < ApplicationRecord
   has_many :images
   accepts_nested_attributes_for :images
   
+  def self.search(keyword)
+    return Post.all unless keyword
+    Post.where('((title LIKE(?)) OR (body LIKE(?)))', "%#{keyword}%", "%#{keyword}%")
+  end
+
 end

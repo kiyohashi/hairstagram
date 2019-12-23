@@ -11,4 +11,6 @@
     = img.file_field :image, name: "post[images_attributes][4][image]", type: "file"
     = img.file_field :image, name: "post[images_attributes][5][image]", type: "file"
   = f.text_area :body, placeholder: "text" , rows: "10"
+  = f.collection_select :length_id, Length.all, :id, :name, {prompt: '---'}
+  = f.collection_select :salon_id, Salon.all, :id, :name, {prompt: '---'}
   = f.submit "SEND"

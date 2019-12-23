@@ -2,12 +2,14 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "bootstrap";
-@import "header";
-@import "footer";
+@import "layouts/*";
+@import "shared/*";
 @import "reset";
 @import "posts/*";
-@import "users";
+@import "users/*";
 @import "slick/*"; 
+@import "btn"; 
+
 
 html{
   width: 100%;
@@ -32,7 +34,6 @@ body{
     width: 70%;
     height: 100%;
     margin: 0 auto;
-    // padding: 2em 0;
   }
 }
 .trash {

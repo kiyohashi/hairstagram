@@ -21,31 +21,6 @@
       margin: 0 auto;
       display: flex;
       justify-content: center;
-      .btn-primary {
-        background-color: #002966;
-        opacity: 0.9;
-        border: none;
-      }
-      #user-edit {
-        width: 50%;
-        background-color: #808080;
-        opacity: 0.5;
-        padding: 0 0;
-        height: 2em;
-        a {
-          color: white;
-          text-decoration: none;
-          line-height: 2em;
-          display: block;
-          // position: absolute;
-          // top:0;
-          // left:0;
-          width:100%;
-          height:100%;
-        }
-      }
-      #follow {
-      }
     }
     &__count {
       padding: 0.25em 0;
@@ -73,6 +48,11 @@
         &__gender {
           border-right: solid 1px rgba(128, 128, 128, 0.6);
           padding: 0 0.5em;
+        }
+        &__salon {
+          padding: 0 0.5em;
+          color: #4a4a4a;
+          text-decoration: underline;
         }
       }
     }
@@ -122,6 +102,25 @@
     .favorites {
       border-left: solid 1px  rgba(128, 128, 128, 0.3);
       border-right: none;
+    }
+  }
+}
+.user-contents {
+  .user-contents__posts {
+
+  }
+  .user-contents__favorites {
+
+  }
+  .user-contents__index{
+    display: flex;
+    flex-wrap: wrap;
+    .post {
+      margin: 2% 2% 2% 0;
+      width: 23.5%;
+    }
+    .post:nth-child(4n) {
+      margin: 2% 0;
     }
   }
 }

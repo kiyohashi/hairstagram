@@ -8,8 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.text    :icon
       t.integer :gender,             null: false
       t.text    :introduction
-      # t.string  :password,           null: false
-      # salon_id
+      t.references :length, null:false
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

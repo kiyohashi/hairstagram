@@ -1,0 +1,60 @@
+.sidebar__search.sidebar__content
+  .sidebar__search__head.sidebar__content__head
+    探す
+  %ul.sidebar__search__list.sidebar__content__list
+    %li.sidebar__search__list__style
+      = link_to posts_path do
+        = icon 'fas', 'camera-retro', class: 'search-icon'
+        %span スタイルを探す
+    %li.sidebar__search__list__salon
+      = link_to salons_path do
+        = icon 'fas', 'store-alt', class: 'search-icon'
+        %span サロンを探す
+    %li.sidebar__search__list__user
+      = link_to users_path do
+        = icon 'far', 'user', class: 'search-icon'
+        %span ユーザーを探す
+    %li.sidebar__search__list__item
+      = link_to root_path do
+        .search-icon
+          = image_tag 'wax.png'
+        %span アイテムを探す
+.sidebar__favorite-salon.sidebar__content
+  .sidebar__favorite-salon__head.sidebar__content__head
+    人気サロン
+  %ul.sidebar__favorite-salon__list.sidebar__content__list
+    - Salon.all.first(5).each do |salon|
+      %li
+        = link_to salon_path(salon) do
+          = salon_name(salon)
+.sidebar__favorite-user.sidebar__content
+  .sidebar__favorite-user__head.sidebar__content__head
+    ユーザー
+  %ul.sidebar__favorite-user__list.sidebar__content__list
+    - User.all.first(5).each do |user|
+      %li
+        = link_to user_path(user) do
+          - if user.icon.url.present?
+            = image_tag user.icon.url, size: '35x35'
+          - else
+            = image_tag 'egg-icon-gray.png', size: '35x35'
+          = user.name
+.sidebar__favorite-style.sidebar__content
+  .sidebar__favorite-style__head.sidebar__content__head
+    人気スタイル
+  %ul.sidebar__favorite-style__list.sidebar__content__list
+    %li
+      = link_to root_path do
+        マッシュ
+    %li
+      = link_to root_path do
+        アフロ
+    %li
+      = link_to root_path do
+        ボウズ
+    %li
+      = link_to root_path do
+        ウルフ
+    %li
+      = link_to root_path do
+        リーゼント

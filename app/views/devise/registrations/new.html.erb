@@ -21,7 +21,17 @@
   <div class="field">
     <%=f.label :gender, "性別" %><br />
     <%=f.radio_button :gender, 1, autofocus: true%>Men
-    <%=f.radio_button :gender, 2, autofocus: true%>Lady
+    <%=f.radio_button :gender, 2, autofocus: true%>Women
+  </div>
+
+  <div class="field">
+    <%=f.label :length_id, "長さ・スタイル" %><br />
+    <%=f.collection_select(:length_id, Length.all, :id, :name, {prompt: '---'})%>
+  </div>
+
+  <div class="field">
+    <%=f.label :salon_id, "お気に入りサロン" %><br />
+    <%=f.collection_select(:salon_id, Salon.all, :id, :name, {prompt: '---'})%>
   </div>
 
   <div class="field">

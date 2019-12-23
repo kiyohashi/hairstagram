@@ -18,9 +18,16 @@
               - if @post.user.gender == 1
                 Men
               - else
-                Lady
-            = link_to @post.user.salon.link, class: 'show__header__user__left__contents__else__salon' do
-              = salon_name(@post.user.salon).gsub("　", "")
+                Women
+            - if @post.user.salon
+              = link_to salon_path(@post.user.salon), class: 'show__header__user__left__contents__else__salon' do
+                = salon_name(@post.user.salon)
+            - else
+              - if user_signed_in? && current_user.id == @post.user.id
+                = link_to edit_user_registration_path(@post.user), class: 'show__header__user__left__contents__else__salon' do
+                  未登録
+              - else
+                未登録
       .show__header__user__right
         .show__header__user__right__follow
           - if user_signed_in? && current_user.id == @post.user.id
@@ -28,8 +35,8 @@
               = link_to '編集', edit_user_registration_path(@post.user)
           - else
             - if current_user.following? @post.user
-              %button{type: "button", class: "btn btn-primary", id: "un-follow"}
-                = link_to "フォロー外す", {controller: :users,action: :unfollow,user_id: @post.user.id}, method: :put
+              %button{type: "button", class: "btn btn-primary", id: "unfollow"}
+                = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: @post.user.id}, method: :put
             - else
               %button{type: "button", class: "btn btn-primary", id: "follow"}
                 = link_to "フォローする", {controller: :users,action: :follow,user_id: @post.user.id}, method: :put
@@ -49,13 +56,15 @@
         .show__contents__post__left__bottom
           .show__contents__post__left__bottom__favorite.col-2
             - if current_user.already_favorited?(@post)
-              = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete", remote: true, onclick: "favoritedeleteclick()"  do
+              -# = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete", remote: true, onclick: "favoritedeleteclick()" do
+              = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete" do
                 .show__contents__post__left__bottom__favorite__icon
                   = icon "fas",'heart', class: 'icon'
                 .show__contents__post__left__bottom__favorite__count
                   = @post.favorites.count
             - else
-              = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create", remote: true, onclick: "favoritecreateclick()" do
+              -# = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create", remote: true, onclick: "favoritecreateclick()" do
+              = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create" do
                 .show__contents__post__left__bottom__favorite__icon
                   = icon "far",'heart', class: 'icon'
                 .show__contents__post__left__bottom__favorite__count
@@ -68,8 +77,11 @@
         .show__contents__post__right__introduction
           マッシュ | 175cm
           |
-          = link_to @post.salon.link, class: 'show__contents__post__right__introduction__salon' do
-            = salon_name(@post.salon).gsub("　", "")
+          - if @post.salon
+            = link_to salon_path(@post.salon), class: 'show__contents__post__right__introduction__salon' do
+              = salon_name(@post.salon)
+          - else
+            未登録
           - if user_signed_in? && current_user.id == @post.user_id
             = link_to post_path(@post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }, class: 'show__contents__post__right__introduction__trash' do
               = icon "far", "trash-alt", class: "trash"

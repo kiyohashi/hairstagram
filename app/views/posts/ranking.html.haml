@@ -1,0 +1,16 @@
+= render partial: 'shared/gender-select'
+.sidebar
+  = render partial: 'shared/sidebar'
+.ranking
+  .ranking__head
+    いいねランキング
+  .ranking__contents
+    .genderAll.active
+      .posts
+        = render @posts
+    .genderWomen
+      .posts
+        = render @womenPosts
+    .genderMen
+      .posts
+        = render @menPosts

@@ -1,0 +1,29 @@
+.sidebar {
+  width: 21%;
+  height: 100%;
+  float: left;
+  padding: 3em 2em 3em 0;
+}
+.ranking {
+  padding: 2em 0;
+  &__head {
+    font-size: 1.1rem;
+    margin-top: 1em;
+  }
+  &__contents {
+    >div {
+      display: none;
+    }
+    .posts {
+      width: 79%;
+      display: flex;
+      flex-wrap: wrap;
+      .post:nth-child(3n){
+        margin: 1em 0;
+      }
+    }
+    .active {
+      display: block;
+    }
+  }
+}

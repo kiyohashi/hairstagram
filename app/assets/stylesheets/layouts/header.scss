@@ -1,5 +1,5 @@
 .header {
-  height: 4em;
+  height: 3.5em;
   box-sizing: border-box;
   position: relative;
   z-index: 998;
@@ -14,7 +14,15 @@
     justify-content: space-between;
     align-items: center;
     &__search {
-
+      &__form {
+        position: relative;
+        &__input {
+          
+        }
+        &__button {
+          position: absolute;
+        }
+      }
     }
     &__main-title {
       &__name {

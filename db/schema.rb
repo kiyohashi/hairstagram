@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(version: 2019_12_19_113729) do
     t.string "title", null: false
     t.text "body", null: false
     t.bigint "user_id", null: false
+    t.bigint "length_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "salon_id"
+    t.index ["length_id"], name: "index_posts_on_length_id"
     t.index ["salon_id"], name: "index_posts_on_salon_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -71,8 +73,10 @@ ActiveRecord::Schema.define(version: 2019_12_19_113729) do
     t.text "link"
     t.text "image_url"
     t.text "introduction"
+    t.bigint "area_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_salons_on_area_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -81,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_113729) do
     t.text "icon"
     t.integer "gender", null: false
     t.text "introduction"
+    t.bigint "length_id", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -91,6 +96,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_113729) do
     t.bigint "salon_id"
     t.index ["acountid"], name: "index_users_on_acountid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["length_id"], name: "index_users_on_length_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["salon_id"], name: "index_users_on_salon_id"
   end

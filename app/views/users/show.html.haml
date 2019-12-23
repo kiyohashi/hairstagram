@@ -11,16 +11,16 @@
           = link_to '編集', edit_user_registration_path(@user)
       - else
         - if current_user.following? @user
-          %button{type: "button", class: "btn btn-primary", id: "follow"}
-            = link_to "フォロー外す", {controller: :users,action: :unfollow,user_id: @user.id}, method: :put
+          %button{type: "button", class: "btn btn-primary", id: "unfollow"}
+            = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: @user.id}, method: :put
         - else
           %button{type: "button", class: "btn btn-primary", id: "follow"}
             = link_to "フォローする", {controller: :users,action: :follow,user_id: @user.id}, method: :put
     .user__leftbox__count
-      %a.user__leftbox__count__follow
+      = link_to "/users/follow_list/#{@user.id}", class: 'user__leftbox__count__follow' do
         フォロー
         = @user.follow_count
-      %a.user__leftbox__count__follower
+      = link_to "/users/follower_list/#{@user.id}", class: 'user__leftbox__count__follower' do
         フォロワー
         = @user.followers_count
   .user__rightbox.col-8
@@ -35,15 +35,20 @@
           - if @user.gender == 1
             Men
           - else
-            Lady
+            Women
+        - if @user.salon
+          = link_to salon_path(@user.salon), class: 'user__rightbox__top__contents__salon' do
+            = salon_name(@user.salon)
+        - else
+          未登録
     .user__rightbox__bottom
       .user__rightbox__bottom__introduction
         = @user.introduction
 
 .tab
   %ul.nav.nav-pills.nav-justified
-    %li.userpagelist.styles.col-2
-      %a{"data-toggle": "tab", href:"#sampleContentA", class: "userpagetab"}
+    %li.userpagelist.styles.col-2.active
+      %a{"data-toggle": "tab", href:"#sampleContentA", class: "userpagetab active"}
         %text
           スタイル
     %li.col-2
@@ -59,12 +64,14 @@
         %text
           お気に入り
 
-.tab-content
-  #sampleContentA.tab-pane
-    = render @posts
-  #sampleContentF.tab-pane
-    - @user.favorited_posts.each do |post|
-      = render partial: "posts/post", locals: { post: post}
+.tab-content.user-contents
+  #sampleContentA.tab-pane.active.user-contents__posts
+    .user-contents__index
+      = render @posts
+  #sampleContentF.tab-pane.user-contents__favorites
+    .user-contents__index
+      - @user.favorited_posts.each do |post|
+        = render partial: "posts/post", locals: { post: post}
   -# #sampleContentC.tab-pane
   -#   %p メニューＣの内容
   -# #sampleContentD.tab-pane

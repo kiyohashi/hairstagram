@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() { 
 //   $("#favorite-create").click(function() {
 //     $(this).removeClass('favorite-create');
 //     $(this).addClass('favorite-delete')
@@ -9,8 +9,8 @@ $(function() {
 //     $(this).addClass('favorite-create')
 //     console.log(this)
 //   });
-  $('.slider').slick({
-    dots:true,
+  var slider = $('.slider').slick({
+      dots:true,
   });
   $('.slider-for').slick({
     slidesToShow: 1,

@@ -1,0 +1,18 @@
+.user-index {
+  display:flex;
+  flex-wrap: wrap;
+  padding:3rem 0;
+  .user {
+    width: 49%;
+    padding: 0;
+    margin-right: 2%;
+    border: solid 1px rgba(128, 128, 128, 0.7);
+    border-radius: 1rem;
+    button {
+      font-size: 50%;
+    }
+  }
+  .user:nth-child(2n) {
+    margin: 0;
+  }
+}

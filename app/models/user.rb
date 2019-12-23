@@ -1,12 +1,14 @@
 class User < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  :recoverable, :rememberable, :validatable
   mount_uploader :icon, ImageUploader
   acts_as_followable
   acts_as_follower
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-         
+  
+  belongs_to_active_hash :length
   belongs_to :salon
   has_many :posts
   has_many :favorites

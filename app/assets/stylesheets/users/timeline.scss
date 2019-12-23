@@ -1,0 +1,26 @@
+.timeline {
+  padding: 2em 0;
+  &__head {
+    font-size: 1.1rem;
+    margin-top: 1em;
+  }
+  &__posts {
+    >div {
+      display: none;
+      .posts {
+        display: flex;
+        flex-wrap: wrap;
+        .post {
+          margin: 1em 2% 1em 0;
+          width: 23.5%;
+        }
+        .post:nth-child(4n) {
+          margin: 1em 0;
+        }
+      }
+    }
+    .active {
+      display: block;
+    }
+  }
+}

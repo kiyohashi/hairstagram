@@ -1,11 +1,8 @@
 .post
   .post__image
     - if post.images.present?
-      %ul.slider
-        - post.images.each do |image|
-          %li
-            = link_to post_path(post.id), class: '' do
-              = image_tag image.image.url, class: ''
+      = link_to post_path(post.id), class: '' do
+        = image_tag post.images[0].image.url, class: ''
   .post__user
     = link_to user_path(post.user.id), class: 'post__user__icon' do
       - if post.user.icon.url.present?
@@ -18,15 +15,15 @@
       .post__user__info__id
         @
         = post.user.acountid
-    .post__user__follow-edit
+    .post__user__follow-trash
       - if user_signed_in? && current_user.id == post.user.id
         = link_to post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' } do
           = icon "far", "trash-alt", class: "trash"
       - else
         - if user_signed_in?
           - if current_user.following? post.user
-            %button{type: "button", class: "", id: "un-follow"}
-              = link_to "フォロー解除", {controller: :users,action: :unfollow,user_id: post.user.id}, method: :put
+            %button{type: "button", class: "btn btn-primary", id: "unfollow"}
+              = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: post.user.id}, method: :put
           - else
-            %button{type: "button", class: "", id: "follow"}
+            %button{type: "button", class: "btn btn-primary", id: "follow"}
               = link_to "フォロー", {controller: :users,action: :follow,user_id: post.user.id}, method: :put

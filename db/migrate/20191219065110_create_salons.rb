@@ -8,6 +8,7 @@ class CreateSalons < ActiveRecord::Migration[5.2]
       t.text       :link
       t.text       :image_url
       t.text       :introduction
+      t.references :area, null:false
       t.timestamps
     end
   end
