@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :salon_id, images_attributes:[:image]).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :body, :salon_id, :length_id, images_attributes:[:image]).merge(user_id: current_user.id)
     # salon,gender,style 追加
   end
 
