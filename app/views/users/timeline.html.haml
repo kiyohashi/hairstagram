@@ -8,9 +8,11 @@
         = render partial: 'posts/post', collection: @posts
     .genderWomen
       .posts
-        = render partial: 'posts/post', collection: @Womenposts
+        = render partial: 'posts/post', collection: @womenPosts
     .genderMen
       .posts
         = render partial: 'posts/post', collection: @menPosts
-    -# = render partial: 'posts/post', collection: @posts
+    .genderFree
+      .posts
+        = render partial: 'posts/post', collection: @freePosts
   = paginate @posts
