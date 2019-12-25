@@ -9,20 +9,32 @@
       = link_to root_path, class: 'header__container__main-title__name' do
         HairStagram
     .header__container__right
-      .header__container__right__user
-        - if user_signed_in?
-          = link_to user_path(current_user.id) do
-            - if current_user.icon.url.present?
-              = image_tag current_user.icon.url, class: '', size: '40x38'
-            - else
-              = image_tag 'egg-icon-gray.png', size: '40x38'
+      - if user_signed_in?
+        .header__container__right__user
+          - if current_user.icon.url.present?
+            = image_tag current_user.icon.url, class: '', size: '40x38'
+          - else
+            = image_tag 'egg-icon-gray.png', size: '40x38'
           @#{current_user.acountid}
-      .header__container__right__devise
-        - if user_signed_in?
-          .header__container__post
-            = link_to "logout", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトすんの？' }
-            = link_to "投稿", new_post_path, class: 'newpost-btn'
-        - else
-          .header__container__signin
-            = link_to "login", new_user_session_path, class: ''
-            = link_to "登録", new_user_registration_path, class: ''
+      .header__container__right__user-menu#header-user-menu
+        %ul.header__container__right__user-menu__list
+          %li 
+            = link_to 'マイページ', user_path(current_user.id)
+          %li 
+            = link_to 'ダイレクトメッセージ', room_path(current_user.id)
+          %li 
+            = link_to 'スタイル投稿', new_post_path(current_user.id)
+          %li 
+            = link_to 'ユーザー情報編集', edit_user_registration_path(current_user.id)
+        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'header__container__right__user-menu__logout', data: { confirm: 'ログアウトすんの？' }
+        
+        
+  -# .header__container__right__devise
+  -#   - if user_signed_in?
+  -#     .header__container__post
+  -#       = link_to "logout", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトすんの？' }
+  -#       = link_to "投稿", new_post_path, class: 'newpost-btn'
+  -#   - else
+  -#     .header__container__signin
+  -#       = link_to "login", new_user_session_path, class: ''
+  -#       = link_to "登録", new_user_registration_path, class: ''

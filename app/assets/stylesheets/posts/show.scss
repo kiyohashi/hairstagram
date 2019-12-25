@@ -2,10 +2,11 @@
   &__header {
     box-sizing: border-box;
     border-bottom: solid 1px  rgb(204, 204, 204);
-    box-shadow:0px 4px 10px rgba(68, 68, 68, 0.3);
+    // box-shadow:0px 4px 10px rgba(68, 68, 68, 0.3);
+    box-shadow: 0 3px 7px 1px rgba(0, 0, 0, 0.3);
     background-color: #fff;
     position: fixed;
-    z-index: 999;
+    z-index: 998;
     left: 0;
     top: 3.5em;
     width: 100%;
