@@ -19,8 +19,8 @@ class Scraping
       next_link = current_page.at('.paging .afterPage a')
       break unless next_link
       next_url = next_link.get_attribute(:href)
-      next_urlhairetsu = next_url.split("/")
-      last_url = next_urlhairetsu[next_urlhairetsu.length - 1]
+      next_urls = next_url.split("/")
+      last_url = next_urls[next_urls.length - 1]
       sleep(1)
     end
     
@@ -53,4 +53,283 @@ class Scraping
     
     salon.save
   end
+
+
+
+
+
+
+
+  def self.appliancesBrands
+    agent = Mechanize.new
+    
+    page = 0
+
+    while true
+      current_page = agent.get("https://cosmeet.cosme.net/brand/search/page/#{page}/itm/1065/trg/8")
+      
+      elements = current_page.search('.rslt-brd')
+      elements.each do |ele|
+        name = ele.at('h2 a').inner_text if ele.at('h2 a')
+        # name = "ブランドADST"
+        company = ele.at('> a').inner_text if ele.at('> a')
+        # company = "(ハッコー)"
+        get_brand(name, company)
+      end
+    
+      next_link = current_page.at('#gmdl-pgr .next a')
+      break unless next_link
+      page += 1
+      sleep(1)
+    end
+  end
+
+  def self.get_brand(name, company)
+    agent = Mechanize.new
+
+    name.slice!(0..3)
+    brand = Brand.where(name: name).first_or_initialize
+    brand.name = name
+    brand.company = company.tr("()", "")
+
+    brand.save
+  end
+
+
+
+
+
+  def self.stylingBrands
+    agent = Mechanize.new
+    
+    page = 0
+
+    while true
+      current_page = agent.get("https://cosmeet.cosme.net/brand/search/page/#{page}/itm/923/trg/8")
+      
+      elements = current_page.search('.rslt-brd')
+      elements.each do |ele|
+        name = ele.at('h2 a').inner_text if ele.at('h2 a')
+        # name = "ブランドADST"
+        company = ele.at('> a').inner_text if ele.at('> a')
+        # company = "(ハッコー)"
+        
+        get_brand(name, company)
+      end
+    
+      next_link = current_page.at('#gmdl-pgr .next a')
+      break unless next_link
+      page += 1
+      sleep(1)
+    end
+  end
+
+
+
+
+  def self.waxCreamItems
+    agent = Mechanize.new
+    
+    page = 0
+
+    while true
+      current_page = agent.get("https://cosmeet.cosme.net/product/search/page/#{page}/srt/4/itm/1092")
+      
+      elements = current_page.search('.mdl-pdt-idv')
+      elements.each do |ele|
+        name = ele.at('.info h2 a').inner_text if ele.at('.info h2 a')
+        link = ele.at('.info h2 a')[:href] if ele.at('.info h2 a')
+        image_url = ele.at('.pic img')[:src] if ele.at('.pic img')
+        brand = ele.at('.info h2 span a').inner_text if ele.at('.info h2 span a')
+
+        get_item(name, link, image_url, brand)
+      end
+    
+      next_link = current_page.at('#gmdl-pgr .next a')
+      break unless next_link
+      page += 1
+      sleep(1)
+    end
+  end
+
+  def self.get_item(name, link, image_url, brand)
+
+    item = Item.where(name: name).first_or_initialize
+    item.name = name
+    item.link = link
+    item.image_url = image_url
+    item.genre_id = 1
+    item.brand_id = Brand.find_by(name: brand).id
+
+    item.save
+  end
+
+
+
+
+  def self.gelItems
+    agent = Mechanize.new
+    
+    page = 0
+
+    while true
+      current_page = agent.get("https://cosmeet.cosme.net/product/search/page/#{page}/srt/4/itm/1093")
+      
+      elements = current_page.search('.mdl-pdt-idv')
+      elements.each do |ele|
+        name = ele.at('.info h2 a').inner_text if ele.at('.info h2 a')
+        link = ele.at('.info h2 a')[:href] if ele.at('.info h2 a')
+        image_url = ele.at('.pic img')[:src] if ele.at('.pic img')
+        brand = ele.at('.info h2 span a').inner_text if ele.at('.info h2 span a')
+
+        get_gelitem(name, link, image_url, brand)
+      end
+    
+      next_link = current_page.at('#gmdl-pgr .next a')
+      break unless next_link
+      page += 1
+      sleep(1)
+    end
+  end
+
+  def self.get_gelitem(name, link, image_url, brand)
+
+    item = Item.where(name: name).first_or_initialize
+    item.name = name
+    item.link = link
+    item.image_url = image_url
+    item.genre_id = 2
+    item.brand_id = Brand.find_by(name: brand).id
+
+    item.save
+  end
+
+
+
+
+
+
+
+
+  def self.mooseItems
+    agent = Mechanize.new
+    
+    page = 0
+
+    while true
+      current_page = agent.get("https://cosmeet.cosme.net/product/search/page/#{page}/srt/4/itm/1094")
+      
+      elements = current_page.search('.mdl-pdt-idv')
+      elements.each do |ele|
+        name = ele.at('.info h2 a').inner_text if ele.at('.info h2 a')
+        link = ele.at('.info h2 a')[:href] if ele.at('.info h2 a')
+        image_url = ele.at('.pic img')[:src] if ele.at('.pic img')
+        brand = ele.at('.info h2 span a').inner_text if ele.at('.info h2 span a')
+
+        get_mooseItem(name, link, image_url, brand)
+      end
+    
+      next_link = current_page.at('#gmdl-pgr .next a')
+      break unless next_link
+      page += 1
+      sleep(1)
+    end
+  end
+
+  def self.get_mooseItem(name, link, image_url, brand)
+
+    item = Item.where(name: name).first_or_initialize
+    item.name = name
+    item.link = link
+    item.image_url = image_url
+    item.genre_id = 3
+    item.brand_id = Brand.find_by(name: brand).id
+
+    item.save
+  end
+
+
+
+
+
+
+
+  def self.sprayMistItems
+    agent = Mechanize.new
+    
+    page = 0
+
+    while true
+      current_page = agent.get("https://cosmeet.cosme.net/product/search/page/#{page}/srt/4/itm/1091")
+      
+      elements = current_page.search('.mdl-pdt-idv')
+      elements.each do |ele|
+        name = ele.at('.info h2 a').inner_text if ele.at('.info h2 a')
+        link = ele.at('.info h2 a')[:href] if ele.at('.info h2 a')
+        image_url = ele.at('.pic img')[:src] if ele.at('.pic img')
+        brand = ele.at('.info h2 span a').inner_text if ele.at('.info h2 span a')
+
+        get_sprayMistItem(name, link, image_url, brand)
+      end
+    
+      next_link = current_page.at('#gmdl-pgr .next a')
+      break unless next_link
+      page += 1
+      sleep(1)
+    end
+  end
+
+  def self.get_sprayMistItem(name, link, image_url, brand)
+
+    item = Item.where(name: name).first_or_initialize
+    item.name = name
+    item.link = link
+    item.image_url = image_url
+    item.genre_id = 4
+    item.brand_id = Brand.find_by(name: brand).id
+
+    item.save
+  end
+
+
+
+
+
+  def self.appliancesItems
+    agent = Mechanize.new
+    
+    page = 0
+
+    while true
+      current_page = agent.get("https://cosmeet.cosme.net/product/search/page/#{page}/srt/4/itm/1065")
+      
+      elements = current_page.search('.mdl-pdt-idv')
+      elements.each do |ele|
+        name = ele.at('.info h2 a').inner_text if ele.at('.info h2 a')
+        link = ele.at('.info h2 a')[:href] if ele.at('.info h2 a')
+        image_url = ele.at('.pic img')[:src] if ele.at('.pic img')
+        brand = ele.at('.info h2 span a').inner_text if ele.at('.info h2 span a')
+
+        get_appliancesItem(name, link, image_url, brand)
+      end
+    
+      next_link = current_page.at('#gmdl-pgr .next a')
+      break unless next_link
+      page += 1
+      sleep(1)
+    end
+  end
+
+  def self.get_appliancesItem(name, link, image_url, brand)
+
+    item = Item.where(name: name).first_or_initialize
+    item.name = name
+    item.link = link
+    item.image_url = image_url
+    item.genre_id = 7
+    item.brand_id = Brand.find_by(name: brand).id
+
+    item.save
+  end
+
 end
