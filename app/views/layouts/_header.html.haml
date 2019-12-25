@@ -21,7 +21,7 @@
             %li 
               = link_to 'マイページ', user_path(current_user.id)
             %li 
-              = link_to 'ダイレクトメッセージ', room_path(current_user.id)
+              = link_to 'ダイレクトメッセージ', rooms_path(current_user)
             %li 
               = link_to 'スタイル投稿', new_post_path(current_user.id)
             %li 
