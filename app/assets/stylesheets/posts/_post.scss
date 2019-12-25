@@ -39,7 +39,15 @@
     &__follow-trash {
       button {
         font-size: 0.5vh;
-        padding: 0.8vh 0.8vh !important;
+        width: 4rem;
+        height: 2rem;
+        padding: 0 0 !important;
+        position: relative;
+        a {
+          line-height: 2rem;
+          position: absolute;
+          top:0;
+        }
       }
     }
   }
