@@ -12,8 +12,7 @@
             = @post.user.name
           .show__header__user__left__contents__else
             .show__header__user__left__contents__else__id
-              @
-              = @post.user.acountid
+              @#{@post.user.acountid}
             .show__header__user__left__contents__else__gender
               - if @post.user.gender == 1
                 Men

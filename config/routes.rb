@@ -7,7 +7,10 @@ Rails.application.routes.draw do
       get 'timeline',            to: 'users#timeline'
     end
   end
-  resources :salons
+  resources :rooms do
+    resources :messages
+  end
+  resources :salons, only: [:show, :index]
   resources :posts, only: [:index, :new, :create, :destroy, :show] do
     collection do
       get 'search'
