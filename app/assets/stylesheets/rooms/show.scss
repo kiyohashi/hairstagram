@@ -1,0 +1,102 @@
+.direct-message__show {
+  &__user {
+    height: 3.5rem;
+    border-bottom: 1px solid #cccccc;
+    padding: 0.5em 1rem;
+    &__name {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    &__acountid {
+      font-size: 80%;
+    }
+  }
+  .direct-message__show__messages {
+    border-bottom: 1px solid #cccccc;
+    overflow: scroll;
+    height: calc(100% - 7rem);
+    &__message {
+      width: 100%;
+      &__contents {
+        max-width: calc((100% - 4.5rem) / 2);
+        border: 1px solid #cccccc;
+        background-color: rgb(230, 236, 240);
+        padding: 0.7rem;
+        word-wrap: break-word;
+        font-size: 90%;
+        p {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .partner {
+      margin: 1rem 0;
+      .direct-message__show__messages__message {
+        display: flex;
+        &__icon {
+          margin: 0 1rem;
+          width: 2.5rem;
+          position: relative;
+          img {
+            position: absolute;
+            bottom: 0;
+            border-radius: 3rem;
+            width:2.5rem;
+            height: 2.5rem;
+          }
+        }
+        &__contents {
+          border-radius: 2rem 2rem 2rem 0;
+        }
+      }
+      .direct-message__show__messages__date {
+        margin-left: 4.5rem;
+        font-size: 30%;
+      }
+    }
+    .own-message {
+      margin: 1rem 1rem 1rem 0;
+      .direct-message__show__messages__message {
+        display: flex;
+        justify-content: flex-end;
+        &__contents {
+          border-radius: 2rem 2rem 0 2rem;
+        }
+      }
+      .direct-message__show__messages__date {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 30%;
+      }
+    }
+  }
+  &__form {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    padding:1rem;
+    label {
+      margin-bottom: 0;
+    }
+    &__image {
+      width: 3rem;
+      font-size: 2rem;
+      color:#002966;
+    }
+    &__body {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.25rem 1rem;
+      background-color: rgb(230, 236, 240);
+      border: none;
+      border-radius: 0.5rem;
+    }
+    &__submit {
+      width: 3rem;
+      text-align: end;
+      font-size: 1.8rem;
+      color:#002966;
+    }
+  }
+}

@@ -13,8 +13,7 @@
       .post__user__info__name
         = post.user.name
       .post__user__info__id
-        @
-        = post.user.acountid
+        @#{post.user.acountid}
     .post__user__follow-trash
       - if user_signed_in? && current_user.id == post.user.id
         = link_to post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' } do

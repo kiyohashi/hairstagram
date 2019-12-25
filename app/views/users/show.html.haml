@@ -29,8 +29,7 @@
         = @user.name
       .user__rightbox__top__contents
         .user__rightbox__top__contents__id
-          @
-          = @user.acountid
+          @#{@user.acountid}
         .user__rightbox__top__contents__gender
           - if @user.gender == 1
             Men
@@ -41,6 +40,13 @@
             = salon_name(@user.salon)
         - else
           未登録
+      .user__rightbox__top__message
+        - if user_signed_in? && current_user.id != @user.id
+          = form_with(url: rooms_path, local: true) do |f|
+            = f.hidden_field :user_id, value: @user.id
+            = f.label 'dmEnvelope' do
+              = icon 'far', 'envelope'
+              = f.submit id: 'dmEnvelope', style: 'display:none;'
     .user__rightbox__bottom
       .user__rightbox__bottom__introduction
         = @user.introduction

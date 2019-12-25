@@ -1,0 +1,33 @@
+.direct-message {
+  position: relative;
+  // .bgc {
+  //   position: absolute;
+  //   left: -42.857%;
+  //   background-color: #002966;
+  //   width: 185.714%;
+  //   height: 100%;
+  //   z-index: -1;
+  // }
+  display:flex;
+  // padding: 2rem 0;
+  height: 100%;
+  color: inherit;
+  border: 1px solid #cccccc;
+  &__users-rooms {
+    width: 33.3%;
+    // background-color: #002966;
+    background-color: #fff;
+    border-right: 1px solid #cccccc;
+  }
+  &__show {
+    width: 66.7%;
+    // background-color: #002966;
+    background-color: #fff;
+    &__noselect {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

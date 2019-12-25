@@ -1,0 +1,8 @@
+.user-rooms__head
+  .user-rooms__head__messages
+    Messages
+  .user-rooms__head__icon
+    = link_to rooms_path do
+      = icon 'far','envelope'
+.user-rooms__index
+  = render @rooms

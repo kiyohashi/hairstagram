@@ -16,8 +16,7 @@
               = image_tag current_user.icon.url, class: '', size: '40x38'
             - else
               = image_tag 'egg-icon-gray.png', size: '40x38'
-          @
-          = current_user.acountid
+          @#{current_user.acountid}
       .header__container__right__devise
         - if user_signed_in?
           .header__container__post

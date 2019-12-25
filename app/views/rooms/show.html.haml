@@ -1,0 +1,46 @@
+.direct-message
+  .bgc
+  .direct-message__users-rooms
+    = render 'rooms'
+  .direct-message__show
+    .direct-message__show__user
+      .direct-message__show__user__name
+        = partner(@room).name
+      .direct-message__show__user__acountid
+        @#{partner(@room).acountid}
+    .direct-message__show__messages
+      - @room.messages.each do |message|
+        - if partner(@room).id == message.user_id
+          .partner
+            .direct-message__show__messages__message
+              .direct-message__show__messages__message__icon
+                = link_to user_path(partner(@room)) do
+                  - if partner(@room).icon.url.present?
+                    = image_tag partner(@room).icon.url
+                  - else
+                    = image_tag 'egg-icon-gray.png'
+              .direct-message__show__messages__message__contents
+                - if message.body.present?
+                  = simple_format(message.body) 
+                - if message.image.present?
+                  = image_tag message.image.url
+            .direct-message__show__messages__date
+              = message.created_at
+        - else
+          .own-message
+            .direct-message__show__messages__message
+              .direct-message__show__messages__message__contents
+                - if message.body.present?
+                  = simple_format(message.body) 
+                - if message.image.present?
+                  = image_tag message.image.url
+            .direct-message__show__messages__date
+              = message.created_at
+    = form_with(url: room_messages_path(@room), local: true, class: 'direct-message__show__form') do |f|
+      = f.label :image, class: 'direct-message__show__form__image' do
+        = icon "far", "image", class: "image"
+        = f.file_field :image, style: 'display:none;'
+      = f.text_area :body, class: '', placeholder: 'send a message',rows: "1", class: 'direct-message__show__form__body'
+      = f.label 'dmsubmit', class: 'direct-message__show__form__submit' do
+        = icon "far", "paper-plane", class: "paper-plain"
+        = f.submit id: 'dmsubmit',style: 'display:none;'
