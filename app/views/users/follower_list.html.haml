@@ -31,10 +31,13 @@
         .user__rightbox__top__contents__id
           @#{@user.acountid}
         .user__rightbox__top__contents__gender
-          - if @user.gender == 1
+          - case @user.gender
+          - when 1
             Men
-          - else
+          - when 2
             Women
+          - when 3
+            free
         = link_to salon_path(@user.salon), class: 'user__rightbox__top__contents__salon' do
           = salon_name(@user.salon)
     .user__rightbox__bottom
@@ -76,10 +79,13 @@
             .user__rightbox__top__contents__id
               @#{user.acountid}
             .user__rightbox__top__contents__gender
-              - if user.gender == 1
+              - case user.gender
+              - when 1
                 Men
-              - else
+              - when 2
                 Women
+              - when 3
+                free
             = link_to salon_path(user.salon), class: 'user__rightbox__top__contents__salon' do
               = salon_name(user.salon)
         .user__rightbox__bottom

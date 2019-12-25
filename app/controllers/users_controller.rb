@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     @posts = desc(posts).page(params[:page]).per(12)
     @womenPosts = @posts.select{|post| post.user.gender == 2}
     @menPosts = @posts.select{|post| post.user.gender == 1}
+    @freePosts = @posts.select{|post| post.user.gender == 3}
   end
 
   private

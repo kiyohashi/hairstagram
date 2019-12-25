@@ -14,10 +14,13 @@
             .show__header__user__left__contents__else__id
               @#{@post.user.acountid}
             .show__header__user__left__contents__else__gender
-              - if @post.user.gender == 1
+              - case @post.user.gender
+              - when 1
                 Men
-              - else
+              - when 2
                 Women
+              - when 3
+                Free
             - if @post.user.salon
               = link_to salon_path(@post.user.salon), class: 'show__header__user__left__contents__else__salon' do
                 = salon_name(@post.user.salon)
