@@ -12,5 +12,7 @@
     .genderMen
       .posts
         = render partial: 'posts/post', collection: @menPosts
-    -# = render partial: 'posts/post', collection: @posts
+    .genderFree
+      .posts
+        = render partial: 'posts/post', collection: @freePosts
   = paginate @posts

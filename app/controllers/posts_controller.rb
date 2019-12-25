@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @posts = Post.where(id: post_liked_ids).order(['field(id, ?)', post_liked_ids])
     @womenPosts = @posts.select{|post| post.user.gender == 2}
     @menPosts = @posts.select{|post| post.user.gender == 1}
+    @freePosts = @posts.select{|post| post.user.gender == 3}
   end
 
   def new
