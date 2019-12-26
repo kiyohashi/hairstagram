@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_200030) do
+ActiveRecord::Schema.define(version: 2019_12_26_080505) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -116,6 +116,15 @@ ActiveRecord::Schema.define(version: 2019_12_25_200030) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "post_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_post_items_on_item_id"
+    t.index ["post_id"], name: "index_post_items_on_post_id"
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
@@ -183,6 +192,8 @@ ActiveRecord::Schema.define(version: 2019_12_25_200030) do
   add_foreign_key "images", "posts"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "post_items", "items"
+  add_foreign_key "post_items", "posts"
   add_foreign_key "posts", "salons"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "salons"
