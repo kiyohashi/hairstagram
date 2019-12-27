@@ -24,7 +24,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    if Post.create(post_params)
+    post = Post.new(post_params)
+    if post.save
       redirect_to root_path
     else
       render :new
@@ -48,8 +49,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :salon_id, :length_id, images_attributes:[:image]).merge(user_id: current_user.id)
-    # salon,gender,style 追加
+    params.require(:post).permit(:title, :body, :salon_id, :length_id, item_ids: [], images_attributes:[:image]).merge(user_id: current_user.id)
   end
 
   def  move_to_index

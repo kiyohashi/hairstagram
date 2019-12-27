@@ -1,0 +1,62 @@
+.post-new {
+  padding-bottom: 3rem;
+  &__head {
+    padding-top:3rem;
+    margin-left: -15vw;
+    font-size: 1.5rem;
+    background-color: #fff;
+    width:100vw;
+    border-bottom: 1px solid #cccccc;
+    &__contents {
+      margin: 0 0 1rem 15vw;
+    }
+  }
+  &__form {
+    width: 90%;
+    margin: 2rem auto;
+    border: 1px solid #cccccc;
+    border-radius: 0.5rem;
+    // background-color: #fff;
+    padding: 3rem 2rem 0;
+    .form-content {
+      margin-bottom: 2rem;
+      display: flex;
+      &__head {
+        margin-bottom: 1rem;
+        font-weight: bold;
+        width: 20%;
+        text-align: end;
+      }
+      &__content {
+        margin-left: 10%;
+        width: 70%;
+      }
+    }
+    &__item-brand {
+      margin-bottom: 2rem;
+      &__bland {
+        margin-top: -2.5rem;
+        margin-left: 30%;
+        width: 70%;
+      }
+      &__item {
+        margin-left: 30%;
+        width: 70%;
+      }
+    }
+  }
+  &__submit {
+    text-align: center;
+    &__btn {
+      padding: 0.5rem 3rem;
+      font-size: 1rem;
+      background-color: #002966;
+      color: #fff;
+      border: 1px solid #002966;
+      border-radius: 0.2rem;
+    }
+    &__btn:hover {
+      opacity: 0.7;
+    }
+  }
+}
