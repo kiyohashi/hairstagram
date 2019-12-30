@@ -32,16 +32,17 @@
                 未登録
       .show__header__user__right
         .show__header__user__right__follow
-          - if user_signed_in? && current_user.id == @post.user.id
-            %button{type: "button", class: "btn btn-primary", id: "user-edit"}
-              = link_to '編集', edit_user_registration_path(@post.user)
-          - else
-            - if current_user.following? @post.user
-              %button{type: "button", class: "btn btn-primary", id: "unfollow"}
-                = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: @post.user.id}, method: :put
+          - if user_signed_in?
+            - if current_user.id == @post.user.id
+              %button{type: "button", class: "btn btn-primary", id: "user-edit"}
+                = link_to '編集', edit_user_registration_path(@post.user)
             - else
-              %button{type: "button", class: "btn btn-primary", id: "follow"}
-                = link_to "フォローする", {controller: :users,action: :follow,user_id: @post.user.id}, method: :put
+              - if current_user.following? @post.user
+                %button{type: "button", class: "btn btn-primary", id: "unfollow"}
+                  = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: @post.user.id}, method: :put
+              - else
+                %button{type: "button", class: "btn btn-primary", id: "follow"}
+                  = link_to "フォローする", {controller: :users,action: :follow,user_id: @post.user.id}, method: :put
   .show__contents
     .show__contents__post
       .show__contents__post__left.col-7
@@ -57,20 +58,21 @@
                   = image_tag image.image.url, class: ''
         .show__contents__post__left__bottom
           .show__contents__post__left__bottom__favorite.col-2
-            - if current_user.already_favorited?(@post)
-              -# = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete", remote: true, onclick: "favoritedeleteclick()" do
-              = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete" do
-                .show__contents__post__left__bottom__favorite__icon
-                  = icon "fas",'heart', class: 'icon'
-                .show__contents__post__left__bottom__favorite__count
-                  = @post.favorites.count
-            - else
-              -# = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create", remote: true, onclick: "favoritecreateclick()" do
-              = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create" do
-                .show__contents__post__left__bottom__favorite__icon
-                  = icon "far",'heart', class: 'icon'
-                .show__contents__post__left__bottom__favorite__count
-                  = @post.favorites.count
+            - if user_signed_in? && current_user.id == @post.user.id
+              - if current_user.already_favorited?(@post)
+                -# = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete", remote: true, onclick: "favoritedeleteclick()" do
+                = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete" do
+                  .show__contents__post__left__bottom__favorite__icon
+                    = icon "fas",'heart', class: 'icon'
+                  .show__contents__post__left__bottom__favorite__count
+                    = @post.favorites.count
+              - else
+                -# = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create", remote: true, onclick: "favoritecreateclick()" do
+                = link_to post_favorites_path(@post,@favorites), method: :post, class: 'favorite-create', id: "favorite-create" do
+                  .show__contents__post__left__bottom__favorite__icon
+                    = icon "far",'heart', class: 'icon'
+                  .show__contents__post__left__bottom__favorite__count
+                    = @post.favorites.count
           .show__contents__post__left__bottom__comment
             %input{type: "button", class: "show__contents__post__left__comment__btn", value: "コメントボタン", id: "create_comment", onclick: "commentformbtnclick()" }
       .show__contents__post__right.col-5
@@ -126,10 +128,13 @@
     .comment.col-5{id: "comment-form"}
       .comment__form
         .comment__form__icon
-          - if current_user.icon.url.present?
-            = image_tag current_user.icon.url, class: '', size: '40x40'
+          - if user_signed_in?
+            - if current_user.icon.url.present?
+              = image_tag current_user.icon.url, class: '', size: '40x40'
+            - else
+              = image_tag 'egg-icon-gray.png', size: '40x40'
           - else
-            = image_tag 'egg-icon-gray.png', size: '40x40'
+
         = form_with(model: [@post, @comment], local: true, class: "comment__form__new") do |f|
           .comment__form__new__body
             = f.text_area :body, placeholder: "コメントを入力してください" , rows: "10"
