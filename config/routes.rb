@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
+  resources :brands, only: [:index]
+  resources :items, only: [:index, :show]
   resources :salons, only: [:show, :index]
   resources :posts, only: [:index, :new, :create, :destroy, :show] do
     collection do

@@ -9,8 +9,8 @@ class Post < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   has_many :comments
   has_many :images
-  has_many :items,      through: :post_items
   has_many :post_items
+  has_many :items,      through: :post_items
   accepts_nested_attributes_for :images
   
   def self.search(keyword)
