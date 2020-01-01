@@ -28,6 +28,6 @@
               = link_to 'ユーザー情報編集', edit_user_registration_path(current_user.id)
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'header__container__right__user-menu__logout', data: { confirm: 'ログアウトすんの？' }
       - else
-        .header__container__signin
-          = link_to "login", new_user_session_path, class: ''
-          = link_to "登録", new_user_registration_path, class: ''
+        .header__container__right__signin
+          = link_to "login", new_user_session_path, class: 'header__container__right__signin__login'
+          = link_to "登録", new_user_registration_path, class: 'header__container__right__signin__registration'

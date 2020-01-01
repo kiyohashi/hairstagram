@@ -45,7 +45,19 @@
                   = link_to "フォローする", {controller: :users,action: :follow,user_id: @post.user.id}, method: :put
   .show__contents
     .show__contents__post
-      .show__contents__post__left.col-7
+      .show__contents__post__items
+        - @post.items.each do |item|
+          .show__contents__post__items__item
+            .show__contents__post__items__item__img
+              - if item.image_url == "?target=70x70" 
+                = image_tag 'noimage.jpeg', size: '70x70'
+              - else
+                = image_tag item.image_url
+            .show__contents__post__items__item__brand
+              = item.brand.name
+            .show__contents__post__items__item__item
+              = item.name
+      .show__contents__post__left
         .show__contents__post__left__image
           - if @post.images.present?
             %ul.slider-for
@@ -75,12 +87,19 @@
                     = @post.favorites.count
           .show__contents__post__left__bottom__comment
             %input{type: "button", class: "show__contents__post__left__comment__btn", value: "コメントボタン", id: "create_comment", onclick: "commentformbtnclick()" }
-      .show__contents__post__right.col-5
+      .show__contents__post__right
         .show__contents__post__right__title
           = @post.title
         .show__contents__post__right__introduction
-          マッシュ | 175cm
+          #{@post.length.name}
+          | 175cm
           |
+          - if @post.gender
+            #{@post.gender.name}
+            |
+          - if @post.age
+            #{@post.age}
+            |
           - if @post.salon
             = link_to salon_path(@post.salon), class: 'show__contents__post__right__introduction__salon' do
               = salon_name(@post.salon)

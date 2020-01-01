@@ -112,6 +112,16 @@
           color: #888;
         }
       }
+      &__signin {
+        &__login {
+          color: inherit;
+          padding-right: 0.5rem;
+          border-right: 1px solid #ccc;
+        }
+        &__registration {
+          color: inherit;
+        }
+      }
     }
     &__right:hover {
       color:rgba(74, 74, 74, 0.8);
