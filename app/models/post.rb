@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :length
+  belongs_to_active_hash :gender
   validates :body, :images, :title, presence: true
 
   belongs_to :user

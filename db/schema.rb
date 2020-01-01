@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_080505) do
+ActiveRecord::Schema.define(version: 2019_12_30_105327) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -130,9 +130,12 @@ ActiveRecord::Schema.define(version: 2019_12_26_080505) do
     t.text "body", null: false
     t.bigint "user_id", null: false
     t.bigint "length_id", null: false
+    t.bigint "salon_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "salon_id"
+    t.integer "age"
+    t.bigint "gender_id"
+    t.index ["gender_id"], name: "index_posts_on_gender_id"
     t.index ["length_id"], name: "index_posts_on_length_id"
     t.index ["salon_id"], name: "index_posts_on_salon_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
