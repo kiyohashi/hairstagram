@@ -6,7 +6,7 @@ class User < ApplicationRecord
   acts_as_followable
   acts_as_follower
 
-  
+  belongs_to_active_hash :gender
   belongs_to_active_hash :length
   belongs_to :salon , optional: true
   has_many :posts
