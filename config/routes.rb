@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # , controllers: { registrations: 'users/registrations'}
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  devise_scope :users do
+    get 'edit', to: 'users#edit'
+  end
   root to: 'posts#ranking'
-  resources :users , only: [:show, :update, :index] do
+  resources :users , only: [:show, :update, :index, :edit, :destroy] do
     member do
       get 'timeline',            to: 'users#timeline'
+      get 'iconedit',            to: 'users#iconedit'
+      patch 'icon',              to: 'users#iconupdate'
+      put 'icon',                to: 'users#iconupdate'
+      get 'emailedit',           to: 'users#emailedit'
+      patch 'email',             to: 'users#emailupdate'
+      put 'email',               to: 'users#emailupdate'
+      get 'passwordedit',        to: 'users#passwordedit'
+      patch 'password',          to: 'users#passwordupdate'
+      put 'password',            to: 'users#passwordupdate'
+      get 'destroyconfirmation', to: 'users#destroyconfirmation'
     end
   end
   resources :rooms do

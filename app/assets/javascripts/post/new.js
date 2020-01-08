@@ -145,6 +145,7 @@ $(function() {
   $(document).on("click", "#removeImage1", function() {
     var dom = $(this).prevAll('.post-new__form__image__form__box__image').children('img');
     dom.attr('src', '');
+    $('#post_images_attributes_0_image').val('');
   });
   
 
@@ -159,12 +160,12 @@ $(function() {
     }
   }
   $("#post_images_attributes_1_image").change(function(){
-    debugger;
     readURL2(this);
   });
   $(document).on("click", "#removeImage2", function() {
     var dom = $(this).prevAll('.post-new__form__image__form__box__image').children('img');
     dom.attr('src', '');
+    $('#post_images_attributes_1_image').val('');
   });
 
   function readURL3(input) {
@@ -182,6 +183,7 @@ $(function() {
   $(document).on("click", "#removeImage3", function() {
     var dom = $(this).prevAll('.post-new__form__image__form__box__image').children('img');
     dom.attr('src', '');
+    $('#post_images_attributes_2_image').val('');
   });
 
   function readURL4(input) {
@@ -199,5 +201,6 @@ $(function() {
   $(document).on("click", "#removeImage4", function() {
     var dom = $(this).prevAll('.post-new__form__image__form__box__image').children('img');
     dom.attr('src', '');
+    $('#post_images_attributes_3_image').val('');
   });
 });

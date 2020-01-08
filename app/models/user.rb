@@ -2,14 +2,13 @@ class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
-  mount_uploader :icon, ImageUploader
+  mount_uploader :icon, IconUploader
   acts_as_followable
   acts_as_follower
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   
   belongs_to_active_hash :length
-  belongs_to :salon
+  belongs_to :salon , optional: true
   has_many :posts
   has_many :favorites
   has_many :favorited_posts, through: :favorites, source: :post
@@ -21,17 +20,4 @@ class User < ApplicationRecord
   def already_favorited?(post)
     self.favorites.exists?(post_id: post.id)
   end
-
-  # def update_without_current_password(params, *options)
-  #   params.delete(:current_password)
-
-  #   if params[:password].blank? && params[:password_confirmation].blank?
-  #     params.delete(:password)
-  #     params.delete(:password_confirmation)
-  #   end
-
-  #   result = update_attributes(params, *options)
-  #   clean_up_passwords
-  #   result
-  # end
 end

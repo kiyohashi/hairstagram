@@ -1,0 +1,22 @@
+= form_with(model: @user, local: true, url: icon_user_path, method: :patch, class:'user-edit individual-page') do |f|
+  .user-edit__head.individual-page__head
+    .user-edit__head__contents.individual-page__head__contents
+      = icon 'fas', 'user-edit', class: ''
+      %span ユーザー情報編集
+  .user-edit__contents
+    = render partial: 'shared/user-edit-side'
+    .user-edit__contents__main
+      .user-edit__contents__main__head
+        プロフィールに使用する画像を編集できます。
+      .user-edit__contents__main__icon
+        .user-edit__contents__main__icon__box
+          - if current_user.icon.present?
+            = image_tag current_user.icon.url
+          - else 
+            = image_tag 'egg-icon-gray.png'
+      .user-edit__contents__main__iconForm
+        %label{for:"user_icon"}写真をアップロード
+        = f.file_field :icon, type: "file", style: 'display:none;'
+        %input{type: "button",value: '削除', id: 'removeIcon'}
+  .user-edit__submit
+    = f.submit "更新する"

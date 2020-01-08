@@ -1,6 +1,6 @@
-= form_with(model: @post, local: true, class:'post-new') do |f|
-  .post-new__head
-    .post-new__head__contents
+= form_with(model: @post, local: true, class:'post-new individual-page') do |f|
+  .post-new__head.individual-page__head
+    .post-new__head__contents.individual-page__head__contents
       = icon 'fas', 'camera-retro', class: 'search-icon'
       %span スタイルを投稿する
   .post-new__form
@@ -85,3 +85,4 @@
         = f.number_field :age, class: "", min: 1, max: 100
   .post-new__submit
     = f.submit "投稿する", class: 'post-new__submit__btn'
+

@@ -6,6 +6,7 @@
 @import "shared/*";
 @import "reset";
 @import "posts/*";
+@import "devise/*";
 @import "users/*";
 @import "rooms/*";
 @import "slick/*"; 
@@ -40,4 +41,20 @@ body{
 .trash {
   font-size: 1rem;
   color: red;
+}
+
+.individual-page {
+  padding-bottom: 3rem;
+  &__head {
+    font-weight: bold;
+    padding-top:3.5rem;
+    margin-left: -15vw;
+    font-size: 1.3rem;
+    background-color: #fff;
+    width:100vw;
+    border-bottom: 1px solid #cccccc;
+    &__contents {
+      margin: 0 0 1.5rem 15vw;
+    }
+  }
 }

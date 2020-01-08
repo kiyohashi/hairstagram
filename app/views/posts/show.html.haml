@@ -14,11 +14,11 @@
             .show__header__user__left__contents__else__id
               @#{@post.user.acountid}
             .show__header__user__left__contents__else__gender
-              - case @post.user.gender
+              - case @post.user.gender_id
               - when 1
-                Men
-              - when 2
                 Women
+              - when 2
+                Men
               - when 3
                 Free
             - if @post.user.salon

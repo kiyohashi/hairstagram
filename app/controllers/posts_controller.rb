@@ -13,9 +13,9 @@ class PostsController < ApplicationController
     post_like_count = Post.joins(:favorites).group(:post_id).count
     post_liked_ids = Hash[post_like_count.sort_by{ |_, v| -v }].keys
     @posts = Post.where(id: post_liked_ids).order(['field(id, ?)', post_liked_ids])
-    @womenPosts = @posts.select{|post| post.user.gender == 2}
-    @menPosts = @posts.select{|post| post.user.gender == 1}
-    @freePosts = @posts.select{|post| post.user.gender == 3}
+    @womenPosts = @posts.select{|post| post.user.gender_id == 1}
+    @menPosts = @posts.select{|post| post.user.gender_id == 2}
+    @freePosts = @posts.select{|post| post.user.gender_id == 3}
   end
 
   def new
@@ -25,9 +25,12 @@ class PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
+    binding.pry
     if post.save
       redirect_to root_path
     else
+      @post = Post.new
+      @post.images.build
       render :new
     end
   end
@@ -49,11 +52,10 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :salon_id, :length_id, item_ids: [], images_attributes:[:image]).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :body, :salon_id, :length_id, :gender_id, :age, item_ids: [], images_attributes:[:image]).merge(user_id: current_user.id)
   end
 
   def  move_to_index
     redirect_to action: :index unless user_signed_in?
   end
 end
-
