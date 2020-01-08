@@ -1,0 +1,17 @@
+.user-new__contents__registration__remenberme {
+  .field {
+    width:40%;
+    height: 1rem;
+    display: flex;
+    margin: 0 auto;
+    input {
+      width: 10%;
+      height: 1rem;
+      line-height: 1rem;
+    }
+    label {
+      font-size: 0.8rem;
+      line-height: 1rem;
+    }
+  }
+}

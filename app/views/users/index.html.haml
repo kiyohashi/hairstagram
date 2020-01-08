@@ -33,15 +33,16 @@
             .user__rightbox__top__contents__id
               @#{user.acountid}
             .user__rightbox__top__contents__gender
-              - case user.gender
+              - case user.gender_id
               - when 1
-                Men
-              - when 2
                 Women
+              - when 2
+                Men
               - when 3
                 free
-            = link_to salon_path(user.salon), class: 'user__rightbox__top__contents__salon' do
-              = salon_name(user.salon)
+            - if user.salon.present?
+              = link_to salon_path(user.salon), class: 'user__rightbox__top__contents__salon' do
+                = salon_name(user.salon)
         .user__rightbox__bottom
           .user__rightbox__bottom__introduction
             = user.introduction

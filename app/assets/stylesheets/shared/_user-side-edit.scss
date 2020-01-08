@@ -1,0 +1,21 @@
+.user-edit__contents__side {
+  width: 25%;
+  &__list {
+    a {
+      color: inherit;
+      li {
+        border: 1px solid #ccc;
+        border-radius: 0.2rem;
+        background-color: #fff;
+        padding: 0.6rem 1.5rem;
+        font-size: 0.85rem;
+        margin-bottom: 1em;
+        display: flex;
+        justify-content: space-between;
+        i {
+          line-height: 1rem;
+        }
+      }
+    }
+  }
+}

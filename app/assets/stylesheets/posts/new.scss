@@ -1,3 +1,4 @@
+
 .post-new {
   select {
     height: 1.5rem;
@@ -6,18 +7,6 @@
     color: rgb(99, 99, 99);
     border: solid 1px #ccc;
     font-size: 0.7rem;
-  }
-  padding-bottom: 3rem;
-  &__head {
-    padding-top:3rem;
-    margin-left: -15vw;
-    font-size: 1.5rem;
-    background-color: #fff;
-    width:100vw;
-    border-bottom: 1px solid #cccccc;
-    &__contents {
-      margin: 0 0 1rem 15vw;
-    }
   }
   &__form {
     width: 90%;

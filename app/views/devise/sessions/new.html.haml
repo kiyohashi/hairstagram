@@ -1,0 +1,21 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'user-login individual-page') do |f|
+  .user-login__head.individual-page__head
+    .user-login__head__contents.individual-page__head__contents
+      %span ログイン
+  .user-new__contents
+    .user-new__contents__registration
+      .user-new__contents__registration__head
+        メールアドレスでログイン
+      .user-new__contents__registration__email
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス'
+      .user-new__contents__registration__password
+        = f.password_field :password, autocomplete: "current-password", placeholder: 'パスワード'
+            
+      .user-new__contents__registration__btn
+        = f.submit "ログインする"
+      .user-new__contents__registration__remenberme
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label :remember_me,'次回から入力を省略'
+-# = render "devise/shared/links"

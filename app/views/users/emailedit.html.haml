@@ -1,0 +1,21 @@
+= form_with(model: @user, local: true, url: email_user_path,method: :patch, class:'user-edit individual-page') do |f|
+  .user-edit__head.individual-page__head
+    .user-edit__head__contents.individual-page__head__contents
+      = icon 'fas', 'user-edit', class: ''
+      %span ユーザー情報編集
+  .user-edit__contents
+    = render partial: 'shared/user-edit-side'
+    .user-edit__contents__main
+      .user-edit__contents__main__head
+        メールアドレスの変更ができます。
+      .user-edit__contents__main__email
+        .user-edit__contents__main__email__before
+          %span 現在のメールアドレス
+          .user-edit__contents__main__email__before__address
+            #{current_user.email}
+        .user-edit__contents__main__email__after
+          %span 新しいメールアドレス
+          .user-edit__contents__main__email__after__address
+            = f.email_field :email, autofocus: true, autocomplete: "email"
+  .user-edit__submit
+    = f.submit "更新する"

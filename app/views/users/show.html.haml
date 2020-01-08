@@ -9,7 +9,7 @@
       - if user_signed_in?
         - if current_user.id == @user.id
           %button{type: "button", class: "btn btn-primary", id: "user-edit"}
-            = link_to '編集', edit_user_registration_path(@user)
+            = link_to '編集', edit_user_path(current_user)
         - else
           - if current_user.following? @user
             %button{type: "button", class: "btn btn-primary", id: "unfollow"}
@@ -32,11 +32,11 @@
         .user__rightbox__top__contents__id
           @#{@user.acountid}
         .user__rightbox__top__contents__gender
-          - case @user.gender
+          - case @user.gender_id
           - when 1
-            Men
-          - when 2
             Women
+          - when 2
+            Men
           - when 3
             free
         - if @user.salon

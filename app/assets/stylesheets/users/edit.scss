@@ -1,0 +1,170 @@
+.user-edit{
+  &__submit {
+    width: 70%;
+    float: right;
+    text-align: center;
+    margin-top: -1rem;
+    input {
+      padding: 0.5rem 3rem;
+      font-size: 0.8rem;
+      color: #fff;
+      background-color: #002966;
+      border-radius: 0.2rem;
+    }
+  }
+  &__contents {
+    padding: 3em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    &__main {
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 0.2rem;
+      background-color: #fff;
+      &__head {
+        background-color: #fffcf8;
+        font-size: 0.8rem;
+        font-weight: bold;
+        padding: 1rem;
+        border-bottom: 1px solid #ccc;
+      }
+      &__basic {
+        font-size: 0.75rem;
+        padding: 0.75rem 1rem;
+        background-color: #efefef;
+        border-bottom: 1px solid #ccc;
+      }
+      &__basicForm {
+        padding: 2rem;
+        border-bottom: 1px solid #ccc;
+        .list{
+          display: flex;
+          justify-content: space-between;
+          font-size: 0.8rem;
+          margin-bottom: 1.5rem;
+          &__title {
+            width: 30%;
+            text-align: end;
+            line-height: 2rem;
+          }
+          &__input {
+            width: 65%;
+            font-size: 0.7rem;
+            input {
+              width: 60%;
+              padding: 0.4rem;
+            }
+          }
+          &__select {
+            width: 65%;
+            font-size: 0.7rem;
+            select {
+              width: 60%;
+              height: 2rem;
+              // padding: 0.4rem;
+            }
+          }
+        }
+        &__name {
+          
+        }
+      }
+      &__introduction {
+        font-size: 0.75rem;
+        padding: 0.75rem 1rem;
+        background-color: #efefef;
+        border-bottom: 1px solid #ccc;
+      }
+      &__introductionForm {
+        padding: 1.5rem;
+        textarea {
+          width:100%;
+          border: 1px solid #ccc;
+          padding: 0.5rem;
+          font-size: 0.7rem;
+        }
+      }
+      &__icon {
+        padding: 3rem 35% ;
+        border-bottom: 1px solid #ccc;
+        &__image {
+          padding-top:140%;
+          position: relative;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            // width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            transform: translate(-50%, -50%);
+          }
+        }
+        &__box {
+          width:100%;
+          padding-top:100%;
+          position: relative;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            border-radius: 10rem;
+          }
+        }
+      }
+      &__iconForm {
+        padding: 1.5rem;
+        text-align: center;
+        label {
+          padding: 0.25rem 1rem;
+          font-size: 0.8rem;
+          font-weight: 300;
+          border: #ccc;
+          background-color: #000;
+          color: #fff;
+          cursor: pointer;
+          margin-right: 0.5rem;
+        }
+        input {
+          font-size: 0.8rem;
+          border: #ccc;
+          background-color: #ccc;
+          padding: 0.25rem 1rem;
+        }
+      }
+      &__delete {
+        padding: 3rem;
+      }
+      &__email {
+        padding: 1.5rem 3rem;
+
+        span {
+          width: 35%;
+          display: block;
+          line-height: 2rem;
+          font-size: 0.8rem;
+        }
+        &__before {
+          margin-bottom: 1rem;
+          display: flex;
+        }
+        &__after {
+          display: flex;
+          &__address {
+            width: 60%;
+            input {
+              width: 100%;
+              font-size: 0.8rem;
+              padding: 0.2rem 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
