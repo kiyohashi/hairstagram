@@ -1,0 +1,57 @@
+.salon-show{
+  &__contents {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    &__main {
+      width: 72%;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      background-color: #fff;
+      padding: 1rem;
+      &__top {
+        display: flex;
+        &__image {
+          width: 60%;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        &__introduction{
+          width: 40%;
+          padding: 1rem 0 1rem 1rem;
+        }
+      }
+      &__kana {
+        margin-top: 1rem;
+        font-size: 0.6rem;
+      }
+      &__name {
+        margin-bottom: 1rem;
+      }
+      &__access {
+        font-size: 0.8rem;
+        span {
+          font-size: 0.6rem;
+          margin-right: 1rem;
+        }
+      }
+      &__address {
+        font-size: 0.8rem;
+        span {
+          font-size: 0.6rem;
+          margin-right: 1rem;
+        }
+      }
+      &__reservation {
+        text-align: end;
+        margin: 1rem;
+        text-decoration: underline;
+        a {
+          color: #002966;
+        }
+      }
+    }
+  }
+}

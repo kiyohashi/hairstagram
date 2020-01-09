@@ -38,13 +38,19 @@
         height:55%;
       }
       &__access {
+        margin-top: 1rem;
         font-size: 0.6rem;
         height:10%;
+        span{
+          margin-right: 1rem;
+        }
       }
       &__address {
         font-size: 0.6rem;
         height:10%;
-
+        span{
+          margin-right: 1rem;
+        }
       }
     }
   }

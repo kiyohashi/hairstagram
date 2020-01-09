@@ -5,6 +5,14 @@
     padding: 3rem 0;
     &__main {
       width: 72%;
+      &__count {
+        text-align: end;
+        margin: 0 1rem 1rem 1rem;
+        font-size: 1.5rem;
+        span {
+          font-size:0.8rem;
+        }
+      }
       &__users {
       }
     }

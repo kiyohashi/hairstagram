@@ -6,6 +6,9 @@
   .post-search__contents
     = render 'shared/searchbox'
     .post-search__contents__main
+      .post-search__contents__main__counts
+        = @postsallcount
+        %span 件
       .post-search__contents__main__posts
         = render @posts
       = paginate @posts
