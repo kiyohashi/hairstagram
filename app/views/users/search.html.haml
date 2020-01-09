@@ -6,6 +6,9 @@
   .user-search__contents
     = render 'shared/searchbox'
     .user-search__contents__main
+      .user-search__contents__main__count
+        = @usersallcount
+        %span 件
       .user-search__contents__main__users
         = render @users            
       = paginate @users

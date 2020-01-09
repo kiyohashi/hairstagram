@@ -1,4 +1,4 @@
-= link_to salon.link, class: 'salon' do
+= link_to salon_path(salon), class: 'salon' do
   .salon__contents
     .salon__contents__left
       = image_tag salon.image_url
@@ -10,6 +10,8 @@
       .salon__contents__right__introduction
         = salon.introduction
   .salon__contents__right__access
+    %span アクセス
     = salon.access
   .salon__contents__right__address
+    %span アドレス
     = salon.address

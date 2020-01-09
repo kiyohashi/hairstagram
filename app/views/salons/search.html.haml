@@ -6,6 +6,9 @@
   .salon-search__contents
     = render 'shared/searchbox'
     .salon-search__contents__main
+      .salon-search__contents__main__count
+        = @salonsallcount
+        %span 件
       .salons
         = render @salons
       
