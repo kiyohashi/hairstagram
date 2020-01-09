@@ -8,6 +8,8 @@
 @import "posts/*";
 @import "devise/*";
 @import "users/*";
+@import "salons/*";
+@import "items/*";
 @import "rooms/*";
 @import "slick/*"; 
 @import "btn"; 
@@ -21,7 +23,8 @@ body{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
   height: 100%;
   width: 100%;
-  color: rgb(74, 74, 74) !important;
+  color: #421800 !important;
+  // color: rgb(74, 74, 74) !important;
 }
 .main {
   height: calc(100% - 6.5em);

@@ -7,15 +7,15 @@
         = icon 'fas', 'camera-retro', class: 'search-icon'
         %span スタイルを探す
     %li.sidebar__search__list__salon
-      = link_to salons_path do
+      = link_to search_salons_path do
         = icon 'fas', 'store-alt', class: 'search-icon'
         %span サロンを探す
     %li.sidebar__search__list__user
-      = link_to users_path do
+      = link_to search_users_path do
         = icon 'far', 'user', class: 'search-icon'
         %span ユーザーを探す
     %li.sidebar__search__list__item
-      = link_to root_path do
+      = link_to search_items_path do
         .search-icon
           = image_tag 'wax.png'
         %span アイテムを探す

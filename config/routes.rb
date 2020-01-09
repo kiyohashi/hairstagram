@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     get 'edit', to: 'users#edit'
   end
   root to: 'posts#ranking'
-  resources :users , only: [:show, :update, :index, :edit, :destroy] do
+  resources :users , only: [:show, :update, :edit, :destroy] do
+    collection do
+      get 'search'
+    end
     member do
       get 'timeline',            to: 'users#timeline'
       get 'iconedit',            to: 'users#iconedit'
@@ -21,12 +24,21 @@ Rails.application.routes.draw do
       get 'destroyconfirmation', to: 'users#destroyconfirmation'
     end
   end
-  resources :rooms do
-    resources :messages
+
+  resources :rooms , only: [:show, :index, :create]do
+    resources :messages, only: :create
   end
   resources :brands, only: [:index]
-  resources :items, only: [:index, :show]
-  resources :salons, only: [:show, :index]
+  resources :items, only: [:index, :show] do
+    collection do
+      get 'search'
+    end
+  end
+  resources :salons, only: :show do
+    collection do
+      get 'search'
+    end
+  end
   resources :posts, only: [:index, :new, :create, :destroy, :show] do
     collection do
       get 'search'

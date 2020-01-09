@@ -1,5 +1,5 @@
 class SalonsController < ApplicationController
-  def index
+  def search
     @salons = Salon.all.page(params[:page]).per(10)
   end
   

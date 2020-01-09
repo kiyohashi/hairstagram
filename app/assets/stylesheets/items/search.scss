@@ -1,0 +1,46 @@
+.item-search{
+  .item-search__head__contents {
+    display: flex;
+    .item-search-icon {
+      margin-right: 0.4em;
+      img {
+        width: 1rem;
+      }
+    }
+  }
+  &__contents {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    &__main {
+      width: 72%;
+      &__items {
+        display: flex;
+        flex-wrap: wrap;
+        &__item {
+          font-size: 0.8rem;
+          padding:1rem;
+          width: 22%;
+          margin: 0 4% 2rem 0;
+          border: 1px solid #ccc;
+          border-radius: 0.3rem;
+          background-color: #fff;
+
+          img {
+            display: block;
+            margin: 0 auto;
+          }
+          &__brand {
+            font-weight: bold;
+            text-align: center;
+            padding:0.5rem 0;
+          }
+        }
+        &__item:nth-child(4n) {
+          margin: 0 0 2rem 0;
+        }
+      }
+    }
+  }
+}
+  

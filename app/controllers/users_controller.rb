@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:follow, :unfollow, :follow_list, :follower_list]
 
-  def index
+  def search
     @users = User.all.page(params[:page]).per(50)
   end
 

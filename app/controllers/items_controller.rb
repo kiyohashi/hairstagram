@@ -15,4 +15,8 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.all.page(params[:page]).per(100)
+  end
+
 end

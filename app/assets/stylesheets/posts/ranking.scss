@@ -1,5 +1,5 @@
 .sidebar {
-  width: 21%;
+  width: 23%;
   height: 100%;
   float: left;
   padding: 3em 2em 3em 0;
@@ -8,18 +8,18 @@
   padding: 2em 0;
   &__head {
     font-size: 1.1rem;
-    margin-top: 1em;
+    margin: 1em 0;
   }
   &__contents {
     >div {
       display: none;
     }
     .posts {
-      width: 79%;
+      width: 77%;
       display: flex;
       flex-wrap: wrap;
       .post:nth-child(3n){
-        margin: 1em 0;
+        margin: 0 0 2.5em 0;
       }
     }
     .active {

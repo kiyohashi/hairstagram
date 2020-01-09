@@ -1,0 +1,51 @@
+.salon:hover {
+  text-decoration: none;
+  color: inherit;
+  opacity:0.8;
+}
+.salon {
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  display: block;
+  color: inherit;
+  padding: 0.8rem;
+  background-color: #fff;
+  margin-bottom: 1rem;
+  &__contents {
+    display: flex;
+    width: 100%;
+    &__left {
+      width:50%;
+      img {
+        width: 100%;
+        height: auto;
+
+      }
+    }
+    &__right {
+      width:50%;
+      padding: 0.8rem;
+      &__namekana {
+        font-size: 0.3rem;
+        height:7%;
+      }
+      &__name{
+        font-size: 1.1rem;
+        height:30%;
+      }
+      &__introduction{
+        font-size: 0.8rem;
+        height:55%;
+      }
+      &__access {
+        font-size: 0.6rem;
+        height:10%;
+      }
+      &__address {
+        font-size: 0.6rem;
+        height:10%;
+
+      }
+    }
+  }
+}

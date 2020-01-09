@@ -1,0 +1,12 @@
+.user-search{
+  &__contents {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    &__main {
+      width: 72%;
+      &__users {
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.item-search.individual-page
+  .item-search__head.individual-page__head
+    .item-search__head__contents.individual-page__head__contents
+      .item-search-icon
+        = image_tag 'wax.png'
+      %span アイテム一覧
+  .item-search__contents
+    = render 'shared/searchbox'
+    .item-search__contents__main
+      .item-search__contents__main__items
+        - @items.each do |item|
+          .item-search__contents__main__items__item
+            .item-search__contents__main__items__item__img
+              - if item.image_url == "?target=70x70" 
+                = image_tag 'noimage.jpeg', size: '70x70'
+              - else
+                = image_tag item.image_url
+            .item-search__contents__main__items__item__brand
+              = item.brand.name
+            .item-search__contents__main__items__item__name
+              = item.name
+      = paginate @items
