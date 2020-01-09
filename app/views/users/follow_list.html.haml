@@ -1,11 +1,11 @@
-.user
-  .user__leftbox.col-4
-    .user__leftbox__icon
+.user-show
+  .user-show__leftbox.col-4
+    .user-show__leftbox__icon
       - if @user.icon.url.present?
         = image_tag @user.icon.url
       - else
         = image_tag 'egg-icon-gray.png'
-    .user__leftbox__btn.col-12
+    .user-show__leftbox__btn.col-12
       - if user_signed_in? && current_user.id == @user.id
         %button{type: "button", class: "btn btn-primary", id: "user-edit"}
           = link_to '編集', edit_user_registration_path(@user)
@@ -16,32 +16,30 @@
         - else
           %button{type: "button", class: "btn btn-primary", id: "follow"}
             = link_to "フォローする", {controller: :users,action: :follow,user_id: @user.id}, method: :put
-    .user__leftbox__count
+    .user-show__leftbox__count
       = link_to "/users/follow_list/#{@user.id}", class: 'user__leftbox__count__follow' do
         フォロー
         = @user.follow_count
       = link_to "/users/follower_list/#{@user.id}", class: 'user__leftbox__count__follower' do
         フォロワー
         = @user.followers_count
-  .user__rightbox.col-8
-    .user__rightbox__top
-      .user__rightbox__top__name
+  .user-show__rightbox.col-8
+    .user-show__rightbox__top
+      .user-show__rightbox__top__name
         = @user.name
-      .user__rightbox__top__contents
-        .user__rightbox__top__contents__id
+      .user-show__rightbox__top__contents
+        .user-show__rightbox__top__contents__id
           @#{@user.acountid}
-        .user__rightbox__top__contents__gender
-          - case @user.gender
-          - when 1
-            Men
-          - when 2
-            Women
-          - when 3
-            free
-        = link_to salon_path(@user.salon), class: 'user__rightbox__top__contents__salon' do
-          = salon_name(@user.salon)
-    .user__rightbox__bottom
-      .user__rightbox__bottom__introduction
+        .user-show__rightbox__top__contents__gender
+          - if @user.gender
+            |
+            = @user.gender.name
+        - if @user.salon
+          |
+          = link_to salon_path(@user.salon), class: 'user__rightbox__top__contents__salon' do
+            = salon_name(@user.salon)
+    .user-show__rightbox__bottom
+      .user-show__rightbox__bottom__introduction
         = @user.introduction
 
 .user-index
@@ -79,15 +77,13 @@
             .user__rightbox__top__contents__id
               @#{user.acountid}
             .user__rightbox__top__contents__gender
-              - case user.gender
-              - when 1
-                Men
-              - when 2
-                Women
-              - when 3
-                free
-            = link_to salon_path(user.salon), class: 'user__rightbox__top__contents__salon' do
-              = salon_name(user.salon)
+              - if user.gender
+                |
+                = user.gender.name
+            - if user.salon
+              |
+              = link_to salon_path(user.salon), class: 'user__rightbox__top__contents__salon' do
+                = salon_name(user.salon)
         .user__rightbox__bottom
           .user__rightbox__bottom__introduction
             = user.introduction

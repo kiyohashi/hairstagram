@@ -33,7 +33,7 @@ class IconUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-  process resize_to_fill: [300, 300, "Center"]
+  process resize_to_fill: [100, 100, "Center"]
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process resize_to_fit: [50, 50]
