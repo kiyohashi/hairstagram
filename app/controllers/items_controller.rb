@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.all.page(params[:page]).per(100)
+    @itemsallcount = Item.all.count
   end
 
 end

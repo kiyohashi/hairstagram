@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def search
     @posts = Post.search(params[:keyword]).page(params[:page]).per(30)
+    @postsallcount = Post.all.count
   end
 
   def ranking

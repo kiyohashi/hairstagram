@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def search
     @users = User.all.page(params[:page]).per(50)
+    @usersallcount = User.all.count
   end
 
   def show

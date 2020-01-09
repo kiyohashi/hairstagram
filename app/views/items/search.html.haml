@@ -7,6 +7,9 @@
   .item-search__contents
     = render 'shared/searchbox'
     .item-search__contents__main
+      .item-search__contents__main__count
+        = @itemsallcount
+        %span 件
       .item-search__contents__main__items
         - @items.each do |item|
           .item-search__contents__main__items__item

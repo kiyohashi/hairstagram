@@ -1,9 +1,25 @@
-= image_tag @salon.image_url
-= @salon.nameKana
-= @salon.name
-= @salon.introduction
-= @salon.access
-= @salon.address
-%div
-  = link_to @salon.link do
-    ご予約はこちら
+.salon-show.individual-page
+  .salon-show__head.individual-page__head
+    .salon-show__head__contents.individual-page__head__contents
+      %span #{@salon.name}
+  .salon-show__contents
+    = render 'shared/searchbox'
+    .salon-show__contents__main
+      .salon-show__contents__main__top
+        .salon-show__contents__main__top__image
+          = image_tag @salon.image_url
+        .salon-show__contents__main__top__introduction
+          = @salon.introduction
+      .salon-show__contents__main__kana
+        = @salon.nameKana
+      .salon-show__contents__main__name
+        = @salon.name
+      .salon-show__contents__main__access
+        %span アクセス
+        = @salon.access
+      .salon-show__contents__main__address
+        %span アドレス
+        = @salon.address
+      .salon-show__contents__main__reservation
+        = link_to @salon.link do
+          > ご予約はこちら
