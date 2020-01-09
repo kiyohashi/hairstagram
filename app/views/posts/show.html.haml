@@ -70,7 +70,7 @@
                   = image_tag image.image.url, class: ''
         .show__contents__post__left__bottom
           .show__contents__post__left__bottom__favorite.col-2
-            - if user_signed_in? && current_user.id == @post.user.id
+            - if user_signed_in?
               - if current_user.already_favorited?(@post)
                 -# = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete", remote: true, onclick: "favoritedeleteclick()" do
                 = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete" do
