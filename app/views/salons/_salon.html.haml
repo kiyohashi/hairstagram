@@ -1,0 +1,15 @@
+= link_to salon.link, class: 'salon' do
+  .salon__contents
+    .salon__contents__left
+      = image_tag salon.image_url
+    .salon__contents__right
+      .salon__contents__right__namekana
+        = salon.nameKana
+      .salon__contents__right__name
+        = salon.name
+      .salon__contents__right__introduction
+        = salon.introduction
+  .salon__contents__right__access
+    = salon.access
+  .salon__contents__right__address
+    = salon.address

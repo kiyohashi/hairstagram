@@ -1,5 +1,11 @@
-検索結果
-.post-index
-  .posts
-    = render @posts
-= paginate @posts
+.post-search.individual-page
+  .post-search__head.individual-page__head
+    .post-search__head__contents.individual-page__head__contents
+      = icon 'fas', 'camera-retro', class: 'search-icon'
+      %span スタイル一覧
+  .post-search__contents
+    = render 'shared/searchbox'
+    .post-search__contents__main
+      .post-search__contents__main__posts
+        = render @posts
+      = paginate @posts

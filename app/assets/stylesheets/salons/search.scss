@@ -1,0 +1,20 @@
+.salon-search{
+  &__contents {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    &__side {
+      width: 23%;
+      padding: 3em 2em 3em 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+    &__main {
+      width: 72%;
+      &__salons {
+
+      }
+    }
+  }
+}
+  

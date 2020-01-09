@@ -1,0 +1,11 @@
+.user-search.individual-page
+  .user-search__head.individual-page__head
+    .user-search__head__contents.individual-page__head__contents
+      = icon 'fas', 'store-alt', class: ''
+      %span ユーザ一覧
+  .user-search__contents
+    = render 'shared/searchbox'
+    .user-search__contents__main
+      .user-search__contents__main__users
+        = render @users            
+      = paginate @users

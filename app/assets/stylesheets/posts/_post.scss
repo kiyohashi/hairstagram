@@ -2,8 +2,8 @@
   background-color: #fff;
   border: solid 1px rgba(128, 128, 128, 0.3);
   border-radius: 0.25em;
-  width: 32%;
-  margin: 1em 2% 1em 0;
+  width: 30%;
+  margin: 0 5% 2.5em 0;
   &__image {
     padding-top:140%;
     position: relative;
@@ -25,7 +25,7 @@
     padding: 0.25em 0.5em;
     &__icon {
       img {
-      border-radius: 1.5em
+      border-radius: 1.5em;
       }
     }
     &__info {

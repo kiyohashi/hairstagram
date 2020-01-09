@@ -1,0 +1,21 @@
+.post-search{
+  &__contents {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    &__main {
+      width: 72%;
+      &__posts {
+        display: flex;
+        flex-wrap: wrap;
+        .post {
+          width:30%;
+          margin: 0 5% 2rem 0;
+        }
+        .post:nth-child(3n) {
+          margin: 0 0 2rem 0;
+        }
+      }
+    }
+  }
+}
