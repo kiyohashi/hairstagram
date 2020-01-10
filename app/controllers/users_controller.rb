@@ -35,11 +35,20 @@ class UsersController < ApplicationController
   end
 
   def iconupdate
-    if current_user.update(user_params)
-      redirect_to user_path(current_user)
+    if  params[:user] == nil
+      if current_user.update(icon: '')
+        redirect_to user_path(current_user)
+      else
+        @user = User.find(params[:id])
+        render :iconedit
+      end
     else
-      @user = User.find(params[:id])
-      render :iconedit
+      if current_user.update(user_params)
+        redirect_to user_path(current_user)
+      else
+        @user = User.find(params[:id])
+        render :iconedit
+      end
     end
   end 
 

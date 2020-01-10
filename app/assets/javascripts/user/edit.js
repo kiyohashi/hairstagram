@@ -14,7 +14,8 @@ $(function() {
   });
   $(document).on("click", "#removeIcon", function() {
     var dom = $('.user-edit__contents__main__icon__box').children('img');
-    dom.attr('src', '');
-    $('#user_icon').val('');
+    dom.attr('src', '/assets/egg-icon-gray.png');
+    console.log($('#user_icon').val());
+    $('#user_icon').val(null);
   });
 });
