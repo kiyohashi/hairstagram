@@ -9,7 +9,12 @@ class UsersController < ApplicationController
   def show
     @user  = User.find(params[:id])
     @posts = desc(@user.posts)
-    @favoriteposts = desc(@user.favorites)
+    
+  end
+    
+  def favorites
+    @user  = User.find(params[:id])
+    @favoriteposts = desc(@user.favorited_posts)
   end
 
   def edit
@@ -43,7 +48,6 @@ class UsersController < ApplicationController
   end
 
   def emailupdate
-    binding.pry
     if current_user.update(user_params)
       redirect_to user_path(current_user)
     else

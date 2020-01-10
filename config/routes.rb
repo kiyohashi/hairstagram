@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+  
   devise_scope :users do
     get 'edit', to: 'users#edit'
   end
+
   root to: 'posts#ranking'
+
   resources :users , only: [:show, :update, :edit, :destroy] do
     collection do
       get 'search'
@@ -22,18 +25,21 @@ Rails.application.routes.draw do
       patch 'password',          to: 'users#passwordupdate'
       put 'password',            to: 'users#passwordupdate'
       get 'destroyconfirmation', to: 'users#destroyconfirmation'
+      get 'favorites',           to: 'users#favorites'
     end
   end
 
   resources :rooms , only: [:show, :index, :create]do
     resources :messages, only: :create
   end
+
   resources :brands, only: [:index]
   resources :items, only: [:index, :show] do
     collection do
       get 'search'
     end
   end
+
   resources :salons, only: :show do
     collection do
       get 'search'
@@ -48,10 +54,8 @@ Rails.application.routes.draw do
   end
 
   get 'ranking',                      to: 'posts#ranking'
-
   put 'users/follow/:user_id',        to: 'users#follow'
   put 'users/unfollow/:user_id',      to: 'users#unfollow'
   get 'users/follow_list/:user_id',   to: 'users#follow_list'
   get 'users/follower_list/:user_id', to: 'users#follower_list'
-
 end
