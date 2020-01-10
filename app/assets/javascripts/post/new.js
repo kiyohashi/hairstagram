@@ -111,7 +111,6 @@ $(function() {
       })
       .done(function(item) {
         var itemAmount = $('.post-new__form__item-brand__selected > div').length
-        console.log(itemAmount)
         if (itemAmount <= 4){
           addPostItem(item)
           addPodtItemForm(item)

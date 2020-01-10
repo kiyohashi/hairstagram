@@ -1,7 +1,123 @@
 .searchbox {
   width: 23%;
-  padding: 3em 2em 3em 0;
+  padding: 2rem 1.5rem ;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 0.2rem;
+  &__salon {
+    &__area {
+      font-size: 1.1rem;
+      border-bottom: 1px solid #ccc;
+    }
+    &__area-select {
+      padding-left: 0.5rem;
+      font-size: 0.9rem;
+      line-height: 2.5rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      border-bottom: 1px solid #ccc;
+      z-index: 3;
+      i {
+        color: #bbb;
+        font-size: 0.9rem;
+      }
+      &__list {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        background-color: #fff;
+        display: none;
+        border: 1px solid #ccc;
+        border-radius: 0 0.2rem 0.2rem 0.2rem;
+        width: 25rem;
+        padding: 1rem;
+        
+        &__areas {
+          display: flex;
+          flex-wrap: wrap;
+          font-size: 0.8rem;
+          &__area {
+            width: 30%;
+            line-height: 1;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            margin-right: 5%;
+            text-align: center;
+            cursor: pointer;
+          }
+          &__area:nth-child(3n) {
+            margin-right: 0;
+          }
+          &__area:hover {
+            background-color: #ddd;
+          }
+        }
+      }
+    }
+    &__area-select:hover {
+      background-color: #eee;
+      .searchbox__salon__area-select__list {
+        display: block !important;
+      }
+    }
+    &__area-selected {
+      font-size: 0.9rem;
+      line-height: 1rem;
+      align-items: center;
+      display: flex;
+      height: 3rem;
+      z-index: 2;
+      position: relative;
+      &__bgc {
+        position: absolute;
+        top:0;
+        left: 0;
+        background-color: #eee;
+        width: 100%;
+        height: 100%;
+        span {
+          position: absolute;
+          left:102%;
+          line-height: 3rem;
+          color: #ccc;
+          cursor: pointer;
+        }
+
+      }
+      span {
+        z-index: 1;
+        // display: block;
+      }
+    }
+    &__keyword {
+      font-size: 1.1rem;
+      border-bottom: 1px solid#ccc;
+      margin-top: 2em;
+    }
+    &__search {
+      margin-top: 1rem;
+      input {
+        border: 1px solid #ccc;
+        border-radius: 0.2rem;
+        font-size: 0.8rem;
+        width: 100%;
+        padding: 0.3rem 0.5rem;
+      }
+    }
+    &__input {
+      margin-top: 2rem;
+      text-align: center;
+      input {
+        padding: 0.3rem;
+        color: inherit;
+        background-color: #fff !important;
+      }
+    }
+  }
 }
