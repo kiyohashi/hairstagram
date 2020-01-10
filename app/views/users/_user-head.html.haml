@@ -52,7 +52,7 @@
 
 .user-tab
   %ul.user-tab__list
-    - if current_page?(controller: '/users', action: 'show', id: current_user.id)
+    - if current_page?(controller: '/users', action: 'show', id: user.id)
       = link_to user_path(user), class:'user-tab__list__style active' do
         %li
           スタイル
@@ -60,7 +60,7 @@
       = link_to user_path(user), class:'user-tab__list__style' do
         %li
           スタイル
-    - if current_page?(controller: '/users', action: 'favorites', id: current_user.id)
+    - if current_page?(controller: '/users', action: 'favorites', id: user.id)
       = link_to favorites_user_path(user), class:'user-tab__list__favorites active' do
         %li
           お気に入り
@@ -68,7 +68,7 @@
       = link_to favorites_user_path(user), class:'user-tab__list__favorites' do
         %li
           お気に入り
-    - if current_page?(controller: '/users', action: 'follow_list', user_id: current_user.id)
+    - if current_page?(controller: '/users', action: 'follow_list', user_id: user.id)
       = link_to "/users/follow_list/#{user.id}", class:'user-tab__list__follow active' do
         %li
           %div
@@ -80,7 +80,7 @@
           %div
             フォロー
           %span #{user.follow_count}
-    - if current_page?(controller: '/users', action: 'follower_list', user_id: current_user.id)
+    - if current_page?(controller: '/users', action: 'follower_list', user_id: user.id)
       = link_to "/users/follower_list/#{user.id}", class:'user-tab__list__follower active' do
         %li
           %div
