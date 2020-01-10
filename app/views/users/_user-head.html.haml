@@ -1,0 +1,93 @@
+.user-show
+  .user-show__leftbox.col-4
+    .user-show__leftbox__icon
+      - if user.icon.url.present?
+        = image_tag user.icon.url
+      - else
+        = image_tag 'egg-icon-gray.png'
+    .user-show__leftbox__btn.col-12
+      - if user_signed_in?
+        - if current_user.id == user.id
+          %button{type: "button", class: "btn btn-primary", id: "user-edit"}
+            = link_to '編集', edit_user_path(current_user)
+        - else
+          - if current_user.following? user
+            %button{type: "button", class: "btn btn-primary", id: "unfollow"}
+              = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: user.id}, method: :put
+          - else
+            %button{type: "button", class: "btn btn-primary", id: "follow"}
+              = link_to "フォローする", {controller: :users,action: :follow,user_id: user.id}, method: :put
+    .user-show__leftbox__count
+      = link_to "/users/follow_list/#{user.id}", class: 'user__leftbox__count__follow' do
+        フォロー
+        = user.follow_count
+      = link_to "/users/follower_list/#{user.id}", class: 'user__leftbox__count__follower' do
+        フォロワー
+        = user.followers_count
+  .user-show__rightbox.col-8
+    .user-show__rightbox__top
+      .user-show__rightbox__top__name
+        = user.name
+      .user-show__rightbox__top__contents
+        .user-show__rightbox__top__contents__id
+          @#{user.acountid}
+        .user-show__rightbox__top__contents__gender
+          - if user.gender
+            | 
+            = user.gender.name
+        - if user.salon
+          |
+          = link_to salon_path(user.salon), class: 'user__rightbox__top__contents__salon' do
+            = salon_name(user.salon)
+      .user-show__rightbox__top__message
+        - if user_signed_in? && current_user.id != user.id
+          = form_with(url: rooms_path, local: true) do |f|
+            = f.hidden_field :user_id, value: user.id
+            = f.label 'dmEnvelope' do
+              = icon 'far', 'envelope'
+              = f.submit id: 'dmEnvelope', style: 'display:none;'
+    .user-show__rightbox__bottom
+      .user-show__rightbox__bottom__introduction
+        = user.introduction
+
+.user-tab
+  %ul.user-tab__list
+    - if current_page?(controller: '/users', action: 'show', id: current_user.id)
+      = link_to user_path(user), class:'user-tab__list__style active' do
+        %li
+          スタイル
+    - else
+      = link_to user_path(user), class:'user-tab__list__style' do
+        %li
+          スタイル
+    - if current_page?(controller: '/users', action: 'favorites', id: current_user.id)
+      = link_to favorites_user_path(user), class:'user-tab__list__favorites active' do
+        %li
+          お気に入り
+    - else
+      = link_to favorites_user_path(user), class:'user-tab__list__favorites' do
+        %li
+          お気に入り
+    - if current_page?(controller: '/users', action: 'follow_list', user_id: current_user.id)
+      = link_to "/users/follow_list/#{user.id}", class:'user-tab__list__follow active' do
+        %li
+          %div
+            フォロー
+          %span #{user.follow_count}
+    - else
+      = link_to "/users/follow_list/#{user.id}", class:'user-tab__list__follow' do
+        %li
+          %div
+            フォロー
+          %span #{user.follow_count}
+    - if current_page?(controller: '/users', action: 'follower_list', user_id: current_user.id)
+      = link_to "/users/follower_list/#{user.id}", class:'user-tab__list__follower active' do
+        %li
+          %div
+            フォロワー
+          %span #{user.followers_count}
+    - else
+      = link_to "/users/follower_list/#{user.id}", class:'user-tab__list__follower' do
+        %div
+          フォロワー
+        %span #{user.followers_count}

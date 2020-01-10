@@ -43,11 +43,9 @@
         display: flex;
         opacity: 0.8;
         &__id {
-          border-right: solid 1px rgba(128, 128, 128, 0.7);
           padding-right: 0.5em;
         }
         &__gender {
-          border-right: solid 1px rgba(128, 128, 128, 0.6);
           padding: 0 0.5em;
         }
         &__salon {
@@ -89,62 +87,71 @@
     }
   }
 }
-.tab {
-  margin: 1em 0; 
+.user-tab {
+  margin: 1em 0 3em 0; 
   border: solid 1px  rgba(128, 128, 128, 0.3);
   background-color: #fff;
-  line-height: 3em;
-  .nav {
+  font-size: 0.9rem;
+  &__list {
+    margin: 0;
+    display: flex;
+    text-align: center;
     .active{
-      background-color: rgba(0, 0, 0, 0.5) !important;
-      color: white !important;
+      background-color: rgba(0, 0, 0, 0.9) !important;
       opacity: 1.0 !important;
-      .userpagelist{
-        a {
-          color: white;          
-          text{
-            color: white;
-          }
-        }
-      }
+      color: white !important;          
     }
-    .userpagelist {
-      border-right: solid 1px  rgba(128, 128, 128, 0.3);
-      padding: 0 0;
-      a {
-        display: block;
-        text-decoration: none;
-        width:100%;
-        height:100%;
-        color: rgba(0, 0, 0, 0.7);
-        text {
-          display: flex;
-          justify-content: center;
-        }
-      }
+    a {
+      width:20%;
+      display: block;
+      height:100%;
+      line-height: 3rem;
+      color: inherit;
     }
-    .favorites {
-      border-left: solid 1px  rgba(128, 128, 128, 0.3);
-      border-right: none;
+    a:hover {
+      text-decoration: none;
+      background-color: #ddd;
+      color: inherit;
+      opacity:0.8;
+    }
+    &__style {
+      border-right: solid 1px rgba(128, 128, 128, 0.3);
+    }
+    &__favorites {
+      border-right: solid 1px rgba(128, 128, 128, 0.3);
+    }
+    &__follow {
+      line-height: 1.5rem !important;
+      margin-left: 40%;
+      border-left: solid 1px rgba(128, 128, 128, 0.3);
+    }
+    &__follower {
+      line-height: 1.5rem !important;
+      border-left: solid 1px rgba(128, 128, 128, 0.3);
     }
   }
 }
-.user-contents {
-  .user-contents__posts {
-
+.user-posts {
+  display: flex;
+  flex-wrap: wrap;
+  .post {
+    width: 22%;
+    margin-bottom: 2rem;
+    margin-right: 4%;
   }
-  .user-contents__favorites {
-
+  .post:nth-child(4n) {
+    margin-right: 0;
   }
-  .user-contents__index{
-    display: flex;
-    flex-wrap: wrap;
-    .post {
-      margin: 2% 2% 2% 0;
-      width: 23.5%;
-    }
-    .post:nth-child(4n) {
-      margin: 2% 0;
-    }
+}
+.user-follow {
+  display: flex;
+  flex-wrap: wrap;
+  .user {
+    width:47.5%;
+    margin-bottom: 2rem;
+    margin-right: 5%;
+  }
+  .user:nth-child(2n) {
+    margin-right: 0;
   }
 }
