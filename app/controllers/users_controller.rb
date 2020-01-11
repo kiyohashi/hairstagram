@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:follow, :unfollow]
+  before_action :set_user, only: [:follow, :unfollow, :follow_list, :follower_list]
 
   def search
     @users = User.all.page(params[:page]).per(50)
@@ -106,12 +106,10 @@ class UsersController < ApplicationController
 
 
   def follow_list
-    @user  = User.find(params[:id])
     @follow_users = @user.all_following
   end
 
   def follower_list
-    @user  = User.find(params[:id])
     @user_followers = @user.followers
   end
 
