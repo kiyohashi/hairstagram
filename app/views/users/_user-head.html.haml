@@ -1,7 +1,7 @@
 .user-show
   .user-show__leftbox.col-4
     .user-show__leftbox__icon
-      - if user.icon.url.present?
+      - if user.icon
         = image_tag user.icon.url
       - else
         = image_tag 'egg-icon-gray.png'
