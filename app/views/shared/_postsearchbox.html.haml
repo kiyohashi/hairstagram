@@ -1,0 +1,41 @@
+.searchbox
+  = form_with(model: @post, url: search_posts_path, local: true, class:'searchbox__form', method: :get) do |f|
+    .searchbox__form__title.searchbox__form__title-first
+      性別
+    .searchbox__form__check
+      = f.collection_check_boxes(:gender_ids, Gender.all, :id, :name) do |b|
+        = b.label { b.check_box + b.text }
+    .searchbox__form__title
+      年齢
+    .searchbox__form__age
+      = f.search_field :minage, name: "minage", placeholder: "~才から"
+      %span ~
+      = f.search_field :maxage, name: "maxage", placeholder: "~才まで"
+    .searchbox__form__title
+      サロン
+    .searchbox__form__select
+      %span エリア
+      = icon "fas", "chevron-right"
+      .searchbox__form__select__list
+        .searchbox__form__select__list__contents
+          - Area.all.each do |area|
+            .searchbox__form__select__list__contents__content{data: {id: area.id}}
+              = area.name
+    .searchbox__form__selected.form-selected
+    .searchbox__form__search
+      = f.hidden_field :salon_id, value: '', id: 'content_id'
+      %input.searchbox__form__search__salon#salon-search{placeholder: "サロンを探す", type: "text", autocomplete: "off"}
+      #salon-search-result
+    .searchbox__form__salon-selected.form-selected
+    .searchbox__form__title
+      アイテム
+    .searchbox__form__search
+      = f.hidden_field :item_id, value: '', id: 'item_id'
+      %input.searchbox__form__search__item#item-search{placeholder: "アイテムを探す", type: "text", autocomplete: "off"}
+      #salon-search-result
+    .searchbox__form__title
+      キーワード検索
+    .searchbox__form__search
+      = f.search_field :keyword_search, name: "keyword", placeholder: "スタイルを探す", autocomplete: "off"
+    .searchbox__form__input
+      = f.submit "検索する"

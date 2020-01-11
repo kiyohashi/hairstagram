@@ -13,8 +13,27 @@
         font-size: 0.7rem;
       }
     }
-    &__title-brand {
+    &__title-first {
       margin-top: 0em;
+    }
+    &__check {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    &__age {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.6rem;
+      input {
+        font-size: 0.7rem;
+        width:40%;
+        border: 1px solid #ccc;
+        border-radius: 0.2rem;
+        padding: 0.3rem 0.5rem;
+      }
+      span {
+        width: 10%;
+      }
     }
     &__select {
       padding-left: 0.5rem;
@@ -73,15 +92,14 @@
         display: block !important;
       }
     }
-    &__selected {
+    .form-selected {
       font-size: 0.9rem;
       line-height: 1rem;
       align-items: center;
       display: flex;
       z-index: 2;
       position: relative;
-      height: 3rem;
-      &__bgc {
+      .searchbox__form__selected__bgc {
         position: absolute;
         top:0;
         left: 0;
@@ -96,7 +114,6 @@
           cursor: pointer;
           z-index: 1;
         }
-
       }
       span {
         z-index: 1;
@@ -110,6 +127,19 @@
         font-size: 0.8rem;
         width: 100%;
         padding: 0.3rem 0.5rem;
+      }
+      #salon-search-result {
+        // width: 100%;
+        font-size: 0.4rem;
+        border-left: solid 1px #ccc;
+        border-right: solid 1px #ccc;
+        background-color: #fff;
+        .post-result-salon__name {
+          padding: 0.5rem;
+          margin: 0;
+          border-bottom: solid 1px #ccc;
+          cursor: pointer;
+        }
       }
     }
     &__input {

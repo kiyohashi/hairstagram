@@ -7,7 +7,7 @@ class Brand < ApplicationRecord
   end
   def self.postsearch(input)
     return nil if input == ""
-    Brand.where(['name LIKE ?', "%#{input}%"] ).limit(5)
+    Brand.where(['name LIKE ?', "%#{input}%"] )
     # Brand.where('((name LIKE(?)) OR (company LIKE(?)))', "%#{keyword}%", "%#{keyword}%").limit(5)
   end
 

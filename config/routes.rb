@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :salons, only: :show do
+  resources :salons, only: [:show, :index] do
     collection do
       get 'search'
     end
