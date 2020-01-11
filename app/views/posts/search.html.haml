@@ -2,12 +2,29 @@
   .post-search__head.individual-page__head
     .post-search__head__contents.individual-page__head__contents
       = icon 'fas', 'camera-retro', class: 'search-icon'
-      %span スタイル一覧
+      - if @genders || @minage || @maxage || @salon || @item || @keyword
+        %span
+          - if @genders
+            - @genders.each do |gender|
+              #{gender.name},
+          - if @minage
+            #{@minage}才〜,
+          - if @maxage
+            〜#{@maxage}才,
+          - if @salon
+            #{@salon.name},
+          - if @item
+            #{@item.name},
+          - if @keyword
+            『 #{@keyword} 』
+          の検索結果
+      - else
+        %span スタイル一覧
   .post-search__contents
-    = render 'shared/searchbox'
+    = render 'shared/postsearchbox'
     .post-search__contents__main
-      .post-search__contents__main__counts
-        = @postsallcount
+      .post-search__contents__main__count
+        = @postsCount
         %span 件
       .post-search__contents__main__posts
         = render @posts

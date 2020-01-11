@@ -1,6 +1,11 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.where(brand_id: params[:brand_id])
+    if params[:keyword].present?
+      empty = ''
+      @items = Item.search(empty, params[:keyword], empty).limit(5)
+    else
+      @items = Item.where(brand_id: params[:brand_id])
+    end
     respond_to do |format|
       format.html
       format.json

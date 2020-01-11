@@ -1,4 +1,16 @@
 class SalonsController < ApplicationController
+
+  def index
+    # binding.pry
+    if params[:keyword].present?
+      @salons = Salon.search(params[:keyword], params[:area_id]).limit(5)
+    end
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def search
     if params[:area_id] != '' || params[:keyword] != ''
       @searchedsalons = Salon.search(params[:keyword], params[:area_id]).page(params[:page]).per(10)
