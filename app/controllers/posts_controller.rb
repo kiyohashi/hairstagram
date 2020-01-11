@@ -6,8 +6,42 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:keyword]).page(params[:page]).per(30)
-    @postsallcount = Post.all.count
+    if params[:gender_ids] != [""] || params[:minage] != '' || params[:maxage] != '' || params[:salon_id] != '' || params[:item_id] != '' || params[:keyword] != ''
+      if params[:gender_ids].present?
+        searchedPosts = Post.search(params[:gender_ids],params[:minage],params[:maxage],params[:salon_id], params[:item_id],params[:keyword])
+        @posts = searchedPosts.page(params[:page]).per(30)
+        @postsCount = searchedPosts.count
+      elsif params[:keyword].present?
+        @posts = Post.simplesearch(params[:keyword]).page(params[:page]).per(30)
+        @postsCount = Post.simplesearch(params[:keyword]).count
+      else
+        @posts = Post.all.page(params[:page]).per(30)
+        @postsCount = Post.all.count
+      end
+    else 
+      @posts = Post.all.page(params[:page]).per(30)
+      @postsCount = Post.all.count
+    end
+
+    if params[:gender_ids] != [""]
+      @genders = Gender.where(id: params[:gender_ids])
+    end
+    if params[:minage] != ''
+      @minage = params[:minage]
+    end
+    if params[:maxage] != ''
+      @maxage = params[:maxage]
+    end
+    if params[:salon_id] && params[:salon_id] != ''
+      @salon = Salon.find(params[:salon_id])
+    end
+    if params[:item_id] && params[:item_id] != ''
+      @item = Item.find(params[:item_id])
+    end
+    if params[:keyword] != ''
+      @keyword = params[:keyword]
+    end
+    
   end
 
   def ranking

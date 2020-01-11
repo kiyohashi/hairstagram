@@ -32,7 +32,8 @@
     .searchbox__form__search
       = f.hidden_field :item_id, value: '', id: 'item_id'
       %input.searchbox__form__search__item#item-search{placeholder: "アイテムを探す", type: "text", autocomplete: "off"}
-      #salon-search-result
+      #item-search-result
+    .searchbox__form__item-selected.form-selected
     .searchbox__form__title
       キーワード検索
     .searchbox__form__search
