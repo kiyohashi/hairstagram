@@ -1,6 +1,6 @@
 class BrandsController < ApplicationController
   def index
-    @brands = Brand.search(params[:keyword])
+    @brands = Brand.postsearch(params[:keyword])
     respond_to do |format|
       format.html
       format.json

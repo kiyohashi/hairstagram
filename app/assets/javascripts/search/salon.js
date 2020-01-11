@@ -1,22 +1,22 @@
 $(function() {
-  function addArea(area) {
+  function addContent(content) {
     var html = `
-      <div class='searchbox__salon__area-selected__bgc'>
+      <div class='searchbox__form__selected__bgc'>
       <span>×
       </div>
-      <span>${area}
+      <span>${content}
     `;
-    $(".searchbox__salon__area-selected").append(html);
+    $(".searchbox__form__selected").append(html);
   }
 
-  $(".searchbox__salon__area-select__list__areas__area").click(function(){
-    $(".searchbox__salon__area-selected > span").remove();
-    addArea(this.textContent);
-    areaid = $(this).data("id");
-    $(".searchbox__salon__area-select #area_id").val(areaid);
+  $(".searchbox__form__select__list__contents__content").click(function(){
+    $(".searchbox__form__selected > span").remove();
+    addContent(this.textContent);
+    contentid = $(this).data("id");
+    $(".searchbox__form__select #content_id").val(contentid);
   });
-  $(document).on("click", ".searchbox__salon__area-selected__bgc > span", function() {
-    $(".searchbox__salon__area-selected").children().remove();
-    $(".searchbox__salon__area-select #area_id").val('');
+  $(document).on("click", ".searchbox__form__selected__bgc > span", function() {
+    $(".searchbox__form__selected").children().remove();
+    $(".searchbox__form__select #content_id").val('');
   });
 });

@@ -4,12 +4,19 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 0.2rem;
-  &__salon {
-    &__area {
+  &__form {
+    &__title {
       font-size: 1.1rem;
       border-bottom: 1px solid #ccc;
+      margin-top: 3em;
+      span {
+        font-size: 0.7rem;
+      }
     }
-    &__area-select {
+    &__title-brand {
+      margin-top: 0em;
+    }
+    &__select {
       padding-left: 0.5rem;
       font-size: 0.9rem;
       line-height: 2.5rem;
@@ -35,11 +42,11 @@
         width: 25rem;
         padding: 1rem;
         
-        &__areas {
+        &__contents {
           display: flex;
           flex-wrap: wrap;
           font-size: 0.8rem;
-          &__area {
+          &__content {
             width: 30%;
             line-height: 1;
             height: 3rem;
@@ -51,29 +58,29 @@
             text-align: center;
             cursor: pointer;
           }
-          &__area:nth-child(3n) {
+          &__content:nth-child(3n) {
             margin-right: 0;
           }
-          &__area:hover {
+          &__content:hover {
             background-color: #ddd;
           }
         }
       }
     }
-    &__area-select:hover {
+    &__select:hover {
       background-color: #eee;
-      .searchbox__salon__area-select__list {
+      .searchbox__form__select__list {
         display: block !important;
       }
     }
-    &__area-selected {
+    &__selected {
       font-size: 0.9rem;
       line-height: 1rem;
       align-items: center;
       display: flex;
-      height: 3rem;
       z-index: 2;
       position: relative;
+      height: 3rem;
       &__bgc {
         position: absolute;
         top:0;
@@ -87,18 +94,13 @@
           line-height: 3rem;
           color: #ccc;
           cursor: pointer;
+          z-index: 1;
         }
 
       }
       span {
         z-index: 1;
-        // display: block;
       }
-    }
-    &__keyword {
-      font-size: 1.1rem;
-      border-bottom: 1px solid#ccc;
-      margin-top: 2em;
     }
     &__search {
       margin-top: 1rem;

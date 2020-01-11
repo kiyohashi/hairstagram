@@ -4,13 +4,14 @@
     .item-search-icon {
       margin-right: 0.4em;
       img {
-        width: 1rem;
+        width: 1.4rem;
       }
     }
   }
   &__contents {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     padding: 3rem 0;
     &__main {
       width: 72%;

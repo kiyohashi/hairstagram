@@ -11,12 +11,12 @@
       - else
         %span サロン一覧
   .salon-search__contents
-    = render 'shared/searchbox' do
+    = render 'shared/salonsearchbox' do
       .salon-search__contents
         エリア
     .salon-search__contents__main
       .salon-search__contents__main__count
-        - if @searchedsalons
+        - if @searchedSalonsCount
           = @searchedSalonsCount
         - else
           = @salonsallcount
