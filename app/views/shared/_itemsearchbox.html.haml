@@ -1,0 +1,26 @@
+.searchbox
+  = form_with(model: @item, url: search_items_path, local: true, class:'searchbox__form', method: :get) do |f|
+    .searchbox__form__title.searchbox__form__title-brand
+      ブランド 
+      %span または
+      会社名
+    .searchbox__form__search
+      = f.search_field :brand_search, name: "brandkeyword", placeholder: "ブランドを探す", class: "searchbox__form__search", autocomplete: "off"
+    .searchbox__form__title
+      ジャンル
+    .searchbox__form__select
+      %span ジャンル
+      = icon "fas", "chevron-right"
+      = f.hidden_field :genre_id, value: '', id: 'content_id'
+      .searchbox__form__select__list
+        .searchbox__form__select__list__contents
+          - Genre.all.each do |genre|
+            .searchbox__form__select__list__contents__content{data: {id: genre.id}}
+              = genre.name
+    .searchbox__form__selected
+    .searchbox__form__title
+      キーワード検索
+    .searchbox__form__search
+      = f.search_field :keyword_search, name: "keyword", placeholder: "サロンを探す", class: "searchbox__form__search", autocomplete: "off"
+    .searchbox__form__input
+      = f.submit "検索する"

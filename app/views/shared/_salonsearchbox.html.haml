@@ -1,0 +1,20 @@
+.searchbox
+  = form_with(model: @salon, url: search_salons_path, local: true, class:'searchbox__form', method: :get) do |f|
+    .searchbox__form__title
+      エリア
+    .searchbox__form__select
+      %span エリア
+      = icon "fas", "chevron-right"
+      = f.hidden_field :area_id, value: '', id: 'content_id'
+      .searchbox__form__select__list
+        .searchbox__form__select__list__contents
+          - Area.all.each do |area|
+            .searchbox__form__select__list__contents__content{data: {id: area.id}}
+              = area.name
+    .searchbox__form__selected
+    .searchbox__form__title
+      キーワード検索
+    .searchbox__form__search
+      = f.search_field :detail_search, name: "keyword", placeholder: "サロンを探す", class: "searchbox__salon__keyword__search", autocomplete: "off"
+    .searchbox__form__input
+      = f.submit "検索する"
