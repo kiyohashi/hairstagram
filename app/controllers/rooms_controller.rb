@@ -9,7 +9,6 @@ class RoomsController < ApplicationController
         userIds << entry.user_id
       end
       if userIds.include?(current_user.id) && userIds.include?(params[:user_id].to_i)
-        # redirect_to action: 'index'
         redirect_to action: 'show', id: room.id
         return
       end
@@ -17,7 +16,6 @@ class RoomsController < ApplicationController
     @room = Room.create
     entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     entry2 = Entry.create(params.permit(:user_id, :room_id).merge(room_id: @room.id))
-    # redirect_to "/rooms/#{@room.id}"
     redirect_to action: 'show', id: @room.id
   end
 

@@ -40,21 +40,14 @@
             = image_tag 'egg-icon-gray.png', size: '35x35'
           = user.name
 .sidebar__favorite-style.sidebar__content
-  .sidebar__favorite-style__head.sidebar__content__head
-    人気スタイル
-  %ul.sidebar__favorite-style__list.sidebar__content__list
-    %li
-      = link_to root_path do
-        マッシュ
-    %li
-      = link_to root_path do
-        アフロ
-    %li
-      = link_to root_path do
-        ボウズ
-    %li
-      = link_to root_path do
-        ウルフ
-    %li
-      = link_to root_path do
-        リーゼント
+  .sidebar__favorite-item__head.sidebar__content__head
+    人気アイテム
+  %ul.sidebar__favorite-item__list.sidebar__content__list
+    - Item.all.first(5).each do |item|
+      %li
+        = link_to item.link do
+          - if item.image_url == "?target=70x70" 
+            = image_tag 'noimage.jpg', size: '35x35'
+          - else
+            = image_tag item.image_url, size: '35x35'
+          = item.name
