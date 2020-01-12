@@ -64,7 +64,7 @@ $(function() {
     $('.searchbox__form__length-selected').css('height','3rem');
     $(".searchbox__form__select #length_id").val(contentid);
   });
-  $(document).on("click", ".searchbox__form__selected__bgc > span", function() {
+  $(document).on("click", ".searchbox__form__length-selected > .searchbox__form__selected__bgc > span", function() {
     $(".searchbox__form__length-selected").children().remove();
     $(".searchbox__form__select #length_id").val('');
     $('.searchbox__form__length-selected').css('height','0');
