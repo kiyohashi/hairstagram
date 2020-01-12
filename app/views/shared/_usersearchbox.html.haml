@@ -5,7 +5,23 @@
     .searchbox__form__check
       = f.collection_check_boxes(:gender_ids, Gender.all, :id, :name) do |b|
         = b.label { b.check_box + b.text }
-
+    .searchbox__form__select
+      %span Length
+      = icon "fas", "chevron-right"
+      = f.hidden_field :length_id, value: '', id: 'length_id'
+      .searchbox__form__select__list
+        %span#nogender 性別を選択してください
+        .searchbox__form__select__list__contents#Women-contents
+          %span Women
+          - length_select(1).each do |length|
+            .searchbox__form__select__list__contents__content.length-content{data: {id: length.id}}
+              = length.name
+        .searchbox__form__select__list__contents#Men-contents
+          %span Men
+          - length_select(2).each do |length|
+            .searchbox__form__select__list__contents__content.length-content{data: {id: length.id}}
+              = length.name
+    .searchbox__form__length-selected.form-selected
     .searchbox__form__title
       年齢
     .searchbox__form__age
@@ -20,7 +36,7 @@
       .searchbox__form__select__list
         .searchbox__form__select__list__contents
           - Area.all.each do |area|
-            .searchbox__form__select__list__contents__content{data: {id: area.id}}
+            .searchbox__form__select__list__contents__content.area-content{data: {id: area.id}}
               = area.name
     .searchbox__form__selected.form-selected
     .searchbox__form__search
@@ -28,13 +44,6 @@
       %input.searchbox__form__search__salon#salon-search{placeholder: "サロンを探す", type: "text", autocomplete: "off"}
       #salon-search-result
     .searchbox__form__salon-selected.form-selected
-    .searchbox__form__title
-      アイテム
-    .searchbox__form__search
-      = f.hidden_field :item_id, value: '', id: 'item_id'
-      %input.searchbox__form__search__item#item-search{placeholder: "アイテムを探す", type: "text", autocomplete: "off"}
-      #item-search-result
-    .searchbox__form__item-selected.form-selected
     .searchbox__form__title
       キーワード検索
     .searchbox__form__search

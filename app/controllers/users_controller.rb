@@ -2,8 +2,41 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:follow, :unfollow, :follow_list, :follower_list]
 
   def search
-    @users = User.all.page(params[:page]).per(50)
-    @usersallcount = User.all.count
+    if params[:gender_ids] != [""] || params[:length_id] != "" || params[:minage] != '' || params[:maxage] != '' || params[:salon_id] != '' || params[:keyword] != ''
+      if params[:gender_ids].present?
+        searchedUsers = User.search(params[:gender_ids],params[:length_id],params[:minage],params[:maxage],params[:salon_id],params[:keyword])
+        @users = searchedUsers.page(params[:page]).per(30)
+        @usersCount = searchedUsers.count
+      elsif params[:keyword].present?
+        @users = User.simplesearch(params[:keyword]).page(params[:page]).per(30)
+        @usersCount = User.simplesearch(params[:keyword]).count
+      else
+        @users = User.all.page(params[:page]).per(50)
+        @userscount = User.all.count
+      end
+    else 
+      @users = User.all.page(params[:page]).per(50)
+      @userscount = User.all.count
+    end
+
+    if params[:gender_ids] != [""]
+      @genders = Gender.where(id: params[:gender_ids])
+    end
+    if params[:length_id] && params[:length_id] != ''
+      @length = Length.find(params[:length_id])
+    end
+    if params[:minage] != ''
+      @minage = params[:minage]
+    end
+    if params[:maxage] != ''
+      @maxage = params[:maxage]
+    end
+    if params[:salon_id] && params[:salon_id] != ''
+      @salon = Salon.find(params[:salon_id])
+    end
+    if params[:keyword] != ''
+      @keyword = params[:keyword]
+    end
   end
 
   def show
