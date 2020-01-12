@@ -26,6 +26,9 @@ class PostsController < ApplicationController
     if params[:gender_ids] != [""]
       @genders = Gender.where(id: params[:gender_ids])
     end
+    if params[:length_id] && params[:length_id] != ''
+      @length = Length.find(params[:length_id])
+    end
     if params[:minage] != ''
       @minage = params[:minage]
     end
