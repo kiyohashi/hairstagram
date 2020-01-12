@@ -65,6 +65,12 @@
           display: flex;
           flex-wrap: wrap;
           font-size: 0.8rem;
+          span {
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: block;
+            width: 100%;
+          }
           &__content {
             width: 30%;
             line-height: 1;
@@ -83,6 +89,20 @@
           &__content:hover {
             background-color: #ddd;
           }
+        }
+        #Women-contents > span{
+          display: none;
+        }
+        #Women-contents > div{
+          display: none;
+          line-height: 3rem;
+        }
+        #Men-contents > span{
+          display: none;
+        }
+        #Men-contents > div{
+          display: none;
+          line-height: 3rem;
         }
       }
     }

@@ -9,7 +9,7 @@ $(function() {
     $(".searchbox__form__selected").append(html);
   }
 
-  $(".searchbox__form__select__list__contents__content").click(function(){
+  $(".area-content").click(function(){
     $(".searchbox__form__selected > span").remove();
     contentid = $(this).data("id");
     addContent(this.textContent, contentid);
