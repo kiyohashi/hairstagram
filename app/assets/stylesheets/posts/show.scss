@@ -33,16 +33,19 @@
             opacity: 0.8;
             display: flex;
             &__id {
-              border-right: solid 1px rgba(128, 128, 128, 0.7);
-              padding-right: 0.5em;
+              padding-right: 0.2em;
             }
             &__gender {
-              border-right: solid 1px rgba(128, 128, 128, 0.7);
-              padding: 0 0.5em;
+              padding: 0 0.2em;
+            }
+            &__age {
+              padding: 0 0.2em;
+            }
+            &__length {
+              padding: 0 0.2em;
             }
             &__salon {
-              padding: 0 0.5em;
-              // opacity: 0.8;
+              padding: 0 0.2em;
               color: #4a4a4a ;
               text-decoration: underline;
             }

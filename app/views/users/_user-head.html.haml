@@ -35,6 +35,14 @@
           - if user.gender
             | 
             = user.gender.name
+        .user-show__rightbox__top__contents__age
+          - if user.age.present?
+            |
+            = user.age
+        .user-show__rightbox__top__contents__length
+          - if user.length_id.present?
+            |
+            = user.length.name
         - if user.salon
           |
           = link_to salon_path(user.salon), class: 'user__rightbox__top__contents__salon' do
