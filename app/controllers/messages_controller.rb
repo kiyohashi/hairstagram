@@ -2,8 +2,15 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    Message.create(message_params)
-    redirect_to controller: 'rooms', action: 'show', id: params[:room_id]
+    @message = Message.new(message_params)
+    if @message.save
+      respond_to do |format|
+        format.html {redirect_to controller: 'rooms', action: 'show', id: params[:room_id]}
+        format.json
+      end
+    else
+      redirect_to controller: 'rooms', action: 'show', id: params[:room_id]
+    end
   end
 
   private
