@@ -2,7 +2,7 @@
   .header__container
     .header__container__search
       = form_with(model: @post, url: search_posts_path, method: :get, local: true, class: "header__container__search__form") do |f|
-        = f.search_field :search, name: "keyword", placeholder: "スタイルやユーザーを探す", class: "header__container__search__form__input", autocomplete: "off"
+        = f.search_field :search, name: "keyword", placeholder: "スタイルを探す", class: "header__container__search__form__input", autocomplete: "off"
         = f.button type: :submit, class: 'header__container__search__form__button' do
           = icon 'fas', 'search'
     .header__container__main-title

@@ -46,7 +46,7 @@
           .show__contents__post__items__item
             .show__contents__post__items__item__img
               - if item.image_url == "?target=70x70" 
-                = image_tag 'noimage.jpeg', size: '70x70'
+                = image_tag 'noimage.jpg', size: '70x70'
               - else
                 = image_tag item.image_url
             .show__contents__post__items__item__brand
