@@ -13,11 +13,11 @@ class UsersController < ApplicationController
         @usersCount = User.simplesearch(params[:keyword]).count
       else
         @users = User.all.page(params[:page]).per(50)
-        @userscount = User.all.count
+        @usersCount = User.all.count
       end
     else 
       @users = User.all.page(params[:page]).per(50)
-      @userscount = User.all.count
+      @usersCount = User.all.count
     end
 
     if params[:gender_ids] != [""]
