@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:follow, :unfollow, :follow_list, :follower_list]
+  before_action :authenticate_user!, only: [:timeline, :show]
 
   def search
     if params[:gender_ids] != [""] || params[:length_id] != "" || params[:minage] != '' || params[:maxage] != '' || params[:salon_id] != '' || params[:keyword] != ''

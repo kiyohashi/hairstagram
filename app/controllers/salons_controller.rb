@@ -1,7 +1,6 @@
 class SalonsController < ApplicationController
 
   def index
-    # binding.pry
     if params[:keyword].present?
       @salons = Salon.search(params[:keyword], params[:area_id]).limit(5)
     end
