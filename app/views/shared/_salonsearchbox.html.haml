@@ -1,6 +1,6 @@
 .searchbox
   = form_with(model: @salon, url: search_salons_path, local: true, class:'searchbox__form', method: :get) do |f|
-    .searchbox__form__title
+    .searchbox__form__title.searchbox__form__title-first
       エリア
     .searchbox__form__select
       %span エリア

@@ -1,15 +1,11 @@
 .searchbox
-  = form_with(model: @post, url: search_posts_path, local: true, class:'searchbox__form', method: :get) do |f|
+  = form_with(model: @user, url: search_users_path, local: true, class:'searchbox__form', method: :get) do |f|
     .searchbox__form__title.searchbox__form__title-first
       性別
     .searchbox__form__check
       = f.collection_check_boxes(:gender_ids, Gender.all, :id, :name) do |b|
         = b.label { b.check_box + b.text }
-    .searchbox__form__select
-      %span Length
-      = icon "fas", "chevron-right"
-      .searchbox__form__select__list
-        .searchbox__form__select__list__contents
+
     .searchbox__form__title
       年齢
     .searchbox__form__age
@@ -17,7 +13,7 @@
       %span ~
       = f.search_field :maxage, name: "maxage", placeholder: "~才まで"
     .searchbox__form__title
-      サロン
+      お気に入りサロン
     .searchbox__form__select
       %span エリア
       = icon "fas", "chevron-right"
