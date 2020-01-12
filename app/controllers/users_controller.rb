@@ -118,6 +118,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    messages = Message.where(user_id: current_user.id)
+    messages.each do |message|
+      message.update(user_id: nil)
+    end
     if current_user.destroy
       redirect_to root_path
     else

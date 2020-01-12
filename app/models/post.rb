@@ -2,15 +2,15 @@ class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :length
   belongs_to_active_hash :gender
-  validates :body, :images, :title, presence: true
+  validates :body, :images, :title, :gender_id, :length_id, :salon_id, presence: true
 
   belongs_to :user
   belongs_to :salon
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
-  has_many :comments
-  has_many :images
-  has_many :post_items
+  has_many :comments, dependent: :destroy
+  has_many :images, dependent: :destroy
+  has_many :post_items, dependent: :destroy
   has_many :items,      through: :post_items
   accepts_nested_attributes_for :images
   

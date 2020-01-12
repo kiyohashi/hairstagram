@@ -6,16 +6,17 @@
       - else
         = image_tag 'egg-icon-gray.png'
     .user__leftbox__btn
-      - if user_signed_in? && current_user.id == user.id
-        %button{type: "button", class: "btn btn-primary", id: "user-edit"}
-          = link_to '編集', edit_user_registration_path(user)
-      - else
-        - if current_user.following? user
-          %button{type: "button", class: "btn btn-primary", id: "unfollow"}
-            = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: user.id}, method: :put
+      - if user_signed_in?
+        - if current_user.id == user.id
+          %button{type: "button", class: "btn btn-primary", id: "user-edit"}
+            = link_to '編集', edit_user_registration_path(user)
         - else
-          %button{type: "button", class: "btn btn-primary", id: "follow"}
-            = link_to "フォローする", {controller: :users,action: :follow,user_id: user.id}, method: :put
+          - if current_user.following? user
+            %button{type: "button", class: "btn btn-primary", id: "unfollow"}
+              = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: user.id}, method: :put
+          - else
+            %button{type: "button", class: "btn btn-primary", id: "follow"}
+              = link_to "フォローする", {controller: :users,action: :follow,user_id: user.id}, method: :put
   .user__rightbox
     .user__rightbox__top
       .user__rightbox__top__name
