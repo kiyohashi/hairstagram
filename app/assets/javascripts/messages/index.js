@@ -1,5 +1,7 @@
 $(function(){
-  $('.direct-message__show__messages').animate({ scrollTop: $('.direct-message__show__messages')[0].scrollHeight});
+  if ($('.direct-message__show__messages')[0]) {
+    $('.direct-message__show__messages').animate({ scrollTop: $('.direct-message__show__messages')[0].scrollHeight});
+  }
   
   function simpleFormat(str) {
     str = str.replace(/\r\n?/, "\n");
