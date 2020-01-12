@@ -23,7 +23,7 @@ class PostsController < ApplicationController
       @postsCount = Post.all.count
     end
 
-    if params[:gender_ids] != [""]
+    if params[:gender_ids] && params[:gender_ids] != [""]
       @genders = Gender.where(id: params[:gender_ids])
     end
     if params[:length_id] && params[:length_id] != ''
