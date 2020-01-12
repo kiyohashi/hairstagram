@@ -27,6 +27,50 @@ $(function() {
     box.append(html);
   }
 
+  $(".searchbox__form__check > label").click(function () {
+    $(".searchbox__form__length-selected").children().remove();
+    $(".searchbox__form__select #length_id").val('');
+    $('.searchbox__form__length-selected').css('height','0');
+    $('#Women-contents').children().css('display','none');
+    $('#Men-contents').children().css('display','none');
+    $('#nogender').css('display','block');
+
+    if ($("#gender_ids_1").prop("checked") == true) {
+      $('#Women-contents').children().css('display','block');
+      $('#nogender').css('display','none');
+    } else {
+    }
+  
+    if ($("#gender_ids_2").prop("checked") == true) {
+      $('#Men-contents').children().css('display','block');
+      $('#nogender').css('display','none');
+    } else {
+    }
+
+    if ($("#gender_ids_3").prop("checked") == true) {
+      $('#Women-contents').children().css('display','block');
+      $('#Men-contents').children().css('display','block');
+      $('#nogender').css('display','none');
+    } else {
+    }
+  });
+
+  $(document).on("click", ".length-content", function() {
+    $(".searchbox__form__length-selected > span").remove();
+    contentid = $(this).data("id");
+    var box = $('.searchbox__form__length-selected')
+    var genre = "length"
+    addContent(this.textContent, genre, contentid, box);
+    $('.searchbox__form__length-selected').css('height','3rem');
+    $(".searchbox__form__select #length_id").val(contentid);
+  });
+  $(document).on("click", ".searchbox__form__selected__bgc > span", function() {
+    $(".searchbox__form__length-selected").children().remove();
+    $(".searchbox__form__select #length_id").val('');
+    $('.searchbox__form__length-selected').css('height','0');
+  });
+
+
   $(document).on("keyup", "#salon-search", function() {
     var input = $("#salon-search").val();
     if ($("#area-selected")[0] != null) {

@@ -9,7 +9,7 @@
       .searchbox__form__select__list
         .searchbox__form__select__list__contents
           - Area.all.each do |area|
-            .searchbox__form__select__list__contents__content{data: {id: area.id}}
+            .searchbox__form__select__list__contents__content.area-content{data: {id: area.id}}
               = area.name
     .searchbox__form__selected.form-selected
     .searchbox__form__title

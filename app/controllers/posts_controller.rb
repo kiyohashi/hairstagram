@@ -6,9 +6,9 @@ class PostsController < ApplicationController
   end
 
   def search
-    if params[:gender_ids] != [""] || params[:minage] != '' || params[:maxage] != '' || params[:salon_id] != '' || params[:item_id] != '' || params[:keyword] != ''
+    if params[:gender_ids] != [""] || params[:length_id] != "" || params[:minage] != '' || params[:maxage] != '' || params[:salon_id] != '' || params[:item_id] != '' || params[:keyword] != ''
       if params[:gender_ids].present?
-        searchedPosts = Post.search(params[:gender_ids],params[:minage],params[:maxage],params[:salon_id], params[:item_id],params[:keyword])
+        searchedPosts = Post.search(params[:gender_ids],params[:length_id],params[:minage],params[:maxage],params[:salon_id], params[:item_id],params[:keyword])
         @posts = searchedPosts.page(params[:page]).per(30)
         @postsCount = searchedPosts.count
       elsif params[:keyword].present?
