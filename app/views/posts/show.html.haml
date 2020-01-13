@@ -29,7 +29,6 @@
               |
               = link_to salon_path(@post.user.salon), class: 'show__header__user__left__contents__else__salon' do
                 = salon_name(@post.user.salon)
-
       .show__header__user__right
         .show__header__user__right__follow
           - if user_signed_in?

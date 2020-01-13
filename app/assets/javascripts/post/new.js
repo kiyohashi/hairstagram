@@ -23,10 +23,18 @@ $(function() {
   }
 
   function addPostItem(item) {
+    if (item.image == '?target=70x70') {
+      var img = '/assets/noimage-748452af927c706a490bee358b8f897f7d0f7843abf07af76dec1009024fc612.jpg'
+    } else {
+      var img = item.image
+    }
     let html = `
                 <div class = 'add-item' id = "${item.id}">
+                  <div class = 'add-item__delete'>
+                    ×
+                  </div>
                   <div class = 'add-item__image'>
-                    <img src = ${item.image}>
+                    <img src = ${img}>
                   </div>
                   <div class = 'add-item__name'>
                     ${item.name}
@@ -97,6 +105,10 @@ $(function() {
     .fail(function() {
       alert("通信エラーです。アイテムが表示できません。");
     });
+  });
+
+  $(document).on("click", ".add-item__delete", function() {
+    $(this).parent().remove()
   });
 
   $(document).on("click", ".post-new__form__item-brand__decide__btn", function() {
@@ -201,5 +213,31 @@ $(function() {
     var dom = $(this).prevAll('.post-new__form__image__form__box__image').children('img');
     dom.attr('src', '');
     $('#post_images_attributes_3_image').val('');
+  });
+  
+  
+  
+  
+  
+  $(".searchbox__form__radio > label").click(function () {
+    $(".searchbox__form__length-selected").children().remove();
+    $(".searchbox__form__select #length_id").val('');
+    $('.searchbox__form__length-selected').css('height','0');
+    $('#Women-contents').children().css('display','none');
+    $('#Men-contents').children().css('display','none');
+    $('#nogender').css('display','block');
+    var genderid = $(this).attr('for')
+
+    if (genderid == "post_gender_id_1") {
+      $('#Women-contents').children().css('display','block');
+      $('#nogender').css('display','none');
+    } else if (genderid == "post_gender_id_2") {
+      $('#Men-contents').children().css('display','block');
+      $('#nogender').css('display','none');
+    } else {
+      $('#Women-contents').children().css('display','block');
+      $('#Men-contents').children().css('display','block');
+      $('#nogender').css('display','none');
+    }
   });
 });
