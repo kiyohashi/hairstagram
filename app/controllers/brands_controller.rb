@@ -1,6 +1,8 @@
 class BrandsController < ApplicationController
   def index
-    @brands = Brand.postsearch(params[:keyword]).limit(5)
+    if params[:keyword] != ''
+      @brands = Brand.postsearch(params[:keyword]).limit(5)
+    end
     respond_to do |format|
       format.html
       format.json
