@@ -1,15 +1,20 @@
 = link_to salon_path(salon), class: 'salon' do
   .salon__contents
-    
-    .salon__contents__left
-      = image_tag salon.image_url
-    .salon__contents__right
-      .salon__contents__right__namekana
-        = salon.nameKana
-      .salon__contents__right__name
-        = salon.name
-      .salon__contents__right__introduction
-        = salon.introduction
+    .salon__contents__counts
+      .salon__contents__counts__post
+        = salon.posts.count
+      .salon__contents__counts__user
+        = salon.users.count
+    .salon__contents__main
+      .salon__contents__main__left
+        = image_tag salon.image_url
+      .salon__contents__main__right
+        .salon__contents__main__right__namekana
+          = salon.nameKana
+        .salon__contents__main__right__name
+          = salon.name
+        .salon__contents__main__right__introduction
+          = salon.introduction
   .salon__contents__right__access
     %span アクセス
     = salon.access
