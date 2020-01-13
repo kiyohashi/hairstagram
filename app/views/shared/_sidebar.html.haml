@@ -23,7 +23,7 @@
   .sidebar__favorite-salon__head.sidebar__content__head
     人気サロン
   %ul.sidebar__favorite-salon__list.sidebar__content__list
-    - Salon.all.first(5).each do |salon|
+    - @popularity_salons.each do |salon|
       %li
         = link_to salon_path(salon) do
           = salon_name(salon)
@@ -31,7 +31,7 @@
   .sidebar__favorite-user__head.sidebar__content__head
     ユーザー
   %ul.sidebar__favorite-user__list.sidebar__content__list
-    - User.all.first(5).each do |user|
+    - @popularity_users.each do |user|
       %li
         = link_to user_path(user) do
           - if user.icon.url.present?
@@ -43,7 +43,7 @@
   .sidebar__favorite-item__head.sidebar__content__head
     人気アイテム
   %ul.sidebar__favorite-item__list.sidebar__content__list
-    - Item.all.first(5).each do |item|
+    - @popularity_items.each do |item|
       %li
         = link_to item.link do
           - if item.image_url == "?target=70x70" 

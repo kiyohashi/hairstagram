@@ -44,7 +44,6 @@ class PostsController < ApplicationController
     if params[:keyword] != ''
       @keyword = params[:keyword]
     end
-    
   end
 
   def ranking
@@ -54,6 +53,12 @@ class PostsController < ApplicationController
     @womenPosts = @posts.select{|post| post.user.gender_id == 1}
     @menPosts = @posts.select{|post| post.user.gender_id == 2}
     @freePosts = @posts.select{|post| post.user.gender_id == 3}
+    # postsalons = Salon.joins(:posts).select("id").group(:id).count
+    # postsalons_order = Hash[postsalons.sort_by{ |_, v| -v }].keys
+    # @popularity_salons = Salon.where(id: postsalons_order).order("FIELD(id, #{postsalons_order.join(',')})").first(5)
+    @popularity_salons = Salon.find(Post.group(:salon_id).order('count(salon_id) desc').limit(5).pluck(:salon_id))
+    @popularity_users = User.find(Follow.group(:followable_id).order('count(followable_id) desc').limit(5).pluck(:followable_id))
+    @popularity_items = Item.find(PostItem.group(:item_id).order('count(item_id) desc').limit(5).pluck(:item_id))
   end
 
   def new
