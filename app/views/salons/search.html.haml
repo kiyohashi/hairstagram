@@ -14,17 +14,8 @@
     = render 'shared/salonsearchbox'
     .salon-search__contents__main
       .salon-search__contents__main__count
-        - if @searchedSalonsCount
-          = @searchedSalonsCount
-        - else
-          = @salonsallcount
+        = @salonscount
         %span 件
       .salons
-        - if @searchedsalons
-          = render partial: "salon", collection: @searchedsalons, as: "salon" 
-        - else
-          = render @salons
-      - if @searchedsalons
-        = paginate @searchedsalons
-      - else
-        = paginate @salons
+        = render @salons
+      = paginate @salons
