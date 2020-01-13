@@ -46,6 +46,8 @@
   .show__contents
     .show__contents__post
       .show__contents__post__items
+        .show__contents__post__items__head
+          使用アイテム
         - @post.items.each do |item|
           .show__contents__post__items__item
             .show__contents__post__items__item__img
@@ -83,8 +85,6 @@
                     = icon "far",'heart', class: 'icon'
                   .show__contents__post__left__bottom__favorite__count
                     = @post.favorites.count
-          .show__contents__post__left__bottom__comment
-            %input{type: "button", class: "show__contents__post__left__comment__btn", value: "コメントボタン", id: "create_comment", onclick: "commentformbtnclick()" }
       .show__contents__post__right
         .show__contents__post__right__title
           = @post.title
@@ -110,53 +110,56 @@
               = simple_format(@post.body)
         .show__contents__post__right__date
           = @post.created_at.strftime("%Y/%m/%d %H:%M")
-  .show__comments
-    .show__comments__container.col-7
-      .show__comments__container__head
+  .show__bottom
+    .show__bottom__container
+      .show__bottom__container__head
         コメント一覧
-      .show__comments__container__comments
-        - if @comments
+        #{@comments.count}
+        件
+      .show__bottom__container__comments
+        - if @comments.present?
           - @comments.each do |comment|
-            .show__comments__container__comments__comment
-              .post__user
-                = link_to user_path(comment.user.id), class: 'post__user__icon' do
+            .show__bottom__container__comments__comment
+              .show__bottom__container__comments__comment__user
+                = link_to user_path(comment.user.id), class: 'show__bottom__container__comments__comment__user__icon' do
                   - if comment.user.icon.url.present?
                     = image_tag comment.user.icon.url, class: '', size: '40x38'
                   - else
                     = image_tag 'egg-icon-gray.png', size: '40x38'
-                .post__user__info
-                  .post__user__info__name
+                .show__bottom__container__comments__comment__user__info
+                  .show__bottom__container__comments__comment__user__info__name
                     = comment.user.name
-                  .post__user__info__id
+                  .show__bottom__container__comments__comment__user__info__id
                     @
                     = comment.user.acountid
               - if comment.body.present?
-                %p
+                .show__bottom__container__comments__comment__body
                   = simple_format(comment.body)
               - if comment.image.url.present?
                 = image_tag comment.image.url, class: ''
-              - if user_signed_in? && current_user.id == comment.user_id
-                %ul
-                = link_to '削除', post_comment_path(@post,comment), method: :delete, data: { confirm: 'ほんとに消していいの？' }
-              %div
+              .show__bottom__container__comments__comment__date
                 = comment.created_at.strftime("%Y/%m/%d %H:%M")
-    .comment.col-5{id: "comment-form"}
-      .comment__form
-        .comment__form__icon
-          - if user_signed_in?
-            - if current_user.icon.url.present?
-              = image_tag current_user.icon.url, class: '', size: '40x40'
-            - else
-              = image_tag 'egg-icon-gray.png', size: '40x40'
+              - if user_signed_in? && current_user.id == comment.user_id
+                = link_to post_comment_path(@post,comment), class:'show__bottom__container__comments__comment__trash', method: :delete, data: { confirm: 'このコメントを削除しますか？' } do
+                  = icon "far", "trash-alt", class: "trash"
+        - else
+          .show__bottom__container__comments__no
+            この投稿にコメントはまだありません
+    .show__bottom__form
+      .show__bottom__form__icon
+        - if user_signed_in?
+          - if current_user.icon.url.present?
+            = image_tag current_user.icon.url, class: '', size: '40x40'
           - else
-
-        = form_with(model: [@post, @comment], local: true, class: "comment__form__new") do |f|
-          .comment__form__new__body
-            = f.text_area :body, placeholder: "コメントを入力してください" , rows: "10"
-          .comment__form__new__bottom
-            .comment__form__new__bottom__image
-              = f.label :image do
-                = icon "far", "image", class: "image"
-                = f.file_field :image, style: 'display:none;'
-            .comment__form__new__bottom__submit
-              = f.submit "SEND"
+            = image_tag 'egg-icon-gray.png', size: '40x40'
+        - else
+      = form_with(model: [@post, @comment], local: true, class: "show__bottom__form__new") do |f|
+        .show__bottom__form__new__body
+          = f.text_area :body, placeholder: "コメントを入力してください" , rows: "10"
+        .show__bottom__form__new__bottom
+          .show__bottom__form__new__bottom__image
+            = f.label :image do
+              = icon "far", "image", class: "image"
+              = f.file_field :image, style: 'display:none;'
+          .show__bottom__form__new__bottom__submit
+            = f.submit "コメントする"
