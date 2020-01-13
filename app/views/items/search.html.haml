@@ -18,17 +18,8 @@
     = render 'shared/itemsearchbox'
     .item-search__contents__main
       .item-search__contents__main__count
-        - if @searchedItemsCount
-          = @searchedItemsCount
-        - else
-          = @itemsallcount
+        = @itemscount
         %span 件
       .item-search__contents__main__items
-        - if @searcheditems
-          = render partial: "item", collection: @searcheditems, as: "item" 
-        - else
-          = render @items
-      - if @searcheditems
-        = paginate @searcheditems
-      - else    
-        = paginate @items
+        = render @items 
+      = paginate @items

@@ -12,44 +12,48 @@
   background-color: #fff;
   margin-bottom: 1rem;
   &__contents {
-    display: flex;
-    width: 100%;
-    &__left {
-      width:50%;
-      img {
-        width: 100%;
-        height: auto;
+    
+    &__main {
+      display: flex;
+      width: 100%;
 
-      }
-    }
-    &__right {
-      width:50%;
-      padding: 0.8rem;
-      &__namekana {
-        font-size: 0.3rem;
-        height:7%;
-      }
-      &__name{
-        font-size: 1.1rem;
-        height:30%;
-      }
-      &__introduction{
-        font-size: 0.8rem;
-        height:55%;
-      }
-      &__access {
-        margin-top: 1rem;
-        font-size: 0.6rem;
-        height:10%;
-        span{
-          margin-right: 1rem;
+      &__left {
+        width:50%;
+        img {
+          width: 100%;
+          height: auto;
+
         }
       }
-      &__address {
-        font-size: 0.6rem;
-        height:10%;
-        span{
-          margin-right: 1rem;
+      &__right {
+        width:50%;
+        padding: 0.8rem;
+        &__namekana {
+          font-size: 0.3rem;
+          height:7%;
+        }
+        &__name{
+          font-size: 1.1rem;
+          height:30%;
+        }
+        &__introduction{
+          font-size: 0.8rem;
+          height:55%;
+        }
+        &__access {
+          margin-top: 1rem;
+          font-size: 0.6rem;
+          height:10%;
+          span{
+            margin-right: 1rem;
+          }
+        }
+        &__address {
+          font-size: 0.6rem;
+          height:10%;
+          span{
+            margin-right: 1rem;
+          }
         }
       }
     }

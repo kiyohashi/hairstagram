@@ -8,4 +8,6 @@
     = item.brand.name
   .item-search__contents__main__items__item__name
     = item.name
-  = link_to '購入はこちら', item.link, class:"item-search__contents__main__items__item__name"
+  .item-search__contents__main__items__item__count
+    = item.posts.count
+  = link_to '購入はこちら', item.link, class:"item-search__contents__main__items__item__link"
