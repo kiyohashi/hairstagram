@@ -11,6 +11,12 @@ class UsersController < ApplicationController
       elsif params[:keyword].present?
         @users = User.simplesearch(params[:keyword]).page(params[:page]).per(30)
         @usersCount = User.simplesearch(params[:keyword]).count
+      elsif params[:salon_id].present?
+        emptygender = [""]
+        empty = ''
+        searchedUsers = User.search(emptygender,empty,empty,empty, params[:salon_id],empty)
+        @users = searchedUsers.page(params[:page]).per(30)
+        @usersCount = searchedUsers.count
       else
         @users = User.all.page(params[:page]).per(50)
         @usersCount = User.all.count

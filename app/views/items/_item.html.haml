@@ -8,6 +8,11 @@
     = item.brand.name
   .item-search__contents__main__items__item__name
     = item.name
-  .item-search__contents__main__items__item__count
-    = item.posts.count
+  = form_with(model: @post, url: search_posts_path, local: true, class:'item-search__contents__main__items__item__count', method: :get) do |f|
+    = f.hidden_field :item_id, value: item.id, id: 'item_id'
+    = f.label "item#{item.id}-search" do
+      = item.posts.count
+      %span スタイル
+    = f.submit id: "item#{item.id}-search",style: 'display:none;'
+  
   = link_to '購入はこちら', item.link, class:"item-search__contents__main__items__item__link"

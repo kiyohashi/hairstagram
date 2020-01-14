@@ -20,6 +20,19 @@
       .salon-show__contents__main__address
         %span アドレス
         = @salon.address
+      .salon-show__contents__main__count
+        = form_with(model: @post, url: search_posts_path, local: true, class:'salon-show__contents__main__count__style', method: :get) do |f|
+          = f.hidden_field :salon_id, value: @salon.id, id: 'salon_id'
+          = f.label "salon-post-search" do
+            = @salon.posts.count
+            %span スタイル
+          = f.submit id: "salon-post-search",style: 'display:none;'
+        = form_with(model: @user, url: search_users_path, local: true, class:'salon-show__contents__main__count__user', method: :get) do |f|
+          = f.hidden_field :salon_id, value: @salon.id, id: 'salon_id'
+          = f.label "salon-user-search" do
+            = @salon.users.count
+            %span ユーザー
+          = f.submit id: "salon-user-search",style: 'display:none;'
       .salon-show__contents__main__reservation
         = link_to @salon.link do
           > ご予約はこちら

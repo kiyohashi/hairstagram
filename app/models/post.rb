@@ -24,8 +24,6 @@ class Post < ApplicationRecord
     postitems.each do |postitem|
       postIds << postitem.post_id
     end
-
-
     scope :gend, -> { where('(gender_id IN(?))',genderId) if genderId != [""]}
     scope :leng, -> { where('(length_id IN(?))',lengthId) if lengthId.present?}
     scope :minag, -> { where("age >= ?", minage) if minage.present?}
