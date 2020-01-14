@@ -31,6 +31,30 @@ class User < ApplicationRecord
     scope :word, -> { where('((name LIKE(?)) OR (acountid LIKE(?)) OR (introduction LIKE(?)))', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%") if keyword.present?}
     scope :searchresults, -> { gend.leng.minag.maxag.salon.word }
     return User.searchresults
+  end
 
+  def icon_judge
+    if self.icon.present?
+      return self.icon.url
+    else
+      return "egg-icon-gray.png"
+    end
+  end
+
+  def commonfollows(current_user)
+    userfollows = current_user.all_following
+    commonfollows = Follow.where(followable_id: userfollows).where.not(follower_id: userfollows).where.not(follower_id: current_user.id)
+  end
+
+  def commonfollowcount(current_user)
+    userfollows = current_user.all_following
+    commonfollows = Follow.where(followable_id: userfollows).where.not(follower_id: userfollows).where.not(follower_id: current_user.id)
+    recommendusers_count = commonfollows.group(:follower_id).count(:follower_id)
+    recommendusers_order = Hash[recommendusers_count.sort_by{ |_, v| -v }]
+    recommendusers_order.each{|key, value|
+      if key = self.id
+        return value
+      end
+    }
   end
 end

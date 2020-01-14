@@ -1,18 +1,43 @@
 = render partial: 'shared/gender-select'
 .timeline
-  .timeline__head
-    フォローユーザーの最新スタイル
-  .timeline__posts
-    .genderAll.active
-      .posts
-        = render partial: 'posts/post', collection: @posts
-    .genderWomen
-      .posts
-        = render partial: 'posts/post', collection: @womenPosts
-    .genderMen
-      .posts
-        = render partial: 'posts/post', collection: @menPosts
-    .genderFree
-      .posts
-        = render partial: 'posts/post', collection: @freePosts
-  = paginate @posts
+  .timeline__recommend
+    .timeline__recommend__head
+      おすすめユーザー
+    .timeline__recommend__users
+      - @recommendusers.each do |user|
+        .timeline__recommend__users__user
+          .timeline__recommend__users__user__icon
+            = image_tag user.icon_judge
+          .timeline__recommend__users__user__name
+            = user.name
+          .timeline__recommend__users__user__follower
+            %span フォロワー
+            = user.followers.count
+          .timeline__recommend__users__user__common
+            (共通のフォロー
+            = user.commonfollowcount(current_user)
+            )
+          .timeline__recommend__users__user__btn
+            - if current_user.following? user
+              %button{type: "button", class: "btn btn-primary", id: "unfollow"}
+                = link_to "フォロー中", {controller: :users,action: :unfollow,user_id: user.id}, method: :put
+            - else
+              %button{type: "button", class: "btn btn-primary", id: "follow"}
+                = link_to "フォローする", {controller: :users,action: :follow,user_id: user.id}, method: :put
+  .timeline__main
+    .timeline__main__head
+      フォローユーザーの最新スタイル
+    .timeline__main__posts
+      .genderAll.active
+        .posts
+          = render partial: 'posts/post', collection: @posts
+      .genderWomen
+        .posts
+          = render partial: 'posts/post', collection: @womenPosts
+      .genderMen
+        .posts
+          = render partial: 'posts/post', collection: @menPosts
+      .genderFree
+        .posts
+          = render partial: 'posts/post', collection: @freePosts
+    = paginate @posts

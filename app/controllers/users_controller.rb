@@ -157,6 +157,7 @@ class UsersController < ApplicationController
     @womenPosts = @posts.select{|post| post.user.gender_id == 1}
     @menPosts = @posts.select{|post| post.user.gender_id == 2}
     @freePosts = @posts.select{|post| post.user.gender_id == 3}
+    @recommendusers = User.find(current_user.commonfollows(current_user).group(:follower_id).order('count(follower_id) desc').limit(5).pluck(:follower_id))
   end
 
   private
