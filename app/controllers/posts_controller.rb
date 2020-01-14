@@ -9,29 +9,29 @@ class PostsController < ApplicationController
     if params[:gender_ids] != [""] || params[:length_id] != "" || params[:minage] != '' || params[:maxage] != '' || params[:salon_id] != '' || params[:item_id] != '' || params[:keyword] != ''
       if params[:gender_ids].present?
         searchedPosts = Post.search(params[:gender_ids],params[:length_id],params[:minage],params[:maxage],params[:salon_id], params[:item_id],params[:keyword])
-        @posts = searchedPosts.page(params[:page]).per(30)
+        @posts = searchedPosts.includes(:favorites).order("favorites.post_id DESC").page(params[:page]).per(30)
         @postsCount = searchedPosts.count
       elsif params[:keyword].present?
-        @posts = Post.simplesearch(params[:keyword]).page(params[:page]).per(30)
+        @posts = Post.simplesearch(params[:keyword]).includes(:favorites).order("favorites.post_id DESC").page(params[:page]).per(30)
         @postsCount = Post.simplesearch(params[:keyword]).count
       elsif params[:item_id].present?
         emptygender = [""]
         empty = ''
         searchedPosts = Post.search(emptygender,empty,empty,empty,empty, params[:item_id],empty)
-        @posts = searchedPosts.page(params[:page]).per(30)
+        @posts = searchedPosts.includes(:favorites).order("favorites.post_id DESC").page(params[:page]).per(30)
         @postsCount = searchedPosts.count
       elsif params[:salon_id].present?
         emptygender = [""]
         empty = ''
         searchedPosts = Post.search(emptygender,empty,empty,empty, params[:salon_id],empty,empty)
-        @posts = searchedPosts.page(params[:page]).per(30)
+        @posts = searchedPosts.includes(:favorites).order("favorites.post_id DESC").page(params[:page]).per(30)
         @postsCount = searchedPosts.count
       else
-        @posts = Post.all.page(params[:page]).per(30)
+        @posts = Post.all.includes(:favorites).order("favorites.post_id DESC").page(params[:page]).per(30)
         @postsCount = Post.all.count
       end
     else 
-      @posts = Post.all.page(params[:page]).per(30)
+      @posts = Post.all.includes(:favorites).order("favorites.post_id DESC").page(params[:page]).per(30)
       @postsCount = Post.all.count
     end
 
