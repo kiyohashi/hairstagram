@@ -11,13 +11,21 @@ class SalonsController < ApplicationController
   end
 
   def search
+    
     if params[:area_id] != '' || params[:keyword] != ''
-      @salons = Salon.search(params[:keyword], params[:area_id]).page(params[:page]).per(10)
-      @salonscount = Salon.search(params[:keyword], params[:area_id]).count
+      if params[:area_id].present?
+        @salons = Salon.search(params[:keyword], params[:area_id]).page(params[:page]).per(10)
+        @salonscount = Salon.search(params[:keyword], params[:area_id]).count
+      else
+        @salons = Salon.includes(:posts).order("posts.salon_id DESC").page(params[:page]).per(10)
+        @salonscount = Salon.all.count
+      end
     else 
-      @salons = Salon.all.page(params[:page]).per(10)
+      @salons = Salon.includes(:posts).order("posts.salon_id DESC").page(params[:page]).per(10)
       @salonscount = Salon.all.count
     end
+
+
     if params[:area_id] && params[:area_id] != ''
       @area = Area.find(params[:area_id])
     end
