@@ -10,10 +10,7 @@
         プロフィールに使用する画像を編集できます。
       .user-edit__contents__main__icon
         .user-edit__contents__main__icon__box
-          - if current_user.icon.present?
-            = image_tag current_user.icon.url
-          - else 
-            = image_tag 'egg-icon-gray.png'
+          = image_tag current_user.icon_judge
       .user-edit__contents__main__iconForm
         %label{for:"user_icon"}写真をアップロード
         = f.file_field :icon, type: "file", style: 'display:none;'

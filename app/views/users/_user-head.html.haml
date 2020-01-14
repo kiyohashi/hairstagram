@@ -1,10 +1,7 @@
 .user-show
   .user-show__leftbox.col-4
     .user-show__leftbox__icon
-      - if user.icon.present?
-        = image_tag user.icon.url
-      - else
-        = image_tag 'egg-icon-gray.png'
+      = image_tag user.icon_judge
     .user-show__leftbox__btn.col-12
       - if user_signed_in?
         - if current_user.id == user.id
