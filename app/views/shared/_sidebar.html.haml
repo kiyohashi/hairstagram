@@ -19,41 +19,43 @@
         .search-icon
           = image_tag 'wax.png'
         %span アイテムを探す
-.sidebar__favorite-salon.sidebar__content
-  .sidebar__favorite-salon__head.sidebar__content__head
+.sidebar__popularity-salon.sidebar__content
+  .sidebar__popularity-salon__head.sidebar__content__head
     人気サロン
-  %ul.sidebar__favorite-salon__list.sidebar__content__list
+  %ul.sidebar__popularity-salon__list.sidebar__content__list
     - @popularity_salons.each do |salon|
       %li
         = link_to salon_path(salon) do
           = salon_name(salon)
-.sidebar__favorite-user.sidebar__content
-  .sidebar__favorite-user__head.sidebar__content__head
+.sidebar__popularity-user.sidebar__content
+  .sidebar__popularity-user__head.sidebar__content__head
     ユーザー
-  %ul.sidebar__favorite-user__list.sidebar__content__list
+  %ul.sidebar__popularity-user__list.sidebar__content__list
     - @popularity_users.each do |user|
       %li
-        = link_to user_path(user), class: "sidebar__favorite-user__list__user" do
-          .sidebar__favorite-user__list__user__icon
+        = link_to user_path(user), class: "sidebar__popularity-user__list__user" do
+          .sidebar__popularity-user__list__user__icon
             - if user.icon.url.present?
               = image_tag user.icon.url, size: '35x35'
             - else
               = image_tag 'egg-icon-gray.png', size: '35x35'
-          .sidebar__favorite-user__list__user__right
-            .sidebar__favorite-user__list__user__right__name
+          .sidebar__popularity-user__list__user__right
+            .sidebar__popularity-user__list__user__right__name
               = user.name
-            .sidebar__favorite-user__list__user__right__follower
+            .sidebar__popularity-user__list__user__right__follower
               %span フォロワー
               = user.followers.count
-.sidebar__favorite-style.sidebar__content
-  .sidebar__favorite-item__head.sidebar__content__head
+.sidebar__popularity-item.sidebar__content
+  .sidebar__popularity-item__head.sidebar__content__head
     人気アイテム
-  %ul.sidebar__favorite-item__list.sidebar__content__list
+  %ul.sidebar__popularity-item__list.sidebar__content__list
     - @popularity_items.each do |item|
-      %li
-        = link_to item.link do
+      = form_with(model: @post, url: search_posts_path, local: true, class:'searchbox__form', method: :get) do |f|
+        = f.hidden_field :item_id, value: item.id, id: 'item_id'
+        .sidebar__popularity-item__list__image
           - if item.image_url == "?target=70x70" 
             = image_tag 'noimage.jpg', size: '35x35'
           - else
             = image_tag item.image_url, size: '35x35'
-          = item.name
+        .sidebar__popularity-item__list__input
+          = f.submit "#{item.name}"

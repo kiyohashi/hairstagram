@@ -24,7 +24,6 @@ class ItemsController < ApplicationController
     if params[:genre_id] != '' || params[:keyword] != '' || params[:brandkeyword] != ''
       brands = Brand.search(params[:brandkeyword])
       searcheditems = Item.search(brands.ids, params[:keyword], params[:genre_id])
-      binding.pry
       @items = searcheditems.order(id: "asc").page(params[:page]).per(32)
       @itemscount = searcheditems.count
     else 

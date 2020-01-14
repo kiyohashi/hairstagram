@@ -34,19 +34,20 @@
           img {
             width: 1rem;
           }
+
         }
       }
     }
   }
 }
-.sidebar__favorite-salon {
+.sidebar__popularity-salon {
   padding: 0.5em 0;
   border-top: solid 1px rgba(128, 128, 128, 0.3);
 }
-.sidebar__favorite-user {
+.sidebar__popularity-user {
   padding: 0.5em 0;
   border-top: solid 1px rgba(128, 128, 128, 0.3);
-  .sidebar__favorite-user__list__user {
+  .sidebar__popularity-user__list__user {
     display: flex;
     &__icon {
       margin-right: 1rem;
@@ -69,7 +70,26 @@
     }
   }
 }
-.sidebar__favorite-style {
+.sidebar__popularity-item {
   padding: 0.5em 0;
   border-top: solid 1px rgba(128, 128, 128, 0.3);
+  .searchbox__form{
+    display: flex;
+    margin-bottom: 1rem;
+    .sidebar__popularity-item__list__image {
+      margin-right: 1rem;
+    }
+    .sidebar__popularity-item__list__input {
+      input {
+        border: none;
+        background-color: inherit;
+        text-align: left;
+        white-space: pre-line;
+        word-break:break-all;
+      }
+      input:hover {
+        opacity: 0.6;
+      }
+    }
+  }
 }

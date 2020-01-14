@@ -14,6 +14,18 @@ class PostsController < ApplicationController
       elsif params[:keyword].present?
         @posts = Post.simplesearch(params[:keyword]).page(params[:page]).per(30)
         @postsCount = Post.simplesearch(params[:keyword]).count
+      elsif params[:item_id].present?
+        emptygender = [""]
+        empty = ''
+        searchedPosts = Post.search(emptygender,empty,empty,empty,empty, params[:item_id],empty)
+        @posts = searchedPosts.page(params[:page]).per(30)
+        @postsCount = searchedPosts.count
+      elsif params[:salon_id].present?
+        emptygender = [""]
+        empty = ''
+        searchedPosts = Post.search(emptygender,empty,empty,empty, params[:salon_id],empty,empty)
+        @posts = searchedPosts.page(params[:page]).per(30)
+        @postsCount = searchedPosts.count
       else
         @posts = Post.all.page(params[:page]).per(30)
         @postsCount = Post.all.count
@@ -22,6 +34,7 @@ class PostsController < ApplicationController
       @posts = Post.all.page(params[:page]).per(30)
       @postsCount = Post.all.count
     end
+
 
     if params[:gender_ids] && params[:gender_ids] != [""]
       @genders = Gender.where(id: params[:gender_ids])

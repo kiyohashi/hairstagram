@@ -38,7 +38,7 @@
           - Area.all.each do |area|
             .searchbox__form__select__list__contents__content.area-content{data: {id: area.id}}
               = area.name
-    .searchbox__form__selected.form-selected
+    .searchbox__form__area-selected.form-selected
     .searchbox__form__search
       = f.hidden_field :salon_id, value: '', id: 'content_id'
       %input.searchbox__form__search__salon#salon-search{placeholder: "サロンを探す", type: "text", autocomplete: "off"}
