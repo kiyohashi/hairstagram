@@ -1,7 +1,8 @@
 .user
   .user__leftbox
     .user__leftbox__icon
-      = image_tag user.icon_judge
+      = link_to user_path(user) do
+        = image_tag user.icon_judge
     .user__leftbox__btn
       - if user_signed_in?
         - if current_user.id == user.id

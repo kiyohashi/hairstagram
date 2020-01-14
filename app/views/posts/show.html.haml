@@ -4,9 +4,11 @@
       .show__header__user__left
         .show__header__user__left__icon
           - if @post.user.icon.url.present?
-            = image_tag @post.user.icon.url, class: '', size: '40x40'
+            = link_to user_path(@post.user) do
+              = image_tag @post.user.icon.url, class: '', size: '40x40'
           - else
-            = image_tag 'egg-icon-gray.png', size: '40x40'
+            = link_to user_path(@post.user) do
+              = image_tag 'egg-icon-gray.png', size: '40x40'
         .show__header__user__left__contents
           .show__header__user__left__contents__name
             = @post.user.name

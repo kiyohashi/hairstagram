@@ -4,10 +4,11 @@
     .timeline__recommend__head
       おすすめユーザー
     .timeline__recommend__users
-      - @recommendusers.each do |user|
+      - recommendusers_judge(@recommendusers).each do |user|
         .timeline__recommend__users__user
           .timeline__recommend__users__user__icon
-            = image_tag user.icon_judge
+            = link_to user_path(user) do
+              = image_tag user.icon_judge
           .timeline__recommend__users__user__name
             = user.name
           .timeline__recommend__users__user__follower
@@ -15,7 +16,10 @@
             = user.followers.count
           .timeline__recommend__users__user__common
             (共通のフォロー
-            = user.commonfollowcount(current_user)
+            - if user.commonfollowcount(current_user).present?
+              = user.commonfollowcount(current_user)
+            - else
+              0
             )
           .timeline__recommend__users__user__btn
             - if current_user.following? user

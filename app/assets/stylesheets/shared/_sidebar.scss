@@ -46,6 +46,28 @@
 .sidebar__favorite-user {
   padding: 0.5em 0;
   border-top: solid 1px rgba(128, 128, 128, 0.3);
+  .sidebar__favorite-user__list__user {
+    display: flex;
+    &__icon {
+      margin-right: 1rem;
+      img {
+        border-radius: 1.5rem;
+      }
+    }
+    &__right {
+      &__name {
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+      &__follower {
+        color: #999;
+        span {
+          margin-left: 0;
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
 }
 .sidebar__favorite-style {
   padding: 0.5em 0;

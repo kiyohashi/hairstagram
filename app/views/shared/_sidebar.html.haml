@@ -33,12 +33,18 @@
   %ul.sidebar__favorite-user__list.sidebar__content__list
     - @popularity_users.each do |user|
       %li
-        = link_to user_path(user) do
-          - if user.icon.url.present?
-            = image_tag user.icon.url, size: '35x35'
-          - else
-            = image_tag 'egg-icon-gray.png', size: '35x35'
-          = user.name
+        = link_to user_path(user), class: "sidebar__favorite-user__list__user" do
+          .sidebar__favorite-user__list__user__icon
+            - if user.icon.url.present?
+              = image_tag user.icon.url, size: '35x35'
+            - else
+              = image_tag 'egg-icon-gray.png', size: '35x35'
+          .sidebar__favorite-user__list__user__right
+            .sidebar__favorite-user__list__user__right__name
+              = user.name
+            .sidebar__favorite-user__list__user__right__follower
+              %span フォロワー
+              = user.followers.count
 .sidebar__favorite-style.sidebar__content
   .sidebar__favorite-item__head.sidebar__content__head
     人気アイテム

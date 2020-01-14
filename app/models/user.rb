@@ -40,6 +40,7 @@ class User < ApplicationRecord
       return "egg-icon-gray.png"
     end
   end
+  
 
   def commonfollows(current_user)
     userfollows = current_user.all_following
