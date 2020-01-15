@@ -1,0 +1,10 @@
+.search-header
+  .search-header__list
+    = link_to search_posts_path, class:"search-header__list__style #{"active" if current_page?(search_posts_path)}" do
+      %span スタイル
+    = link_to search_salons_path, class:"search-header__list__salon #{"active" if current_page?(search_salons_path)}" do
+      %span サロン
+    = link_to search_users_path, class:"search-header__list__user #{"active" if current_page?(search_users_path)}" do
+      %span ユーザ
+    = link_to search_items_path, class:"search-header__list__item #{"active" if current_page?(search_items_path)}" do
+      %span アイテム
