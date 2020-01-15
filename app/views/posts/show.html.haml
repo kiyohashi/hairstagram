@@ -86,6 +86,12 @@
                     = icon "far",'heart', class: 'icon'
                   .show__contents__post__left__bottom__favorite__count
                     = @post.favorites.count
+            - else
+              = link_to post_favorite_path(@post), method: :delete, class: 'favorite-delete', id: "favorite-delete" do
+                .show__contents__post__left__bottom__favorite__icon
+                  = icon "fas",'heart', class: 'icon'
+                .show__contents__post__left__bottom__favorite__count
+                  = @post.favorites.count
       .show__contents__post__right
         .show__contents__post__right__title
           = @post.title
