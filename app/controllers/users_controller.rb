@@ -6,23 +6,24 @@ class UsersController < ApplicationController
     if params[:gender_ids] != [""] || params[:length_id] != "" || params[:minage] != '' || params[:maxage] != '' || params[:salon_id] != '' || params[:keyword] != ''
       if params[:gender_ids].present?
         searchedUsers = User.search(params[:gender_ids],params[:length_id],params[:minage],params[:maxage],params[:salon_id],params[:keyword])
-        @users = searchedUsers.includes(:follows).order("follows.follower_id DESC").page(params[:page]).per(30)
+        @users = searchedUsers.includes(:follows).order("follows.followable_id DESC").page(params[:page]).per(30)
         @usersCount = searchedUsers.count
       elsif params[:keyword].present?
-        @users = User.simplesearch(params[:keyword]).includes(:follows).order("follows.follower_id DESC").page(params[:page]).per(30)
+        @users = User.simplesearch(params[:keyword]).includes(:follows).order("follows.followable_id DESC").page(params[:page]).per(30)
         @usersCount = User.simplesearch(params[:keyword]).count
       elsif params[:salon_id].present?
         emptygender = [""]
         empty = ''
         searchedUsers = User.search(emptygender,empty,empty,empty, params[:salon_id],empty)
-        @users = searchedUsers.includes(:follows).order("follows.follower_id DESC").page(params[:page]).per(30)
+        @users = searchedUsers.includes(:follows).order("follows.followable_id DESC").page(params[:page]).per(30)
         @usersCount = searchedUsers.count
       else
-        @users = User.all.includes(:follows).order("follows.follower_id DESC").page(params[:page]).per(50)
+        binding.pry
+        @users = User.all.includes(:follows).order("follows.followable_id DESC").page(params[:page]).per(50)
         @usersCount = User.all.count
       end
     else 
-      @users = User.all.includes(:follows).order("follows.follower_id DESC").page(params[:page]).per(50)
+      @users = User.all.includes(:follows).order("follows.followable_id DESC").page(params[:page]).per(50)
       @usersCount = User.all.count
     end
     
