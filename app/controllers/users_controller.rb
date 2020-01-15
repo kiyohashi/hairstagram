@@ -18,7 +18,6 @@ class UsersController < ApplicationController
         @users = searchedUsers.includes(:follows).order("follows.followable_id DESC").page(params[:page]).per(30)
         @usersCount = searchedUsers.count
       else
-        binding.pry
         @users = User.all.includes(:follows).order("follows.followable_id DESC").page(params[:page]).per(50)
         @usersCount = User.all.count
       end

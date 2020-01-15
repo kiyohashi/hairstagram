@@ -5,6 +5,8 @@
     .searchbox__form__check
       = f.collection_check_boxes(:gender_ids, Gender.all, :id, :name) do |b|
         = b.label { b.check_box + b.text }
+    .searchbox__form__title
+      長さ
     .searchbox__form__select
       %span Length
       = icon "fas", "chevron-right"
