@@ -75,7 +75,7 @@
         .searchbox__form__area-selected.form-selected
         .searchbox__form__search
           = f.hidden_field :salon_id, name: 'post[salon_id]', value: '', id: 'content_id'
-          %input.searchbox__form__search__salon#salon-search{placeholder: "サロンを探す", type: "text", autocomplete: "off"}
+          %input.searchbox__form__search__salon#salon-search{placeholder: "サロン名を入力し選択してください", type: "text", autocomplete: "off"}
           #salon-search-result
         .searchbox__form__salon-selected.form-selected
         -# = f.collection_select :area_id, Area.all, :id, :name, {prompt: 'エリアを選択してください'}

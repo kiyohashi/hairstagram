@@ -5,17 +5,22 @@
   width: 30%;
   margin: 0 5% 2.5em 0;
   &__image {
-    padding-top:140%;
-    position: relative;
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 100%;
-      // width: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      transform: translate(-50%, -50%);
+    a {
+      display: block;
+      width:100%;
+      padding-top:140%;
+      position: relative;
+      img {
+        position: absolute;
+        object-fit: contain;
+        top: 50%;
+        left: 50%;
+        height: 100%;
+        // width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
   &__user {
