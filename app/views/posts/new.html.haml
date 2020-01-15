@@ -8,35 +8,34 @@
       .post-new__form__image__head.form-content__head
         スタイル画像
       .post-new__form__image__form.form-content__content
-        = f.fields_for :images do |img|
-          .post-new__form__image__form__box
-            .post-new__form__image__form__box__image
-              %span NO IMAGE
-              = image_tag '', id: 'postNewImage1'
-            %label{for:"post_images_attributes_0_image"}追加
-            = img.file_field :image, name: "post[images_attributes][0][image]", type: "file", id: 'post_images_attributes_0_image', style: 'display:none;'
-            %input{type: "button",value: '取消', id: 'removeImage1'}
-          .post-new__form__image__form__box
-            .post-new__form__image__form__box__image
-              %span NO IMAGE
-              = image_tag '', id: 'postNewImage2'
-            %label{for:"post_images_attributes_1_image"}追加
-            = img.file_field :image, name: "post[images_attributes][1][image]", type: "file", id: 'post_images_attributes_1_image', style: 'display:none;'
-            %input{type: "button",value: '取消', id: 'removeImage2'}
-          .post-new__form__image__form__box
-            .post-new__form__image__form__box__image
-              %span NO IMAGE
-              = image_tag '', id: 'postNewImage3'
-            %label{for:"post_images_attributes_2_image"}追加
-            = img.file_field :image, name: "post[images_attributes][2][image]", type: "file", id: 'post_images_attributes_2_image', style: 'display:none;'
-            %input{type: "button",value: '取消', id: 'removeImage3'}
-          .post-new__form__image__form__box
-            .post-new__form__image__form__box__image
-              %span NO IMAGE
-              = image_tag '', id: 'postNewImage4'
-            %label{for:"post_images_attributes_3_image"}追加
-            = img.file_field :image, name: "post[images_attributes][3][image]", type: "file", id: 'post_images_attributes_3_image', style: 'display:none;'
-            %input{type: "button",value: '取消', id: 'removeImage4'}
+        .post-new__form__image__form__box
+          .post-new__form__image__form__box__image
+            %span NO IMAGE
+            = image_tag "", id: 'postNewImage1'
+          %label{for:"post_images_attributes_0_image"}追加
+          = f.file_field :image, name: "post[images_attributes][0][image]", type: "file", id: 'post_images_attributes_0_image', style: 'display:none;'
+          %input{type: "button",value: '取消', id: 'removeImage1'}
+        .post-new__form__image__form__box
+          .post-new__form__image__form__box__image
+            %span NO IMAGE
+            = image_tag "", id: 'postNewImage2'
+          %label{for:"post_images_attributes_1_image"}追加
+          = f.file_field :image, name: "post[images_attributes][1][image]", type: "file", id: 'post_images_attributes_1_image', style: 'display:none;'
+          %input{type: "button",value: '取消', id: 'removeImage2'}
+        .post-new__form__image__form__box
+          .post-new__form__image__form__box__image
+            %span NO IMAGE
+            = image_tag "", id: 'postNewImage3'
+          %label{for:"post_images_attributes_2_image"}追加
+          = f.file_field :image, name: "post[images_attributes][2][image]", type: "file", id: 'post_images_attributes_2_image', style: 'display:none;'
+          %input{type: "button",value: '取消', id: 'removeImage3'}
+        .post-new__form__image__form__box
+          .post-new__form__image__form__box__image
+            %span NO IMAGE
+            = image_tag "", id: 'postNewImage4'
+          %label{for:"post_images_attributes_3_image"}追加
+          = f.file_field :image, name: "post[images_attributes][3][image]", type: "file", id: 'post_images_attributes_3_image', style: 'display:none;'
+          %input{type: "button",value: '取消', id: 'removeImage4'}
     .post-new__form__item-brand
       .post-new__form__item-brand__head.form-content__head
         アイテム
@@ -78,8 +77,6 @@
           %input.searchbox__form__search__salon#salon-search{placeholder: "サロン名を入力し選択してください", type: "text", autocomplete: "off"}
           #salon-search-result
         .searchbox__form__salon-selected.form-selected
-        -# = f.collection_select :area_id, Area.all, :id, :name, {prompt: 'エリアを選択してください'}
-        -# = f.collection_select :salon_id, Salon.all, :id, :name, {prompt: 'サロンを選択してください'}
     .post-new__form__gender.form-content
       .post-new__form__gender__head.form-content__head
         性別
@@ -87,8 +84,6 @@
         .searchbox__form__radio
           = f.collection_radio_buttons(:gender_id, Gender.all, :id, :name) do |b|
             = b.label { b.radio_button + b.text }
-          -# = f.collection_check_boxes(:gender_id, Gender.all, :id, :name) do |b|
-          -#   = b.label { b.check_box + b.text }
     .post-new__form__length.form-content
       .post-new__form__length__head.form-content__head
         Length
@@ -110,15 +105,6 @@
                 .searchbox__form__select__list__contents__content.length-content{data: {id: length.id}}
                   = length.name
         .searchbox__form__length-selected.form-selected
-    -#   .post-new__form__gender__head.form-content__head
-    -#     性別
-    -#   .post-new__form__gender__select.form-content__content
-    -#     = f.collection_select :gender_id, Gender.all, :id, :name, {prompt: '選択してください'}
-    -# .post-new__form__length.form-content
-    -#   .post-new__form__length__head.form-content__head
-    -#     Length
-    -#   .post-new__form__length__select.form-content__content
-    -#     = f.collection_select :length_id, Length.all, :id, :name, {prompt: '選択してください'}
     .post-new__form__age.form-content
       .post-new__form__age__head.form-content__head
         年齢

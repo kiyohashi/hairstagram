@@ -84,7 +84,7 @@ class PostsController < ApplicationController
     if post.save
       redirect_to root_path
     else
-      @post = Post.new
+      @post = Post.new(post_params)
       @post.images.build
       render :new
     end
