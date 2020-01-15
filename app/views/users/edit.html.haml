@@ -25,12 +25,43 @@
           .user-edit__contents__main__basicForm__gender__title.list__title
             性別
           .user-edit__contents__main__basicForm__gender__select.list__select
-            = f.collection_select :gender_id, Gender.all, :id, :name, {prompt: '性別を選択してください'}
+            = f.collection_radio_buttons(:gender_id, Gender.all, :id, :name) do |b|
+              = b.label { b.radio_button + b.text }
+        .user-edit__contents__main__basicForm__length.list
+          .user-edit__contents__main__basicForm__length__title.list__title
+            Length
+          .user-edit__contents__main__basicForm__length__select.list__select
+            .user-edit__contents__main__basicForm__length__select__women.list__select
+              %span Women
+              = f.collection_radio_buttons(:length_id, Length.all.first(7), :id, :name) do |b|
+                = b.label { b.radio_button + b.text }
+            .user-edit__contents__main__basicForm__length__select__men.list__select
+              %span Men
+              = f.collection_radio_buttons(:length_id, Length.all.last(6), :id, :name) do |b|
+                = b.label { b.radio_button + b.text }
         .user-edit__contents__main__basicForm__salon.list
           .user-edit__contents__main__basicForm__salon__title.list__title
             お気に入りサロン
           .user-edit__contents__main__basicForm__salon__select.list__select
-            = f.collection_select :salon_id, Salon.all, :id, :name, {prompt: 'サロンを選択してください'}
+            .user-edit__contents__main__basicForm__salon__select__name
+              - if @user.salon.present?
+                = @user.salon.name
+              - else
+                ※現在設定されていません
+            .searchbox__form__select
+              %span エリア
+              = icon "fas", "chevron-right"
+              .searchbox__form__select__list
+                .searchbox__form__select__list__contents
+                  - Area.all.each do |area|
+                    .searchbox__form__select__list__contents__content.area-content{data: {id: area.id}}
+                      = area.name
+            .searchbox__form__area-selected.form-selected
+            .searchbox__form__search
+              = f.hidden_field :salon_id, name: 'user[salon_id]', value: '', id: 'content_id'
+              %input.searchbox__form__search__salon#salon-search{placeholder: "サロンを探す", type: "text", autocomplete: "off"}
+              #salon-search-result
+            .searchbox__form__salon-selected.form-selected
         .user-edit__contents__main__basicForm__age.list
           .user-edit__contents__main__basicForm__age__title.list__title
             年齢
