@@ -12,10 +12,10 @@
       %li 
         %span メールアドレスの変更
         =icon 'fas', 'chevron-right'
-    = link_to passwordedit_user_path(current_user) do
-      %li 
-        %span パスワードの変更
-        =icon 'fas', 'chevron-right'
+    -# = link_to passwordedit_user_path(current_user) do
+    -#   %li 
+    -#     %span パスワードの変更
+    -#     =icon 'fas', 'chevron-right'
     = link_to destroyconfirmation_user_path(current_user) do
       %li 
         %span 退会
