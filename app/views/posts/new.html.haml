@@ -43,12 +43,9 @@
       .post-new__form__item-brand__bland
         %input.post-new__form__item-brand__bland__search#brand-search-field{placeholder: "ブランドを入力してください", type: "text", autocomplete: "off"}
         #brand-search-result
-      .post-new__form__item-brand__item
-        %select.post-new__form__item-brand__item__select
-          %option{value: ""} アイテムを選択してください
-      .post-new__form__item-brand__decide
-        %input.post-new__form__item-brand__decide__btn{type: "button",value: '追加'}
       .post-new__form__item-brand__selected
+      - @post.items.each do |item|
+        %input{type: 'hidden', value: "#{item.id}", class:"post-items-id"}
     .post-new__form__title.form-content
       .post-new__form__title__head.form-content__head
         タイトル
@@ -73,9 +70,11 @@
                   = area.name
         .searchbox__form__area-selected.form-selected
         .searchbox__form__search
-          = f.hidden_field :salon_id, name: 'post[salon_id]', value: '', id: 'content_id'
-          %input.searchbox__form__search__salon#salon-search{placeholder: "サロン名を入力し選択してください", type: "text", autocomplete: "off"}
-          #salon-search-result
+          = f.hidden_field :salon_id, name: 'post[salon_id]', value: "#{@post.salon_id}", id: 'content_id'
+          - if @post.salon.present?
+            %input{type: 'hidden', value: "#{@post.salon.name}", class:"post-salon-name"}
+          -# %input.searchbox__form__search__salon#salon-search{placeholder: "サロン名を入力し選択してください", type: "text", autocomplete: "off"}
+          -# #salon-search-result
         .searchbox__form__salon-selected.form-selected
     .post-new__form__gender.form-content
       .post-new__form__gender__head.form-content__head
@@ -91,7 +90,9 @@
         .searchbox__form__select
           %span Length
           = icon "fas", "chevron-right"
-          = f.hidden_field :length_id, value: '', id: 'length_id'
+          = f.hidden_field :length_id, value: "#{@post.length_id}", id: 'length_id'
+          - if @post.length.present?
+            %input{type: 'hidden', value: "#{@post.length.name}", class:"post-length-name"}
           .searchbox__form__select__list
             %span#nogender 性別を選択してください
             .searchbox__form__select__list__contents#Women-contents

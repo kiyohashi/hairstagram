@@ -106,6 +106,7 @@ $(function() {
   $(document).on("click", ".post-result-salon > p", function() {
     $(".searchbox__form__salon-selected > span").remove();
     $("#salon-search-result").empty();
+    $('.modal').css('display','none');
     contentid = $(this).data("salonId");
     var box = $('.searchbox__form__salon-selected')
     var genre = "salon"
