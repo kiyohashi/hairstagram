@@ -51,7 +51,7 @@
   %ul.sidebar__popularity-item__list.sidebar__content__list
     - @popularity_items.each do |item|
       = form_with(model: @post, url: search_posts_path, local: true, class:'searchbox__form', method: :get) do |f|
-        = f.hidden_field :item_id, value: item.id, id: 'item_id'
+        = f.hidden_field :item_id, value: item.id, id: "item-id-#{item.id}"
         .sidebar__popularity-item__list__image
           - if item.image_url == "?target=70x70" 
             = image_tag 'noimage.jpg', size: '35x35'
