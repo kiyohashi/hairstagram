@@ -72,7 +72,13 @@ $(function() {
 
 
   $(document).on("keyup", "#salon-search", function() {
-    var input = $("#salon-search").val();
+    salonSearch(this)
+  });
+  $(document).on("keyup", "#salon-search-new", function() {
+    salonSearch(this)
+  });
+  function salonSearch(salon_search){
+    var input = $(salon_search).val();
     if ($("#area-selected")[0] != null) {
       var areaId = $("#area-selected").data("id");
     } else {
@@ -86,7 +92,12 @@ $(function() {
     })
     .done(function(contents) {
       var genre = "salon"
-      var box = $("#salon-search-result")
+      var pathname= location.pathname;
+      if (pathname.indexOf("/posts/new") === 0) {
+        var box = $("#salon-search-result-new")
+      } else {
+        var box = $("#salon-search-result")
+      }
       box.empty();
       if (contents.length !== 0) {
         contents.forEach(function(content) {
@@ -101,7 +112,7 @@ $(function() {
     .fail(function() {
       alert("通信エラーです。スタイルが表示できません。");
     });
-  });
+  };
 
   $(document).on("click", ".post-result-salon > p", function() {
     $(".searchbox__form__salon-selected > span").remove();

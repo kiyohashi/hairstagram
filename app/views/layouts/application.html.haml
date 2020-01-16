@@ -19,8 +19,8 @@
       .modal__salon
         .modal__salon__delete.modal-delete
           ×
-        %input.searchbox__form__search__salon#salon-search{placeholder: "サロン名を入力し選択してください", type: "text", autocomplete: "off"}
-        #salon-search-result
+        %input.searchbox__form__search__salon#salon-search-new{placeholder: "サロン名を入力し選択してください", type: "text", autocomplete: "off"}
+        #salon-search-result-new
     = render partial: "layouts/header", locals: { user: @currentuser}
     .main
       .main-contents
