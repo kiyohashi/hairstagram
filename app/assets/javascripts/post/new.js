@@ -107,31 +107,34 @@ $(function() {
   }
 
   $("#brand-search-field").on("keyup", function() {
-    var input = $("#brand-search-field").val();
-    $.ajax({
-      type: "GET",
-      url: "/brands",
-      data: { keyword: input },
-      dataType: "json"
-    })
-    .done(function(brands) {
-      $("#brand-search-result").empty();
-      $(".post-new__form__item-brand__item__select option").remove('');
-      addDefaultOption()
+    var itemAmount = $('.post-new__form__item-brand__selected > div').length
+    if (itemAmount <= 4){
+      var input = $("#brand-search-field").val();
+      $.ajax({
+        type: "GET",
+        url: "/brands",
+        data: { keyword: input },
+        dataType: "json"
+      })
+      .done(function(brands) {
+        $("#brand-search-result").empty();
+        $(".post-new__form__item-brand__item__select option").remove('');
+        addDefaultOption()
 
-      if (brands.length !== 0) {
-        brands.forEach(function(brand) {
-          addBrand(brand);
-        });
-      } else if (input.length == 0) {
-        return false;
-      } else {
-        addNoBrand();
-      }
-    })
-    .fail(function() {
-      alert("通信エラーです。ブランドが表示できません。");
-    });
+        if (brands.length !== 0) {
+          brands.forEach(function(brand) {
+            addBrand(brand);
+          });
+        } else if (input.length == 0) {
+          return false;
+        } else {
+          addNoBrand();
+        }
+      })
+      .fail(function() {
+        alert("通信エラーです。ブランドが表示できません。");
+      });
+    };
   });
 
   $(document).on("click", ".post-item-brand__name", function() {
