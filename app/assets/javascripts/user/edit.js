@@ -32,18 +32,20 @@ $(function() {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        var imgprev = $('.user-edit__contents__main__icon__box').children('img');
+        var imgprev = $(".beforedelete");
         imgprev.attr('src', e.target.result);
       }
       reader.readAsDataURL(input.files[0]);
     }
   }
   $("#user_icon").change(function(){
+    $(".afterdelete").css('display','none');
+    $(".beforedelete").css('display','block');
     iconreadURL1(this);
   });
   $(document).on("click", "#removeIcon", function() {
-    var dom = $('.user-edit__contents__main__icon__box').children('img');
-    dom.attr('src', '/assets/egg-icon-gray.png');
+    $(".afterdelete").css('display','block');
+    $(".beforedelete").css('display','none');
     $('#user_icon').val(null);
   });
 });
