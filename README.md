@@ -25,7 +25,9 @@ HairStagram(仮)
 ### URL
 http://18.176.201.68/
 
-### sample_login_account
+## sample_login_account
+- mail: test@gmail.com
+- pass: 00000000
 
 
 ## Environment
