@@ -12,7 +12,6 @@
     }
   }
   .direct-message__show__messages {
-    border-bottom: 1px solid #cccccc;
     overflow: scroll;
     height: calc(100% - 7rem);
     &__message {
@@ -71,6 +70,7 @@
     }
   }
   &__form {
+    border-top: 1px solid #cccccc;
     height: 3.5rem;
     display: flex;
     align-items: center;

@@ -53,11 +53,12 @@
                   = image_tag message.image.url
             .direct-message__show__messages__date
               = message.created_at.strftime("%Y/%m/%d %H:%M")
-    = form_with(url: room_messages_path(@room), local: true, class: 'direct-message__show__form', id: 'new_message') do |f|
-      = f.label :image, class: 'direct-message__show__form__image' do
-        = icon "far", "image", class: "image"
-        = f.file_field :image, style: 'display:none;'
-      = f.text_area :body, class: '', placeholder: 'send a message',rows: "1", class: 'direct-message__show__form__body'
-      = f.label 'dmsubmit', class: 'direct-message__show__form__submit' do
-        = icon "far", "paper-plane", class: "paper-plain"
-        = f.submit id: 'dmsubmit',style: 'display:none;'
+    - if partner(@room)
+      = form_with(url: room_messages_path(@room), local: true, class: 'direct-message__show__form', id: 'new_message') do |f|
+        = f.label :image, class: 'direct-message__show__form__image' do
+          = icon "far", "image", class: "image"
+          = f.file_field :image, style: 'display:none;'
+        = f.text_area :body, class: '', placeholder: 'send a message',rows: "1", class: 'direct-message__show__form__body'
+        = f.label 'dmsubmit', class: 'direct-message__show__form__submit' do
+          = icon "far", "paper-plane", class: "paper-plain"
+          = f.submit id: 'dmsubmit',style: 'display:none;'
