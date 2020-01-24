@@ -10,12 +10,9 @@
             ランキング
     .footer__container__content
       -if user_signed_in?
-        = link_to timeline_user_path(current_user) do
+        = link_to all_user_timelines_path(current_user) do
           .footer__container__content__timeline
-            - if current_page?(controller: '/users', action: 'timeline', id: current_user.id)
-              .selecting
-                タイムライン
-            - else
+            %span
               タイムライン
       -else
         = link_to user_session_path do

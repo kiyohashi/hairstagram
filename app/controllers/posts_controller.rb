@@ -63,9 +63,9 @@ class PostsController < ApplicationController
     post_like_count = Post.joins(:favorites).group(:post_id).count
     post_liked_ids = Hash[post_like_count.sort_by{ |_, v| -v }].keys
     @posts = Post.where(id: post_liked_ids).order(['field(id, ?)', post_liked_ids])
-    @womenPosts = @posts.select{|post| post.user.gender_id == 1}
-    @menPosts = @posts.select{|post| post.user.gender_id == 2}
-    @freePosts = @posts.select{|post| post.user.gender_id == 3}
+    @womenPosts = @posts.select{|post| post.gender_id == 1}
+    @menPosts = @posts.select{|post| post.gender_id == 2}
+    @freePosts = @posts.select{|post| post.gender_id == 3}
     # postsalons = Salon.joins(:posts).select("id").group(:id).count
     # postsalons_order = Hash[postsalons.sort_by{ |_, v| -v }].keys
     # @popularity_salons = Salon.where(id: postsalons_order).order("FIELD(id, #{postsalons_order.join(',')})").first(5)
