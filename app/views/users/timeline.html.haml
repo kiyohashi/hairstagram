@@ -35,13 +35,16 @@
       .genderAll.active
         .posts
           = render partial: 'posts/post', collection: @posts
+        = paginate @posts
       .genderWomen
         .posts
           = render partial: 'posts/post', collection: @womenPosts
+        = paginate @womenPosts
       .genderMen
         .posts
           = render partial: 'posts/post', collection: @menPosts
+        = paginate @menPosts
       .genderFree
         .posts
           = render partial: 'posts/post', collection: @freePosts
-    = paginate @posts
+        = paginate @freePosts
