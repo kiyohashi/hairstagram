@@ -6,7 +6,7 @@ $(function() {
     $(".timeline__main__posts > div").removeClass('active');
     var id_gender = $(this).attr('id')
     var posts = document.getElementsByClassName(id_gender)[0];
-    $(posts).addClass('active')
-    $(this).addClass('active')
+    $(posts).addClass('active');
+    $(this).addClass('active');
   });
 });

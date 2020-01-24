@@ -159,13 +159,13 @@ class UsersController < ApplicationController
 
   def timeline
     posts = desc(Post.where(user_id: current_user.all_following))
-    @posts = posts.page(params[:page]).per(12)
+    @posts = posts.page(params[:page]).per(15)
     womenPosts = posts.select{|post| post.gender_id == 1}
-    @womenPosts = Kaminari.paginate_array(womenPosts).page(params[:page]).per(12)
+    @womenPosts = Kaminari.paginate_array(womenPosts).page(params[:women_page]).per(15)
     menPosts = posts.select{|post| post.gender_id == 2}
-    @menPosts = Kaminari.paginate_array(menPosts).page(params[:page]).per(12)
+    @menPosts = Kaminari.paginate_array(menPosts).page(params[:men_page]).per(15)
     freePosts = posts.select{|post| post.gender_id == 3}
-    @freePosts = Kaminari.paginate_array(freePosts).page(params[:page]).per(12)
+    @freePosts = Kaminari.paginate_array(freePosts).page(params[:free_page]).per(15)
     @recommendusers = User.find(current_user.commonfollows(current_user).group(:follower_id).order('count(follower_id) desc').limit(5).pluck(:follower_id))
   end
 
