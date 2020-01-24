@@ -1,4 +1,4 @@
-= render partial: 'shared/gender-select'
+= render partial: 'shared/timeline-gender-select'
 .timeline
   .timeline__recommend
     .timeline__recommend__head
@@ -36,15 +36,3 @@
         .posts
           = render partial: 'posts/post', collection: @posts
         = paginate @posts
-      .genderWomen
-        .posts
-          = render partial: 'posts/post', collection: @womenPosts
-        = paginate @womenPosts, param_name: 'women_page'
-      .genderMen
-        .posts
-          = render partial: 'posts/post', collection: @menPosts
-        = paginate @menPosts, param_name: 'men_page'
-      .genderFree
-        .posts
-          = render partial: 'posts/post', collection: @freePosts
-        = paginate @freePosts, param_name: 'free_page'

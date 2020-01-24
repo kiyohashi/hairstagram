@@ -14,7 +14,6 @@ Rails.application.routes.draw do
       get 'search'
     end
     member do
-      get 'timeline',            to: 'users#timeline'
       get 'iconedit',            to: 'users#iconedit'
       patch 'icon',              to: 'users#iconupdate'
       put 'icon',                to: 'users#iconupdate'
@@ -26,6 +25,14 @@ Rails.application.routes.draw do
       put 'password',            to: 'users#passwordupdate'
       get 'destroyconfirmation', to: 'users#destroyconfirmation'
       get 'favorites',           to: 'users#favorites'
+    end
+    resources :timelines, only: [] do
+      collection do
+        get 'all'
+        get 'women'
+        get 'men'
+        get 'free'
+      end
     end
   end
 

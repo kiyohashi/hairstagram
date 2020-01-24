@@ -1,0 +1,10 @@
+.gender-select
+  %ul.gender-select__list
+    = link_to all_user_timelines_path(current_user), id: "genderAll" do
+      ALL
+    = link_to women_user_timelines_path(current_user), id: "genderWomen" do
+      Women
+    = link_to men_user_timelines_path(current_user), id: "genderMen" do
+      Men
+    = link_to free_user_timelines_path(current_user), id: "genderFree" do
+      Free
