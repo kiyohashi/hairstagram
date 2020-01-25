@@ -96,7 +96,7 @@ $(function() {
     $(".post-new__form__item-brand__selected").append(html);
   }
 
-  function addPodtItemForm(item) {
+  function addPostItemForm(item) {
     let html = `<input value="${item.id}" name="post[item_ids][]" type="hidden" id="post_item_ids_${item.id}" />`;
     $(`#${item.id}`).append(html);
   }
@@ -187,7 +187,7 @@ $(function() {
         var itemAmount = $('.post-new__form__item-brand__selected > div').length
         if (itemAmount <= 4){
           addPostItem(item)
-          addPodtItemForm(item)
+          addPostItemForm(item)
           $("#brand-search-field").val('');
           $(".post-new__form__item-brand__item__select option").remove('');
           addDefaultOption()
@@ -204,8 +204,7 @@ $(function() {
   });
 
   $(document).on("click", ".area-content", function() {
-    var pathname= location.pathname;
-    if (pathname.indexOf("/posts/new") === 0) {
+    if ($(".modal-area-select")[0]) {
       $('.modal').css('display','block');
       $('.modal__salon').css('display','block');
     }

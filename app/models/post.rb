@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :length
   belongs_to_active_hash :gender
-  validates :body, :images, :title, :gender_id, :length_id, :salon_id, presence: true
+  validates :body, :images, :title, :gender_id, :length_id, :salon_id, :age, presence: true
 
   belongs_to :user
   belongs_to :salon

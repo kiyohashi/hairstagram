@@ -27,6 +27,9 @@
         width: 65%;
       }
     }
+    &__errors {
+      color: red;
+    }
     &__image {
       &__form {
         width: 60% !important;

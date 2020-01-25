@@ -22,6 +22,17 @@
 ---
 ja:
   activerecord:
+    models:
+      post: スタイル
+    attributes:
+      post:
+        title: タイトル
+        body: スタイル紹介文
+        salon_id: サロン
+        salon: サロン
+        gender_id: 性別
+        age: 年齢
+        images: スタイル画像
     user:
       attributes:
         birth: '生年月日'
@@ -181,9 +192,9 @@ ja:
     messages:
       format: "%{attribute}%{message}"
       accepted: を受諾してください
-      blank: "%{attribute}を入力してください"
+      blank: "を入力してください"
       confirmation: と%{attribute}の入力が一致しません
-      empty: "%{attribute}を入力してください"
+      empty: "を入力してください"
       equal_to: は%{count}にしてください
       even: は偶数にしてください
       exclusion: は予約されています
