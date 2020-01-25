@@ -23,7 +23,7 @@ HairStagram(仮)
 
 
 ### URL
-http://18.176.201.68/
+https://hairstagram.site/
 
 ## sample_login_account
 - mail: test@gmail.com
