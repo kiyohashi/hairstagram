@@ -92,12 +92,11 @@ $(function() {
     })
     .done(function(contents) {
       var genre = "salon"
-      var pathname= location.pathname;
-      if (pathname.indexOf("/posts/new") === 0) {
+      if ($(".modal-area-select")[0]) {
         var box = $("#salon-search-result-new")
       } else {
         var box = $("#salon-search-result")
-      }
+      }0
       box.empty();
       if (contents.length !== 0) {
         contents.forEach(function(content) {

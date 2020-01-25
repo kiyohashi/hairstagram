@@ -4,6 +4,9 @@
       = icon 'fas', 'camera-retro', class: 'search-icon'
       %span スタイルを投稿する
   .post-new__form
+    .post-new__form__errors
+      - @post.errors.full_messages_for(:images).each do |message|
+        ※#{message}
     .post-new__form__image.form-content
       .post-new__form__image__head.form-content__head
         スタイル画像
@@ -46,16 +49,25 @@
       .post-new__form__item-brand__selected
       - @post.items.each do |item|
         %input{type: 'hidden', value: "#{item.id}", class:"post-items-id"}
+    .post-new__form__errors
+      - @post.errors.full_messages_for(:title).each do |message|
+        ※#{message}
     .post-new__form__title.form-content
       .post-new__form__title__head.form-content__head
         タイトル
       .post-new__form__title__form.form-content__content
         = f.text_field :title, placeholder: "タイトル"
+    .post-new__form__errors
+      - @post.errors.full_messages_for(:body).each do |message|
+        ※#{message}
     .post-new__form__body.form-content
       .post-new__form__body__head.form-content__head
         スタイル紹介
       .post-new__form__body__form.form-content__content
         = f.text_area :body, placeholder: "スタイル紹介文" , rows: "10"
+    .post-new__form__errors
+      - @post.errors.full_messages_for(:salon_id).each do |message|
+        ※#{message}
     .post-new__form__salon.form-content
       .post-new__form__salon__head.form-content__head
         サロン
@@ -66,16 +78,17 @@
           .searchbox__form__select__list
             .searchbox__form__select__list__contents
               - Area.all.each do |area|
-                .searchbox__form__select__list__contents__content.area-content{data: {id: area.id}}
+                .searchbox__form__select__list__contents__content.area-content.modal-area-select{data: {id: area.id}}
                   = area.name
         .searchbox__form__area-selected.form-selected
         .searchbox__form__search
           = f.hidden_field :salon_id, name: 'post[salon_id]', value: "#{@post.salon_id}", id: 'content_id'
           - if @post.salon.present?
             %input{type: 'hidden', value: "#{@post.salon.name}", class:"post-salon-name"}
-          -# %input.searchbox__form__search__salon#salon-search{placeholder: "サロン名を入力し選択してください", type: "text", autocomplete: "off"}
-          -# #salon-search-result
         .searchbox__form__salon-selected.form-selected
+    .post-new__form__errors
+      - @post.errors.full_messages_for(:gender_id).each do |message|
+        ※#{message}
     .post-new__form__gender.form-content
       .post-new__form__gender__head.form-content__head
         性別
@@ -83,6 +96,9 @@
         .searchbox__form__radio
           = f.collection_radio_buttons(:gender_id, Gender.all, :id, :name) do |b|
             = b.label { b.radio_button + b.text }
+    .post-new__form__errors
+      - @post.errors.full_messages_for(:length_id).each do |message|
+        ※#{message}
     .post-new__form__length.form-content
       .post-new__form__length__head.form-content__head
         Length
@@ -106,6 +122,9 @@
                 .searchbox__form__select__list__contents__content.length-content{data: {id: length.id}}
                   = length.name
         .searchbox__form__length-selected.form-selected
+    .post-new__form__errors
+      - @post.errors.full_messages_for(:age).each do |message|
+        ※#{message}
     .post-new__form__age.form-content
       .post-new__form__age__head.form-content__head
         年齢
