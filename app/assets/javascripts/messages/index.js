@@ -33,6 +33,15 @@ $(function(){
                 </div>`
     return html;
   };
+
+  function buildLastMessage(message) {
+    if ( message.image ){
+      var contents = "画像が送信されました。";
+    } else {
+      var contents = message.body.replace(/\n.*/m, "").slice(0,20);
+    }
+    return contents
+  }
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -47,6 +56,9 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
+      var lastMessage = buildLastMessage(data)
+      $(`#room${data.roomId} > .room__right > .room__right__bottom`).empty();
+      $(`#room${data.roomId} > .room__right > .room__right__bottom`).append(lastMessage);
       $('.direct-message__show__messages').append(html)
       $('#new_message').get(0).reset();
       $('.direct-message__show__messages').animate({ scrollTop: $('.direct-message__show__messages')[0].scrollHeight});

@@ -1,25 +1,27 @@
-= link_to room_path(room), class: 'room' do
+= link_to room_path(room), class: 'room', id: "room#{room.id}" do
+  - unless unreadcount(room) == 0
+    .notification-count
+      = unreadcount(room)
   .room__left
-    - if partner(room)
-      - if partner(room).icon.url.present?
-        = image_tag partner(room).icon.url, size: '40x40'
+    - if room.partner(current_user)
+      - if room.partner(current_user).icon.url.present?
+        = image_tag room.partner(current_user).icon.url, size: '40x40'
       - else
         = image_tag 'egg-icon-gray.png', size: '40x38'
     - else
       = image_tag 'nouser.jpg', size: '40x38'
   .room__right
     .room__right__top
-      - if partner(room)
+      - if room.partner(current_user)
         .room__right__top__name
-          = partner(room).name
+          = room.partner(current_user).name
         .room__right__top__acountid
-          @#{partner(room).acountid}
+          @#{room.partner(current_user).acountid}
       - else
         .room__right__top__acountid
           退会したユーザー
     .room__right__bottom
       - if room.messages.present?
-        -# = simple_format(room.messages.last.body).sub!(/\n.*/m, "").slice(3..50)
         - if room.messages.last.body.present?
           = room.messages.last.body.sub(/\n.*/m, "").slice(0..20)
         - else 

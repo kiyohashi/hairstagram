@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     if @message.save
+      @message.room.touch
       respond_to do |format|
         format.html {redirect_to controller: 'rooms', action: 'show', id: params[:room_id]}
         format.json

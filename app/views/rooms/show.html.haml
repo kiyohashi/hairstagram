@@ -4,24 +4,24 @@
     = render 'rooms'
   .direct-message__show
     .direct-message__show__user
-      - if partner(@room)
+      - if @room.partner(current_user)
         .direct-message__show__user__name
-          = partner(@room).name
+          = @room.partner(current_user).name
         .direct-message__show__user__acountid
-          @#{partner(@room).acountid}
+          @#{@room.partner(current_user).acountid}
       - else
         .direct-message__show__user__name
           退会したユーザー
     .direct-message__show__messages
       - @room.messages.each do |message|
-        - if partner(@room)
-          - if partner(@room).id == message.user_id
+        - if @room.partner(current_user)
+          - if @room.partner(current_user).id == message.user_id
             .partner
               .direct-message__show__messages__message
                 .direct-message__show__messages__message__icon
-                  = link_to user_path(partner(@room)) do
-                    - if partner(@room).icon.url.present?
-                      = image_tag partner(@room).icon.url
+                  = link_to user_path(@room.partner(current_user)) do
+                    - if @room.partner(current_user).icon.url.present?
+                      = image_tag @room.partner(current_user).icon.url
                     - else
                       = image_tag 'egg-icon-gray.png'
                 .direct-message__show__messages__message__contents
@@ -40,6 +40,9 @@
                   - if message.image.present?
                     = image_tag message.image.url
               .direct-message__show__messages__date
+                - if message.readflg
+                  %span.direct-message__show__messages__date__read
+                    既読
                 = message.created_at.strftime("%Y/%m/%d %H:%M")
         - else
           .partner
@@ -53,7 +56,7 @@
                   = image_tag message.image.url
             .direct-message__show__messages__date
               = message.created_at.strftime("%Y/%m/%d %H:%M")
-    - if partner(@room)
+    - if @room.partner(current_user)
       = form_with(url: room_messages_path(@room), local: true, class: 'direct-message__show__form', id: 'new_message') do |f|
         = f.label :image, class: 'direct-message__show__form__image' do
           = icon "far", "image", class: "image"

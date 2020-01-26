@@ -16,7 +16,7 @@
         @#{post.user.acountid}
     .post__user__follow-trash
       - if user_signed_in? && current_user.id == post.user.id
-        = link_to post_path(post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' } do
+        = link_to post_path(post.id), method: :delete, data: { confirm: 'ほんとに消しますか？' } do
           = icon "far", "trash-alt", class: "trash"
       - else
         - if user_signed_in?

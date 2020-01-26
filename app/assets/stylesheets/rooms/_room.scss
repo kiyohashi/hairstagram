@@ -5,6 +5,11 @@
   height: 4rem;
   border-bottom: 1px solid #cccccc;
   color: inherit;
+  position: relative;
+  .notification-count {
+    position: absolute;
+    right:0;
+  }
   &__left {
     margin-right: 1em;
     img {
