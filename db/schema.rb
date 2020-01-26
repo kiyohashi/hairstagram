@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_07_164552) do
+ActiveRecord::Schema.define(version: 2020_01_25_140352) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 2020_01_07_164552) do
     t.text "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "readflg", default: false, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -165,7 +166,10 @@ ActiveRecord::Schema.define(version: 2020_01_07_164552) do
     t.string "acountid", null: false
     t.text "icon"
     t.text "introduction"
+    t.integer "age"
     t.bigint "salon_id"
+    t.bigint "length_id"
+    t.bigint "gender_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -173,9 +177,6 @@ ActiveRecord::Schema.define(version: 2020_01_07_164552) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "age"
-    t.bigint "length_id"
-    t.bigint "gender_id"
     t.index ["acountid"], name: "index_users_on_acountid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["gender_id"], name: "index_users_on_gender_id"

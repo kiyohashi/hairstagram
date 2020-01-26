@@ -109,7 +109,7 @@
             = link_to salon_path(@post.salon), class: 'show__contents__post__right__introduction__salon' do
               = salon_name(@post.salon)
           - if user_signed_in? && current_user.id == @post.user_id
-            = link_to post_path(@post.id), method: :delete, data: { confirm: 'ほんとに消していいの？' }, class: 'show__contents__post__right__introduction__trash' do
+            = link_to post_path(@post.id), method: :delete, data: { confirm: 'ほんとに消しますか？' }, class: 'show__contents__post__right__introduction__trash' do
               = icon "far", "trash-alt", class: "trash"
         .show__contents__post__right__body
           - if @post.body.present?

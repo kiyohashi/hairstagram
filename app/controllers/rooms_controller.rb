@@ -20,12 +20,17 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @rooms = current_user.rooms
+    @rooms = current_user.rooms.order(updated_at: "desc")
     @room = Room.find(params[:id])
+    if @room.partner(current_user)
+      @room.partner(current_user).messages.each do |message|
+        message.update(readflg: true)
+      end
+    end
   end
 
   def index
-    @rooms = current_user.rooms
+    @rooms = current_user.rooms.order(updated_at: "desc")
   end
   
 end

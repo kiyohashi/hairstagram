@@ -63,6 +63,10 @@
         }
       }
       .direct-message__show__messages__date {
+        &__read {
+          font-size: 40%;
+          margin-right: 0.4rem;
+        }
         display: flex;
         justify-content: flex-end;
         font-size: 30%;
